@@ -7,13 +7,13 @@ import './ProfileGlobal.css';
 import './Profile.css';
 
 function Profile({name}) {
-
   const character = loadCharacter(name);
+  const [state, setState] = useState(character)
   const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")"};
   const [displayContent, elegirTop] = useState("EQUIPO");
 
   return (
-    <CharacterContext.Provider value={character}>
+    <CharacterContext.Provider value={[state, setState]}>
       <div className="titliFullName" style={colorPrincipal}><span>{character.nameFull}</span></div>
       <div className="topButtonDiv">
         {character.subMenu.map(info => {let classutton = "topButton glass ";
