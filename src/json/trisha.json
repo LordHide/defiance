@@ -1,0 +1,26 @@
+{
+    "name":"trisha",
+    "nameFull": "TRISHALA \"TRISHA\" N33",
+    "colorPrime": {
+        "R": 96,
+        "G": 74,
+        "B": 151
+    },
+    "subMenu":[
+        {"name": "EQUIPO"},
+        {"name": "INVENTARIO"},
+        {"name": "REMOTO"},
+        {"name": "DEFIANCE"}
+    ],
+    "type": "Ingeniera",
+    "characterState":[
+        {"name": "aturdido", "asociatedClass": "icon-aturdido", "active": true, "color1": "142, 76, 0", "color2": "142, 76, 0", "positionX": 233, "positionY": 200, "angle":0},
+        {"name": "ardiendo", "asociatedClass": "icon-ardiendo", "active": false, "color1": "238, 43, 43", "color2": "223, 121, 43", "positionX": 320, "positionY": 150, "angle":180},
+        {"name": "marcado", "asociatedClass": "icon-marcado", "active": false, "color1": "249, 21, 45", "color2": "239, 15, 239", "positionX": 407, "positionY": 200, "angle":0},
+        {"name": "concentrado", "asociatedClass": "icon-concentrado", "active": false, "color1": "233, 233, 42", "color2": "210, 179, 26", "positionX": 233, "positionY": 300, "angle":180},
+        {"name": "cegado", "asociatedClass": "icon-cegado", "active": false, "color1": "33, 185, 48", "color2": "96, 135, 17", "positionX": 320, "positionY": 351, "angle":0},
+        {"name": "inmovilizado", "asociatedClass": "icon-inmovilizado", "active": false, "color1": "52, 186, 225", "color2": "26, 47, 128", "positionX": 407, "positionY": 300, "angle":180},
+        {"name": "oculto", "asociatedClass": "icon-oculto", "active": false, "color1": "142, 76, 0", "color2": "142, 76, 0", "positionX": 50, "positionY": 50, "angle":0},
+        {"name": "inconsciente", "asociatedClass": "icon-inconsciente", "active": false, "color1": "142, 76, 0", "color2": "142, 76, 0", "positionX": 50, "positionY": 50, "angle":0}
+    ]
+}

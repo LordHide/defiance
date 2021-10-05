@@ -18,11 +18,16 @@
 }
 
 .ardiendoSpan{
-    background: linear-gradient(rgb(238, 43, 43), rgb(223, 121, 43));
-    filter: blur(30px) opacity(0.5);
+    /*background: linear-gradient(rgb(238, 43, 43), rgb(223, 121, 43));
+    filter: blur(30px) opacity(0.5);*/
+    filter: drop-shadow(-1px 6px 3px rgba(238, 43, 43, 0.5));
 }
 
 .ardiendo.stateActive{
+    background: linear-gradient(rgba(238, 43, 43, 1), rgba(223, 121, 43, 1));
+}
+
+.ardiendo.stateDeactivated{
     background: linear-gradient(rgba(238, 43, 43, 1), rgba(223, 121, 43, 1));
 }
 

@@ -1,4 +1,6 @@
 body{
   background: linear-gradient(200deg, #91A08C, #B9AE82, #BE914E, #BE924F, #806244);
   max-width: 100vw;
+  height: 100vh;
+  margin: 0;
 }

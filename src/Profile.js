@@ -1,19 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, createContext} from 'react';
 import Inventario from './inventario.js';
 import ProfailMain from './profailMain.js';
-import trishaJSON from './Img/trisha.json';
+import CharacterContext from './CharacterContext.js';
+import trishaJSON from './json/trisha.json';
 import './ProfileGlobal.css';
 import './Profile.css';
 
-
 function Profile({name}) {
+
   const character = loadCharacter(name);
   const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")"};
   const [displayContent, elegirTop] = useState("EQUIPO");
 
   return (
-    <div>
-      <div className="titliFullName" style={colorPrincipal}><h1>{character.nameFull}</h1></div>
+    <CharacterContext.Provider value={character}>
+      <div className="titliFullName" style={colorPrincipal}><span>{character.nameFull}</span></div>
       <div className="topButtonDiv">
         {character.subMenu.map(info => {let classutton = "topButton glass ";
           classutton += info.name == displayContent ? "active" : "deacticated";
@@ -21,9 +22,9 @@ function Profile({name}) {
         <button className="glass type deacticated">{character.type}</button>
       </div>
       <div className="App glass">
-        {loadActiveContent(character, displayContent)}
+        {loadActiveContent(displayContent)}
       </div>
-    </div>
+    </CharacterContext.Provider>
   );
 }
 
@@ -36,13 +37,13 @@ function loadCharacter(name){
   return characterJSON;
 }
 
-function loadActiveContent(character, displayContent){
+function loadActiveContent(displayContent){
   let content;
 
   switch(displayContent){
-    case "EQUIPO" : content = < ProfailMain character = {character} />; break;
-    case "INVENTARIO" :  content = < Inventario character = {character} />; break;
-    default: content = < ProfailMain character = {character} />; break;
+    case "EQUIPO" : content = < ProfailMain />; break;
+    case "INVENTARIO" :  content = < Inventario />; break;
+    default: content = < Inventario />; break;
   }
 
   return content;

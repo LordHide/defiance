@@ -1,4 +1,5 @@
 .character{
-    width:21vw;
+    width:19vw;
     margin-left: 5vw;
+    max-height: 76vh;
 }

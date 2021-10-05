@@ -1,19 +1,56 @@
+import React, {useState, useContext} from 'react';
+import CharacterContext from './CharacterContext.js';
 import trishaImg from './Img/trisha.png';
 import './ProfileGlobal.css';
 import './characterState.css';
 import './font/css/fontello.css';
 import './font/css/fontello-codes.css';
+import { Stage, Layer, RegularPolygon, Text, Filters } from 'react-konva';
 
-function profailMain({character}) {
+function ProfailMain() {
 
-    const profileImg = characterImg(character.name);
+  const character = useContext(CharacterContext);
 
-    return (
-        <div className="line">
-          <img src={profileImg} className="character" alt="character" />
-          {character.characterState.map(info => {return createCharacterState(info) } ) }
-        </div>
-    );
+  const profileImg = characterImg(character.name);
+
+  return (
+      <div className="line">
+        <img src={profileImg} className="character" alt="character" />
+        <Stage width={500} height={500}>
+          <Layer>
+            {character.characterState.map( function  callbackFn(info, index) { let alpha = info.active ? 1 : 0.2;
+
+            return <RegularPolygon
+              shadowBlur= {5}
+              shadowOpacity= {0.5}
+              shadowOffset= {{ x: 10, y: 10 }}
+              shadowColor= {'rgba('+info.color1+', 1)'}
+              x= {info.positionX}
+              y= {info.positionY}
+              rotation= {info.angle}
+              sides= {3}
+              radius= {100}
+              fillLinearGradientStartPoint= { {x: 50, y: -70} }
+              fillLinearGradientEndPoint= { {x: 50, y: 15} }
+              fillLinearGradientColorStops= {[0, 'rgba('+info.color1+', '+alpha+')', 1, 'rgba('+info.color2+', '+alpha+')']}
+              onClick={handleClick(index, character)}
+            /> } ) }
+          </Layer>
+        </Stage>
+      </div>
+  );
+}
+
+function handleClick (index, character) {
+  const returnFunction = character.characterState[index].active ? 
+  () => {
+    character.characterState[index].active = false 
+  }
+: 
+  () => {
+    character.characterState[index].active = true
+  };
+  return returnFunction
 }
 
 function characterImg(name){
@@ -26,20 +63,28 @@ function characterImg(name){
     return imgReference;
 }
 
-function createCharacterState(characterState){
-  let classNameState = "glass stateCharacter "+characterState.name
-  let classNameStateSpam = "stateCharacter "+characterState.name+"Span "+characterState.name;
-  classNameState += characterState.active ? " stateActive" : " stateDeactivated";
+function CreateCharacterState(info){
+  let alpha = info.active ? 1 : 0.2;
 
-  if(characterState.name == "aturdido" || characterState.name == "cegado" || characterState.name == "marcado"){
-    classNameState += " invertedTriangle";
-  }
-  else if(characterState.name == "ardiendo" || characterState.name == "concentrado" || characterState.name == "inmovilizado"){
-    classNameState += " triangle";
-  }
-  
-  return <span><span className={classNameStateSpam}></span><div className={classNameState}><i className = {characterState.asociatedClass}></i></div></span>;
+  const handleClick = () => {
+    //alpha == 1 ? elegirTop(0.5) : elegirTop(1);
+  };
+  return <RegularPolygon
+    shadowBlur= {5}
+    shadowOpacity= {0.5}
+    shadowOffset= {{ x: 10, y: 10 }}
+    shadowColor= {'rgba('+info.color1+', 1)'}
+    x= {info.positionX}
+    y= {info.positionY}
+    rotation= {info.angle}
+    sides= {3}
+    radius= {100}
+    fillLinearGradientStartPoint= { {x: 50, y: -70} }
+    fillLinearGradientEndPoint= { {x: 50, y: 15} }
+    fillLinearGradientColorStops= {[0, 'rgba('+info.color1+', '+alpha+')', 1, 'rgba('+info.color2+', '+alpha+')']}
+    onClick={handleClick}
+  />
 }
 
 
-export default profailMain;
+export default ProfailMain;
