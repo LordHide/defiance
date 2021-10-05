@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useRef, useEffect} from 'react';
 import CharacterContext from './CharacterContext.js';
 import trishaImg from './Img/trisha.png';
 import './ProfileGlobal.css';
@@ -9,7 +9,7 @@ import { Stage, Layer, RegularPolygon, Text, Filters } from 'react-konva';
 import Konva from 'konva'
 
 function ProfailMain() {
-
+  const refsPolygon = useRef([])
   const [character, setCharacter] = useContext(CharacterContext);
 
   const profileImg = characterImg(character.name);
@@ -26,6 +26,12 @@ function ProfailMain() {
       }
   };
 
+  useEffect(() => {
+    refsPolygon.current.forEach(ref => {
+      ref.cache()
+    })
+  }, [refsPolygon])
+
   return (
       <div className="line">
         <img src={profileImg} className="character" alt="character" />
@@ -35,8 +41,8 @@ function ProfailMain() {
 
 
             return <RegularPolygon
-              blurRadius= {20}
-              filters = {[Konva.Filters.Blur]}
+              filters={[Konva.Filters.Blur]}
+              blurRadius={20}
               x= {info.positionX}
               y= {info.positionY}
               rotation= {info.angle}
@@ -46,6 +52,9 @@ function ProfailMain() {
               fillLinearGradientEndPoint= { {x: 50, y: 15} }
               fillLinearGradientColorStops= {[0, 'rgba('+info.color1+', '+alpha+')', 1, 'rgba('+info.color2+', '+alpha+')']}
               onClick={handleClick(index)}
+              ref={node => {
+                refsPolygon.current[index] = node
+              }}
             /> } ) }
           </Layer>
         </Stage>
