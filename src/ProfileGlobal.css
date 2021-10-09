@@ -27,6 +27,10 @@
     color: rgb(255, 255, 255);
 }
 
+.konvajs-content{
+    margin-left: 25%;
+}
+
 .type{
     margin-left: 8vw;
     font-size: 1.6vw;

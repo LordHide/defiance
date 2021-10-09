@@ -1,7 +1,19 @@
 {
     "name":"trisha",
+    "type": "Ingeniera",
     "nameFull": "TRISHALA \"TRISHA\" N33",
+    "stats":[
+        {"name":"health", "max":8, "current":8, "modifier":0, "marker": "salud", "positionX": 827, "positionY":80},
+        {"name":"aggro", "max":6, "current":0, "modifier":0, "marker": "agro", "positionX": 827, "positionY":149},
+        {"name":"movement", "max":6, "current":0, "modifier":0, "marker": "velocidad", "positionX": 747, "positionY":149},
+        {"name":"defense", "max":[{ "type": "svg", "code": "dadoNegro"}, { "type": "svg", "code": "dadoNegro"}], "current":0, "modifier":0, "marker": "defensa", "positionX": 747, "positionY":218}
+    ],
     "colorPrime": {
+        "R": 96,
+        "G": 74,
+        "B": 151
+    },
+    "colorSecon": {
         "R": 96,
         "G": 74,
         "B": 151
@@ -12,15 +24,53 @@
         {"name": "REMOTO"},
         {"name": "DEFIANCE"}
     ],
-    "type": "Ingeniera",
+    "infoContainer":[
+        {"name": "EQUIPO"},
+        {"name": "SOFTWARE"},
+        {"name": "ESPECIALIDADES"}
+    ],
+    "personalSkill": [{"title": "Post Human", "Content":[
+            { "type": "text", "code": "Al inicio de tu Activacion puedes ganar el Estado"}, 
+            { "type": "i", "code": "icon-concentrado"}, 
+            { "type": "text", "code": "Concentrado"}]
+        },
+        {"title": "Analisis de Campo", "Content":[
+            { "type": "text", "code": "Una vez por Ronda, cuando se revele la carta de iniciativa de una Unidad, Trishala puede activarse en ese momento. \n En ese caso, la Unidad revelada se activara inmediantamente despues de Trishala y Duquesa no podra activarse esta Randa. Ademas, ningun otro Personaje podra activarse entre Trishala y la Unidad."}]
+        }
+    ],
     "characterState":[
-        {"name": "aturdido", "asociatedClass": "icon-aturdido", "active": true, "color1": "142, 76, 0", "color2": "142, 76, 0", "positionX": 233, "positionY": 200, "angle":0},
-        {"name": "ardiendo", "asociatedClass": "icon-ardiendo", "active": false, "color1": "238, 43, 43", "color2": "223, 121, 43", "positionX": 320, "positionY": 150, "angle":180},
-        {"name": "marcado", "asociatedClass": "icon-marcado", "active": false, "color1": "249, 21, 45", "color2": "239, 15, 239", "positionX": 407, "positionY": 200, "angle":0},
-        {"name": "concentrado", "asociatedClass": "icon-concentrado", "active": false, "color1": "233, 233, 42", "color2": "210, 179, 26", "positionX": 233, "positionY": 300, "angle":180},
-        {"name": "cegado", "asociatedClass": "icon-cegado", "active": false, "color1": "33, 185, 48", "color2": "96, 135, 17", "positionX": 320, "positionY": 351, "angle":0},
-        {"name": "inmovilizado", "asociatedClass": "icon-inmovilizado", "active": false, "color1": "52, 186, 225", "color2": "26, 47, 128", "positionX": 407, "positionY": 300, "angle":180},
-        {"name": "oculto", "asociatedClass": "icon-oculto", "active": false, "color1": "142, 76, 0", "color2": "142, 76, 0", "positionX": 50, "positionY": 50, "angle":0},
-        {"name": "inconsciente", "asociatedClass": "icon-inconsciente", "active": false, "color1": "142, 76, 0", "color2": "142, 76, 0", "positionX": 50, "positionY": 50, "angle":0}
+        {"name": "aturdido", "icon": {"text":"", "x":65, "y":130}, "active": false, "color1": "142, 76, 0", "color2": "142, 76, 0", "positionX": 80, "positionY": 150, "positionXBlur": -7, "positionYBlur": 0, "angle":0},
+        {"name": "ardiendo", "icon": {"text":"", "x":135, "y":85}, "active": false, "color1": "223, 121, 43", "color2": "238, 43, 43", "positionX": 150, "positionY": 110, "positionXBlur": 0, "positionYBlur": 7, "angle":180},
+        {"name": "marcado", "icon": {"text":"", "x":210, "y":130}, "active": false, "color1": "249, 21, 45", "color2": "239, 15, 239", "positionX": 220, "positionY": 150, "positionXBlur": 7, "positionYBlur": 0, "angle":0},
+        {"name": "concentrado", "icon": {"text":"", "x":65, "y":220}, "active": false, "color1": "210, 179, 26", "color2": "233, 233, 42", "positionX": 80, "positionY": 230, "positionXBlur": 7, "positionYBlur": 0, "angle":180},
+        {"name": "cegado", "icon": {"text":"", "x":133, "y":260}, "active": false, "color1": "33, 185, 48", "color2": "96, 135, 17", "positionX": 150, "positionY": 270, "positionXBlur": 0, "positionYBlur": 7, "angle":0},
+        {"name": "inmovilizado", "icon": {"text":"", "x":210, "y":220}, "active": false, "color1": "26, 47, 128", "color2": "52, 186, 225", "positionX": 220, "positionY": 230, "positionXBlur": -7, "positionYBlur": 0, "angle":180},
+        {"name": "oculto", "icon": {"text":"", "x":133, "y":145}, "active": false, "color1": "249, 249, 249", "color2": "249, 249, 249", "positionX": 150, "positionY": 190, "angle":180},
+        {"name": "inconsciente", "icon": {"text":"", "x":133, "y":200}, "active": false, "color1": "12, 12, 12", "color2": "12, 12, 12", "positionX": 150, "positionY": 190, "angle":0}
+    ],
+    "equipment":[
+        {"id": 13, "asociatedId": "", "name": "PISTOLA", "info": [{ "type": "range", "code": "1-4"}, { "type": "svg", "code": "dadoNaranja"}, { "type": "svg", "code": "dadoAzul"}], "slot": "icon-mano"},
+        {"id": 13, "asociatedId": "", "name": "DISPOSITIVO DE HECKER DEFENSIVO", "info": [{ "type": "i", "code": "icon-escudo"}, { "type": "svg", "code": "dadoNegro"}, { "type": "i", "code": "icon-bloqueo"}, { "type": "i", "code": "icon-bloqueo"}], "slot": "icon-mano"},
+        {"id": 13, "asociatedId": "", "name": "CASCO DE PRECISION", "info": [], "slot": "icon-casco"},
+        {"id": 13, "asociatedId": "", "name": "ARMADURA REFORZADA", "info": [{ "type": "i", "code": "icon-escudo"}, { "type": "svg", "code": "dadoVerde"}, { "type": "svg", "code": "dadoAzul"}, { "type": "i", "code": "icon-defensa"}, { "type": "svg", "code": "dadoNegro"}, { "type": "svg", "code": "dadoAmarillo"}], "slot": "icon-pecho"},
+        {"id": 13, "asociatedId": "", "name": "KIT DE REPARACION", "info": [], "slot": "icon-equipo"},
+        {"id": 13, "asociatedId": "", "name": "CARGA-D", "info": [], "slot": "icon-equipo"},
+        {"id": 13, "asociatedId": "", "name": "AUTOMEDKIT", "info": [], "slot": "icon-equipo"},
+        {"id": 13, "asociatedId": "", "name": "PISTOLA", "info": [], "slot": "icon-equipo"},
+        {"id": 13, "asociatedId": "", "name": "PISTOLA", "info": [], "slot": "icon-equipo"}
+    ],
+    "software":[
+        {"id": 13, "asociatedId": "", "name": "DISPOSITIVO DE HECKER DEFENSIVO", "info": [{ "type": "range", "code": "0-4"}, { "type": "svg", "code": "dadoAmarillo"}, { "type": "i", "code": "icon-bloqueo"}, { "type": "svg", "code": "software"}, { "type": "svg", "code": "software"}, { "type": "svg", "code": "software"}], "slot": "icon-mano"},
+        {"id": 13, "asociatedId": "", "name": "SKULLBUSTER", "info": [], "slot": "icon-software"},
+        {"id": 13, "asociatedId": "", "name": "GEIST-AID", "info": [], "slot": "icon-software"},
+        {"id": 13, "asociatedId": "", "name": "PICKLOCK", "info": [], "slot": "icon-software"}
+    ],
+    "specialties":[
+        {"id": 13, "asociatedId": "", "name": "CUERPO SUPERIOR LHOST I", "info": [{ "type": "text", "code": "ALEPH"}, { "type": "range", "code": "I"}], "slot": "icon-mano"},
+        {"id": 13, "asociatedId": "", "name": "CUERPO SUPERIOR LHOST II", "info": [{ "type": "text", "code": "ALEPH"}, { "type": "range", "code": "II"}], "slot": "icon-mano"},
+        {"id": 13, "asociatedId": "", "name": "PALBOT", "info": [{ "type": "text", "code": "INGENIERIA"}, { "type": "range", "code": "I"}], "slot": "icon-casco"},
+        {"id": 13, "asociatedId": "", "name": "CHATARRERA", "info": [{ "type": "text", "code": "BOTIN"}, { "type": "range", "code": "I"}], "slot": "icon-pecho"},
+        {"id": 13, "asociatedId": "", "name": "RECICLADORA", "info": [{ "type": "text", "code": "BOTIN"}, { "type": "range", "code": "II"}], "slot": "icon-equipo"},
+        {"id": 13, "asociatedId": "", "name": "EFICIENTE", "info": [{ "type": "text", "code": "VERSATIL"}, { "type": "range", "code": "I"}], "slot": "icon-equipo"}
     ]
 }
