@@ -41,8 +41,8 @@ function ProfailMain() {
             {character.characterState.map( (info, index) => {
               return stateGeneration(info, index, handleClick);
             } ) }
-            <CreateCanvasSlider rectY={70} />
-            <CreateCanvasSlider rectY={130} />
+            <CreateCanvasSlider rectY={0.04} />
+            <CreateCanvasSlider rectY={0.079} />
             {character.stats.map( (stat) => {
               return statsGeneration(stat, colorPrincipal, colorSecondary);
             } ) }
@@ -57,10 +57,10 @@ function CreateCanvasSlider({rectY}){
 
   return(
     <Rect
-      x= {330}
-      y= {rectY}
-      width= {280}
-      height= {51}
+      x= {window.innerWidth * 0.2}
+      y= {window.innerWidth * rectY}
+      width= {window.innerWidth * 0.2}
+      height= {window.innerWidth * 0.028}
       fill={"rgba(60, 60, 60, 0.5)"}
     />
   );
@@ -78,11 +78,11 @@ function stateGeneration(info, index, handleClick){
       shadowOffset= {{ x: info.positionXBlur, y: info.positionYBlur }}
       shadowOpacity= {0.5}
       drawBorder= {true}
-      x= {info.positionX}
+      x= {window.innerWidth * info.positionX}
       y= {info.positionY}
       rotation= {info.angle}
       sides= {3}
-      radius= {80}
+      radius= {window.innerWidth * 0.0317}
       fillLinearGradientStartPoint= { {x: 50, y: -70} }
       fillLinearGradientEndPoint= { {x: 50, y: 15} }
       fillLinearGradientColorStops= {[0, 'rgba('+info.color1+', '+alpha+')', 1, 'rgba('+info.color2+', '+alpha+')']}
@@ -98,11 +98,10 @@ function stateGeneration(info, index, handleClick){
       drawBorder= {true}
       angle={180}
       innerRadius={0}
-      outerRadius= {60}
-      x= {info.positionX}
+      outerRadius= {window.innerWidth * 0.0238}
+      x= {window.innerWidth * info.positionX}
       y= {info.positionY}
       rotation= {info.angle}
-      sides= {3}
       fillLinearGradientStartPoint= { {x: 50, y: -70} }
       fillLinearGradientEndPoint= { {x: 50, y: 15} }
       fillLinearGradientColorStops= {[0, 'rgba('+info.color1+', '+alpha+')', 1, 'rgba('+info.color2+', '+alpha+')']}
@@ -117,7 +116,7 @@ function stateGeneration(info, index, handleClick){
       fontFamily="fontello"
       x= {info.icon.x}
       y= {info.icon.y}
-      fontSize={33}
+      fontSize={window.innerWidth * 0.011}
       fill={textColor}
       onClick={handleClick(index)}
     />
@@ -234,21 +233,29 @@ function generatePersonalItems(element, extraClass){
 }
 
 function statsGeneration(stat, colorPrincipal, colorSecondary){
+  let contentComponent = <></>;
   const componentX = window.innerWidth * stat.positionX;
   const componentY = window.innerWidth * stat.positionY;
   const contentWidth = window.innerWidth*0.016;
   const image = new Image();
-  let contentComponent = <></>;
   image.src = svgDispenser(stat.marker);
 
   if (typeof (stat.max) === "object") {
-    contentComponent = <ImageKonva
-      image={image}
-      x= {componentX - (contentWidth)/2}
-      y= {componentY - contentWidth}
-      height= {contentWidth}
-      width= {contentWidth}
-    />;
+    let imagePositionX = (componentX + contentWidth*0.8);
+    contentComponent =  stat.max.map( (maxData) => {
+      const imageData = new Image();
+      imagePositionX = imagePositionX-((contentWidth*0.8));
+      imageData.src = svgDispenser(maxData.code);
+      return (
+        <ImageKonva
+          image={imageData}
+          x= {(imagePositionX)}
+          y= {(componentY + (window.innerWidth*0.00396))}
+          height= {contentWidth*0.6}
+          width= {contentWidth*0.6}
+        />);
+    })
+   
   }
   else{
   contentComponent = 
