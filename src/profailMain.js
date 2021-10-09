@@ -5,22 +5,21 @@ import trishaImg from './Img/trisha.png';
 import './ProfileGlobal.css';
 import './font/css/fontello.css';
 import './font/css/fontello-codes.css';
-import { Stage, Layer, RegularPolygon, Text, Arc, Rect, Image } from 'react-konva';
-import useImage from 'use-image';
+import { Stage, Layer, RegularPolygon, Text, Arc, Rect, Image as ImageKonva } from 'react-konva';
+//import useImage from 'use-image';
 
 function ProfailMain() {
   const refsPolygonBright = useRef([]);
   const [character, setCharacter] = useContext(CharacterContext);
   const colorPrincipal= "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")";
   const colorSecondary= "rgba("+character.colorSecon.R+","+character.colorSecon.G+","+character.colorSecon.B+")";
-
   const profileImg = characterImg(character.name);
 
 
   const handleClick = (index) => {
     return () => {
         character.characterState[index].active ? 
-          character.characterState[index].active = false 
+          character.characterState[index].active = false
         :
           character.characterState[index].active = true
 
@@ -42,24 +41,21 @@ function ProfailMain() {
             {character.characterState.map( (info, index) => {
               return stateGeneration(info, index, handleClick);
             } ) }
-            { createCanvasSlider(70) }
-            { createCanvasSlider(130) }
+            <CreateCanvasSlider rectY={70} />
+            <CreateCanvasSlider rectY={130} />
             {character.stats.map( (stat) => {
               return statsGeneration(stat, colorPrincipal, colorSecondary);
             } ) }
           </Layer>
         </Stage>
         <CreateInfoContainer />
-        {character.stats.map( (stat) => {
-          return <img src={svgDispenser(stat.marker)} className={stat.name+"StatIcon"} />;
-        } ) }
       </div>
   );
 }
 
-function createCanvasSlider(rectY){
+function CreateCanvasSlider({rectY}){
 
-  return <>
+  return(
     <Rect
       x= {330}
       y= {rectY}
@@ -67,7 +63,7 @@ function createCanvasSlider(rectY){
       height= {51}
       fill={"rgba(60, 60, 60, 0.5)"}
     />
-  </> 
+  );
 }
 
 function stateGeneration(info, index, handleClick){
@@ -221,7 +217,7 @@ function generatePersonalItems(element, extraClass){
   <div className="contenedorInfoElement">
     <i className={element.slot}></i> 
     <div className="infoElement1" title={element.name}>
-      {element.name}
+      <div>{element.name}</div>
     </div> 
     <div className={"infoElement2 "+extraClass}>{element.info.map(
       (iconInfo) => {
@@ -237,14 +233,41 @@ function generatePersonalItems(element, extraClass){
   )
 }
 
-function statsGeneration(stat, colorPrincipal, colorSecondary, image){
+function statsGeneration(stat, colorPrincipal, colorSecondary){
+  const componentX = window.innerWidth * stat.positionX;
+  const componentY = window.innerWidth * stat.positionY;
+  const contentWidth = window.innerWidth*0.016;
+  const image = new Image();
+  let contentComponent = <></>;
+  image.src = svgDispenser(stat.marker);
+
+  if (typeof (stat.max) === "object") {
+    contentComponent = <ImageKonva
+      image={image}
+      x= {componentX - (contentWidth)/2}
+      y= {componentY - contentWidth}
+      height= {contentWidth}
+      width= {contentWidth}
+    />;
+  }
+  else{
+  contentComponent = 
+    <Text 
+      text={stat.max}
+      x= {componentX - (contentWidth)/3.7}
+      y= {(componentY + (window.innerWidth*0.00396))}
+      fontSize={contentWidth}
+      fill={'#fff'}
+    />;
+  }
+
   return (
   <>
     <RegularPolygon
-      x= {stat.positionX}
-      y= {stat.positionY}
+      x= {componentX}
+      y= {componentY}
       sides= {6}
-      radius= {40}
+      radius= {window.innerWidth*0.022}
       rotation= {90}
       stroke= {"rgb(112, 112, 112"}
       strokeWidth={3}
@@ -252,6 +275,14 @@ function statsGeneration(stat, colorPrincipal, colorSecondary, image){
       fillLinearGradientEndPoint= { {x: 50, y: 15} }
       fillLinearGradientColorStops= {[0, colorPrincipal, 1, colorSecondary]}
     />
+    <ImageKonva
+      image={image}
+      x= {componentX - (contentWidth)/2}
+      y= {componentY - contentWidth}
+      height= {contentWidth}
+      width= {contentWidth}
+    />
+    {contentComponent}
   </>);
 }
 

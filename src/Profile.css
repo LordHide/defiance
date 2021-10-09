@@ -52,25 +52,25 @@
     height: 10%;
     font-size: 1.3vw;
     position: relative;
-    align-content: center;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    display: flex;
+    flex: 0 0 8vw;
+    flex-direction: column;
+    justify-content: center;
 }
 .infoElement2{
     width: 15vw;
     height: 10%;
     font-size: 0.8vw;
+    display: flex;
 }
-.infoElement1 p{
-    margin: 0;
-    align-content: center;
-    justify-content: center;
+.infoElement1 div{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .infoElement1, .infoElement2{
     padding: 0.2vw;
     height: 3.5vh;
-    display: flex;
     background-color: rgba(62, 54, 54, 0.7);
 }
 .infoElement2 div{
@@ -138,6 +138,7 @@
   .circleInfo{
     background-color: rgb(62, 54, 54);
     color: #FFF;
+    display: flex;
     width: 2.5vw;
     height: 2.5vw;
     align-content: center;
@@ -148,6 +149,7 @@
 
   .circleInfo i{
     margin: auto;
+    font-size: 1.5vw;
   }
 
   .personalSkill{

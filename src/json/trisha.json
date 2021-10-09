@@ -3,10 +3,10 @@
     "type": "Ingeniera",
     "nameFull": "TRISHALA \"TRISHA\" N33",
     "stats":[
-        {"name":"health", "max":8, "current":8, "modifier":0, "marker": "salud", "positionX": 827, "positionY":80},
-        {"name":"aggro", "max":6, "current":0, "modifier":0, "marker": "agro", "positionX": 827, "positionY":149},
-        {"name":"movement", "max":6, "current":0, "modifier":0, "marker": "velocidad", "positionX": 747, "positionY":149},
-        {"name":"defense", "max":[{ "type": "svg", "code": "dadoNegro"}, { "type": "svg", "code": "dadoNegro"}], "current":0, "modifier":0, "marker": "defensa", "positionX": 747, "positionY":218}
+        {"name":"health", "max":8, "current":8, "modifier":0, "marker": "salud", "positionX": 0.503, "positionY":0.034},
+        {"name":"aggro", "max":6, "current":0, "modifier":0, "marker": "agro", "positionX": 0.503, "positionY":0.0737},
+        {"name":"movement", "max":6, "current":0, "modifier":0, "marker": "velocidad", "positionX": 0.4592, "positionY":0.0737},
+        {"name":"defense", "max":[{ "type": "svg", "code": "dadoNegro"}, { "type": "svg", "code": "dadoNegro"}], "current":0, "modifier":0, "marker": "defensa", "positionX": 0.4592, "positionY":0.114}
     ],
     "colorPrime": {
         "R": 96,
@@ -30,8 +30,8 @@
         {"name": "ESPECIALIDADES"}
     ],
     "personalSkill": [{"title": "Post Human", "Content":[
-            { "type": "text", "code": "Al inicio de tu Activacion puedes ganar el Estado"}, 
-            { "type": "i", "code": "icon-concentrado"}, 
+            { "type": "text", "code": "Al inicio de tu Activacion puedes ganar el Estado"},
+            { "type": "i", "code": "icon-concentrado"},
             { "type": "text", "code": "Concentrado"}]
         },
         {"title": "Analisis de Campo", "Content":[
