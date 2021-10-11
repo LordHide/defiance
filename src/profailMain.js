@@ -38,14 +38,16 @@ function ProfailMain() {
         <img src={profileImg} className="character" alt="character" />
         <Stage width={window.innerWidth*0.62} height={window.innerWidth*0.2}>
           <Layer>
-            {character.characterState.map( (info, index) => {
-              return stateGeneration(info, index, handleClick);
-            } ) }
-            <CreateCanvasSlider imageName={"herida"} />
-            <CreateCanvasSlider imageName={"agro"} />
-            {character.stats.map( (stat) => {
-              return statsGeneration(stat, colorPrincipal, colorSecondary);
-            } ) }
+            <CharacterContext.Provider value={[character, setCharacter]}>
+              {character.characterState.map( (info, index) => {
+                return stateGeneration(info, index, handleClick);
+              } ) }
+              <CreateCanvasSlider imageName={"herida"} />
+              <CreateCanvasSlider imageName={"agro"} />
+              {character.stats.map( (stat) => {
+                return statsGeneration(stat, colorPrincipal, colorSecondary);
+              } ) }
+            </CharacterContext.Provider>
           </Layer>
         </Stage>
         <CreateInfoContainer />
