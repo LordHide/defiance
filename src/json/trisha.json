@@ -3,10 +3,10 @@
     "type": "Ingeniera",
     "nameFull": "TRISHALA \"TRISHA\" N33",
     "stats":[
-        {"name":"health", "max":8, "current":8, "modifier":0, "marker": "salud", "positionX": 0.503, "positionY":0.034},
-        {"name":"aggro", "max":6, "current":0, "modifier":0, "marker": "agro", "positionX": 0.503, "positionY":0.0737},
-        {"name":"movement", "max":6, "current":0, "modifier":0, "marker": "velocidad", "positionX": 0.4592, "positionY":0.0737},
-        {"name":"defense", "max":[{ "type": "svg", "code": "dadoNegro"}, { "type": "svg", "code": "dadoNegro"}], "current":0, "modifier":0, "marker": "defensa", "positionX": 0.4592, "positionY":0.114}
+        {"name":"health", "max":8, "current":8, "modifier":0, "marker": "salud", "positionX": 0.590, "positionY":0.034},
+        {"name":"aggro", "max":6, "current":0, "modifier":0, "marker": "agro", "positionX": 0.590, "positionY":0.0737},
+        {"name":"movement", "max":6, "current":0, "modifier":0, "marker": "velocidad", "positionX": 0.547, "positionY":0.0737},
+        {"name":"defense", "max":[{ "type": "svg", "code": "dadoNegro"}, { "type": "svg", "code": "dadoNegro"}], "current":0, "modifier":0, "marker": "defensa", "positionX": 0.547, "positionY":0.114}
     ],
     "colorPrime": {
         "R": 96,
@@ -39,14 +39,14 @@
         }
     ],
     "characterState":[
-        {"name": "aturdido", "icon": {"text":"", "x":65, "y":130}, "active": false, "color1": "142, 76, 0", "color2": "142, 76, 0", "positionX": 0.03174, "positionY": 150, "positionXBlur": -7, "positionYBlur": 0, "angle":0},
-        {"name": "ardiendo", "icon": {"text":"", "x":135, "y":85}, "active": false, "color1": "223, 121, 43", "color2": "238, 43, 43", "positionX": 0.0595, "positionY": 110, "positionXBlur": 0, "positionYBlur": 7, "angle":180},
-        {"name": "marcado", "icon": {"text":"", "x":210, "y":130}, "active": false, "color1": "249, 21, 45", "color2": "239, 15, 239", "positionX": 0.0873, "positionY": 150, "positionXBlur": 7, "positionYBlur": 0, "angle":0},
-        {"name": "concentrado", "icon": {"text":"", "x":65, "y":220}, "active": false, "color1": "210, 179, 26", "color2": "233, 233, 42", "positionX": 0.03174, "positionY": 230, "positionXBlur": 7, "positionYBlur": 0, "angle":180},
-        {"name": "cegado", "icon": {"text":"", "x":133, "y":260}, "active": false, "color1": "33, 185, 48", "color2": "96, 135, 17", "positionX": 0.0595, "positionY": 270, "positionXBlur": 0, "positionYBlur": 7, "angle":0},
-        {"name": "inmovilizado", "icon": {"text":"", "x":210, "y":220}, "active": false, "color1": "26, 47, 128", "color2": "52, 186, 225", "positionX": 0.0873, "positionY": 230, "positionXBlur": -7, "positionYBlur": 0, "angle":180},
-        {"name": "oculto", "icon": {"text":"", "x":133, "y":145}, "active": false, "color1": "249, 249, 249", "color2": "249, 249, 249", "positionX": 0.0595, "positionY": 190, "angle":180},
-        {"name": "inconsciente", "icon": {"text":"", "x":133, "y":200}, "active": false, "color1": "12, 12, 12", "color2": "12, 12, 12", "positionX": 0.0595, "positionY": 190, "angle":0}
+        {"name": "aturdido", "icon": {"text":"aturdido", "x":0.09533, "y":0.04095}, "active": false, "color1": "142, 76, 0", "color2": "142, 76, 0", "positionX": 0.10533, "positionY": 0.05395, "positionXBlur": -7, "positionYBlur": 0, "angle":0},
+        {"name": "ardiendo", "icon": {"text":"ardiendo", "x":0.13133, "y":0.02095}, "active": false, "color1": "223, 121, 43", "color2": "238, 43, 43", "positionX": 0.14066, "positionY": 0.03395, "positionXBlur": 0, "positionYBlur": 7, "angle":180},
+        {"name": "marcado", "icon": {"text":"marcado", "x":0.16733, "y":0.04095}, "active": false, "color1": "249, 21, 45", "color2": "239, 15, 239", "positionX": 0.17616, "positionY": 0.05395, "positionXBlur": 7, "positionYBlur": 0, "angle":0},
+        {"name": "concentrado", "icon": {"text":"concentrado", "x":0.09533, "y":0.09095}, "active": false, "color1": "210, 179, 26", "color2": "233, 233, 42", "positionX": 0.10533, "positionY": 0.0944, "positionXBlur": 7, "positionYBlur": 0, "angle":180},
+        {"name": "cegado", "icon": {"text":"cegado", "x":0.13133, "y":0.10895}, "active": false, "color1": "33, 185, 48", "color2": "96, 135, 17", "positionX": 0.14066, "positionY": 0.1143, "positionXBlur": 0, "positionYBlur": 7, "angle":0},
+        {"name": "inmovilizado", "icon": {"text":"inmovilizado", "x":0.16733, "y":0.09095}, "active": false, "color1": "26, 47, 128", "color2": "52, 186, 225", "positionX": 0.17616, "positionY": 0.0944, "positionXBlur": -7, "positionYBlur": 0, "angle":180},
+        {"name": "oculto", "icon": {"text":"oculto", "x":0.13133, "y":0.05295}, "active": false, "color1": "249, 249, 249", "color2": "249, 249, 249", "positionX": 0.14066, "positionY": 0.07395, "angle":180},
+        {"name": "inconsciente", "icon": {"text":"inconsciente", "x":0.13133, "y":0.07895}, "active": false, "color1": "12, 12, 12", "color2": "12, 12, 12", "positionX": 0.14066, "positionY": 0.07395, "angle":0}
     ],
     "equipment":[
         {"id": 13, "asociatedId": "", "name": "PISTOLA", "info": [{ "type": "range", "code": "1-4"}, { "type": "svg", "code": "dadoNaranja"}, { "type": "svg", "code": "dadoAzul"}], "slot": "icon-mano"},

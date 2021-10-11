@@ -15,12 +15,12 @@
     backdrop-filter: blur(20px);
 }
 .contenedorGroupElements{
-    max-width: 35%;
+    width: 40%;
     max-height: 100%;
     overflow-y: auto;
 }
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 0.5VW;
   }
   
   /* Track */
@@ -48,18 +48,18 @@
 }
 .infoElement1{
     margin-left: 0.4vw;
-    width: 8vw;
+    width: 12vw;
     height: 10%;
     font-size: 1.3vw;
     position: relative;
     display: flex;
-    flex: 0 0 8vw;
+    flex: 0 0 12vw;
     flex-direction: column;
     justify-content: center;
 }
 .infoElement2{
-    width: 15vw;
-    height: 10%;
+    width: 17vw;
+    max-width: 15vw;
     font-size: 0.8vw;
     display: flex;
 }
@@ -86,7 +86,7 @@
 }
 .infoElement2 span{
     font-size: 1.1vw;
-    margin-right: 20%;
+    margin-right: 15px;
 }
 .infoElement2.Specialty{
     display: flex;
@@ -96,7 +96,7 @@
     position: relative;
     top: 35.5vh;
     font-size: 1.7vw;
-    left: -77vw;
+    left: -84vw;
     padding: 0.2vw;
     height: 100%;
     border-left: 1px rgb(112, 112, 112);
@@ -115,6 +115,7 @@
 }
 
 .hexagon {
+    clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50% );
     position: relative;
     width: 46%;
     height: 80%;
@@ -155,7 +156,7 @@
   .personalSkill{
     max-width: 27%;
     max-height: 100%;
-    margin-left: 5%;
+    margin-left: 2%;
   }
 
   .textSkill{

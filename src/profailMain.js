@@ -36,13 +36,13 @@ function ProfailMain() {
   return (
       <div className="line">
         <img src={profileImg} className="character" alt="character" />
-        <Stage width={window.innerWidth*0.55} height={window.innerWidth*0.2}>
+        <Stage width={window.innerWidth*0.62} height={window.innerWidth*0.2}>
           <Layer>
             {character.characterState.map( (info, index) => {
               return stateGeneration(info, index, handleClick);
             } ) }
-            <CreateCanvasSlider rectY={0.04} />
-            <CreateCanvasSlider rectY={0.079} />
+            <CreateCanvasSlider imageName={"herida"} />
+            <CreateCanvasSlider imageName={"agro"} />
             {character.stats.map( (stat) => {
               return statsGeneration(stat, colorPrincipal, colorSecondary);
             } ) }
@@ -53,16 +53,66 @@ function ProfailMain() {
   );
 }
 
-function CreateCanvasSlider({rectY}){
+function CreateCanvasSlider({imageName}){
+
+  const [character, setCharacter] = useContext(CharacterContext);
+  const stat = imageName == "herida" ? character.stats[0] : character.stats[1]
+  const rectY = imageName == "herida" ? 0.04 : 0.079;
+  const image = new Image();
+  image.src = svgDispenser(imageName);
+
+  let cells = [];
+  let cellX = window.innerWidth * 0.35;
+  let cellHeight = (window.innerWidth * 0.024)/(stat.max + stat.modifier);
+
+  for (let index = 1; index <= (stat.max + stat.modifier); index++) {
+    cells.push(<Rect
+      x= {cellX}
+      y= {window.innerWidth * (rectY + 0.002)}
+      width= {window.innerWidth * 0.009}
+      height= {cellHeight}
+      fill={"rgba(60, 60, 60, 0.5)"}
+    />);
+    
+    cellX += window.innerWidth * 0.012;
+    cellHeight += (window.innerWidth * 0.024)/index;
+
+  }
+
+  cellX += (window.innerWidth * 0.018) + (window.innerWidth * 0.0247) - (window.innerWidth * 0.35) + (window.innerWidth * 0.012) + (window.innerWidth * 0.0247);
 
   return(
-    <Rect
-      x= {window.innerWidth * 0.2}
-      y= {window.innerWidth * rectY}
-      width= {window.innerWidth * 0.2}
-      height= {window.innerWidth * 0.028}
-      fill={"rgba(60, 60, 60, 0.5)"}
-    />
+    <>
+      <Rect
+        x= {window.innerWidth * 0.3}
+        y= {window.innerWidth * rectY}
+        width= {cellX}
+        height= {window.innerWidth * 0.028}
+        fill={"rgba(60, 60, 60, 0.5)"}
+      />
+      <ImageKonva
+        image={image}
+        x= {window.innerWidth * 0.307}
+        y= {window.innerWidth * (rectY + 0.004)}
+        height= {window.innerWidth * 0.018}
+        width= {window.innerWidth * 0.018}
+      />
+      <Text 
+        text={"-"}
+        x= {window.innerWidth * 0.337}
+        y= {window.innerWidth * (rectY + 0.0035)}
+        fontSize={window.innerWidth * 0.0247}
+        fill={'#fff'}
+      />
+      {cells}
+      <Text 
+        text={"+"}
+        x= {window.innerWidth * 0.415}
+        y= {window.innerWidth * (rectY + 0.0035)}
+        fontSize={window.innerWidth * 0.0247}
+        fill={'#fff'}
+      />
+    </>
   );
 }
 
@@ -71,6 +121,9 @@ function stateGeneration(info, index, handleClick){
   let alpha = info.active ? 1 : 0.5;
   let blur = info.active ? 15 : 5;
   let textColor = info.name != "oculto" ? "#FFF" : "#000";
+  const image = new Image();
+  image.src = svgDispenser(info.icon.text);
+
   if(info.name != "oculto" && info.name != "inconsciente"){
     canvasNode = <RegularPolygon
       shadowColor= {'rgb('+info.color1+')'}
@@ -78,15 +131,16 @@ function stateGeneration(info, index, handleClick){
       shadowOffset= {{ x: info.positionXBlur, y: info.positionYBlur }}
       shadowOpacity= {0.5}
       drawBorder= {true}
-      x= {window.innerWidth * info.positionX}
-      y= {info.positionY}
+      x= {window.innerWidth * (info.positionX)}
+      y= {window.innerWidth * (info.positionY)}
       rotation= {info.angle}
       sides= {3}
-      radius= {window.innerWidth * 0.0317}
+      radius= {window.innerWidth * (0.04058)}
       fillLinearGradientStartPoint= { {x: 50, y: -70} }
       fillLinearGradientEndPoint= { {x: 50, y: 15} }
       fillLinearGradientColorStops= {[0, 'rgba('+info.color1+', '+alpha+')', 1, 'rgba('+info.color2+', '+alpha+')']}
       onClick={handleClick(index)}
+      onTap={handleClick(index)}
     />
   }
   else{
@@ -98,27 +152,28 @@ function stateGeneration(info, index, handleClick){
       drawBorder= {true}
       angle={180}
       innerRadius={0}
-      outerRadius= {window.innerWidth * 0.0238}
+      outerRadius= {window.innerWidth * 0.0288}
       x= {window.innerWidth * info.positionX}
-      y= {info.positionY}
+      y= {window.innerWidth * (info.positionY)}
       rotation= {info.angle}
       fillLinearGradientStartPoint= { {x: 50, y: -70} }
       fillLinearGradientEndPoint= { {x: 50, y: 15} }
       fillLinearGradientColorStops= {[0, 'rgba('+info.color1+', '+alpha+')', 1, 'rgba('+info.color2+', '+alpha+')']}
       onClick={handleClick(index)}
+      onTap={handleClick(index)}
     />
   }
 
   return <>
     {canvasNode}
-    <Text 
-      text={info.icon.text}
-      fontFamily="fontello"
-      x= {info.icon.x}
-      y= {info.icon.y}
-      fontSize={window.innerWidth * 0.011}
-      fill={textColor}
+    <ImageKonva
+      image={image}
+      x= {window.innerWidth * info.icon.x}
+      y= {window.innerWidth * info.icon.y}
+      height= {window.innerWidth * 0.018}
+      width= {window.innerWidth * 0.018}
       onClick={handleClick(index)}
+      onTap={handleClick(index)}
     />
   </> 
 }
@@ -251,8 +306,8 @@ function statsGeneration(stat, colorPrincipal, colorSecondary){
           image={imageData}
           x= {(imagePositionX)}
           y= {(componentY + (window.innerWidth*0.00396))}
-          height= {contentWidth*0.6}
-          width= {contentWidth*0.6}
+          height= {contentWidth*0.75}
+          width= {contentWidth*0.75}
         />);
     })
    
