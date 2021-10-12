@@ -1,16 +1,19 @@
-import React, {useState, useContext, useRef, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import CharacterContext from './CharacterContext.js';
+import ItenInfo from './storeManagement.js';
+import RemoteContext from './RemoteContext.js';
 import svgDispenser from './svgDispenser.js';
 import trishaImg from './Img/trisha.png';
+import duchessImg from './Img/duchess.png';
 import './ProfileGlobal.css';
 import './font/css/fontello.css';
 import './font/css/fontello-codes.css';
 import { Stage, Layer, RegularPolygon, Text, Arc, Rect, Image as ImageKonva } from 'react-konva';
 //import useImage from 'use-image';
 
-function ProfailMain() {
-  const refsPolygonBright = useRef([]);
-  const [character, setCharacter] = useContext(CharacterContext);
+function ProfailMain({isRemote}) {
+
+  const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
   const colorPrincipal= "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")";
   const colorSecondary= "rgba("+character.colorSecon.R+","+character.colorSecon.G+","+character.colorSecon.B+")";
   const profileImg = characterImg(character.name);
@@ -27,57 +30,79 @@ function ProfailMain() {
       }
   };
 
-  useEffect(() => {
-    refsPolygonBright.current.forEach(ref => {
-      ref.cache()
-    })
-  }, [refsPolygonBright])
-
   return (
       <div className="line">
         <img src={profileImg} className="character" alt="character" />
         <Stage width={window.innerWidth*0.62} height={window.innerWidth*0.2}>
           <Layer>
             <CharacterContext.Provider value={[character, setCharacter]}>
+            <RemoteContext.Provider value={[character, setCharacter]}>
               {character.characterState.map( (info, index) => {
                 return stateGeneration(info, index, handleClick);
               } ) }
-              <CreateCanvasSlider imageName={"herida"} />
-              <CreateCanvasSlider imageName={"agro"} />
+              <CreateCanvasSlider imageName={"herida"} index={0} isRemote={isRemote} />     
+              <CreateCanvasSlider imageName={"agro"} index={1} />
               {character.stats.map( (stat) => {
                 return statsGeneration(stat, colorPrincipal, colorSecondary);
               } ) }
+            </RemoteContext.Provider>
             </CharacterContext.Provider>
           </Layer>
         </Stage>
-        <CreateInfoContainer />
+        <CreateInfoContainer isRemote={isRemote} />
       </div>
   );
 }
 
-function CreateCanvasSlider({imageName}){
+function CreateCanvasSlider({imageName, index, isRemote}){
 
-  const [character, setCharacter] = useContext(CharacterContext);
-  const stat = imageName == "herida" ? character.stats[0] : character.stats[1]
+  const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
+  const stat = imageName == "herida" ? character.stats[0] : character.stats[1];
+  const statValue = stat.max + stat.modifier;
   const rectY = imageName == "herida" ? 0.04 : 0.079;
   const image = new Image();
+  const handleClickSlider = (index, value, statValue) => {
+    return () => {
+        if( (value < 0 && character.stats[index].current > 0) ||
+        (value > 0 && character.stats[index].current < statValue) ){
+          character.stats[index].current += value;
+        }
+        setCharacter({...character});
+      }
+  };
+
   image.src = svgDispenser(imageName);
 
   let cells = [];
   let cellX = window.innerWidth * 0.35;
-  let cellHeight = (window.innerWidth * 0.024)/(stat.max + stat.modifier);
+  let cellHeight = (window.innerWidth * 0.024)/(statValue);
+  let redDeferencial = 0;
+  let greenDeferencial = 0;
+  let blueDeferencial = 0;
 
-  for (let index = 1; index <= (stat.max + stat.modifier); index++) {
+  for (let index = 1; index <= (statValue); index++) {
+
+    redDeferencial += (243 - 50)/statValue;
+    greenDeferencial += (37 - 212)/statValue;
+    blueDeferencial += (51 - 77)/statValue;
+
+    let colorTransition = imageName == "herida" ? 
+      "rgb("+(243 - redDeferencial)+","+ (37 - greenDeferencial)+"," +(51 - blueDeferencial)+")"
+    :
+      "rgb("+(50 + redDeferencial)+","+ (212 + greenDeferencial)+"," +(77 + blueDeferencial)+")";
+
+    const colorActive = index <= stat.current ? colorTransition : "rgb(60, 60, 60)"
+
     cells.push(<Rect
       x= {cellX}
-      y= {window.innerWidth * (rectY + 0.002)}
+      y= {window.innerWidth * ((rectY + 0.002))+(window.innerWidth * 0.024 - cellHeight)}
       width= {window.innerWidth * 0.009}
       height= {cellHeight}
-      fill={"rgba(60, 60, 60, 0.5)"}
+      fill={colorActive}
     />);
     
     cellX += window.innerWidth * 0.012;
-    cellHeight += (window.innerWidth * 0.024)/index;
+    cellHeight += (window.innerWidth * 0.024)/statValue;
 
   }
 
@@ -105,14 +130,18 @@ function CreateCanvasSlider({imageName}){
         y= {window.innerWidth * (rectY + 0.0035)}
         fontSize={window.innerWidth * 0.0247}
         fill={'#fff'}
+        onClick={handleClickSlider(index, -1, statValue)}
+        onTap={handleClickSlider(index, -1, statValue)}
       />
       {cells}
       <Text 
         text={"+"}
-        x= {window.innerWidth * 0.415}
+        x= {cellX+(window.innerWidth * 0.276)}
         y= {window.innerWidth * (rectY + 0.0035)}
         fontSize={window.innerWidth * 0.0247}
         fill={'#fff'}
+        onClick={handleClickSlider(index, 1, statValue)}
+        onTap={handleClickSlider(index, 1, statValue)}
       />
     </>
   );
@@ -184,18 +213,19 @@ function characterImg(name){
     let imgReference;
     switch(name){
       case "trisha" : imgReference = trishaImg; break;
+      case "Duchess" : imgReference = duchessImg; break;
       default: return imgReference = trishaImg; break;
     }
   
     return imgReference;
 }
 
-function CreateInfoContainer(){
+function CreateInfoContainer({isRemote}){
 
-  const [character, setCharacter] = useContext(CharacterContext);
-  const [infoActive, setInfoActive] = useState("EQUIPO");
-  const [dataActive, setDataActive] = useState(<Equipo/>);
-  const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 0.5)"}; 
+  const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
+  const [infoActive, setInfoActive] = useState(character.infoContainer[0].name);
+  const [dataActive, setDataActive] = useState(cambiarInfoActive(character.infoContainer[0].name, isRemote));
+  const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 0.5)"};
   
   return (
     <>
@@ -203,7 +233,7 @@ function CreateInfoContainer(){
         let classStyle = "infoOptions";
         classStyle += element.name == infoActive ? " activo" : " deactivated";
         return (
-        <div className={classStyle} onClick={() => {setInfoActive(element.name); setDataActive(cambiarInfoActive(element.name))}}>
+        <div className={classStyle} onClick={() => {setInfoActive(element.name); setDataActive(cambiarInfoActive(element.name, isRemote))}}>
           {element.name}
         </div>
         );
@@ -229,46 +259,66 @@ function CreateInfoContainer(){
   );
 }
 
-function Equipo(){
-  const [character, setCharacter] = useContext(CharacterContext);
+function cambiarInfoActive(name, isRemote){
+  let content;
+
+  switch(name){
+    case "EQUIPO" : content = < Equipo isRemote = {isRemote} />; break;
+    case "SOFTWARE" :  content = < Software isRemote = {isRemote} />; break;
+    case "ESPECIALIDADES" :  content = < Especialidades isRemote = {isRemote} />; break;
+    default: content = < Equipo isRemote = {isRemote} />; break;
+  }
+
+  return content;
+}
+
+function Equipo({isRemote}){
+  const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
+  const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 0.5)"};
   return (
     <>
       {character.equipment.map((element) => {
         return (
-          generatePersonalItems(element, "")
+          <GeneratePersonalItems element={element} node={"equipment"} colorPrincipal={colorPrincipal} extraClass={""} />
         )
       })}
     </>
   );
 }
 
-function Software(){
-  const [character, setCharacter] = useContext(CharacterContext);
+function Software({isRemote}){
+  const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
+  const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 0.5)"};
   return (
     <>
       {character.software.map((element) => {
         return (
-          generatePersonalItems(element, "")
+          <GeneratePersonalItems element={element} node={"software"} colorPrincipal={colorPrincipal} extraClass={""} />
         )
       })}
     </>
   );
 }
 
-function Especialidades(){
-  const [character, setCharacter] = useContext(CharacterContext);
+function Especialidades({isRemote}){
+  const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
+  const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 0.5)"};
   return (
     <>
       {character.specialties.map((element) => {
         return (
-          generatePersonalItems(element, "Specialty")
+          <GeneratePersonalItems element={element} node={"specialty"} colorPrincipal={colorPrincipal} extraClass={"Specialty"} />
         )
       })}
     </>
   );
 }
 
-function generatePersonalItems(element, extraClass){
+function GeneratePersonalItems({element, node, colorPrincipal, extraClass}){
+
+  const [infoExtra, setinfoExtra] = useState(<></>);
+  const infoHandler = (node, element, colorPrincipal) => {setinfoExtra(<ItenInfo node={node} type={element.typeId} id={element.asociatedId} colorPrincipal={colorPrincipal} />)}
+
   return (
   <div className="contenedorInfoElement">
     <i className={element.slot}></i> 
@@ -280,11 +330,12 @@ function generatePersonalItems(element, extraClass){
         return createIcon(iconInfo)
       }
     )}</div>
-    <div className="circleInfo">
+    <div className="circleInfo" onClick={infoHandler(node, element, colorPrincipal)}>
       <i>
       i
       </i>
     </div>
+    {infoExtra}
   </div>
   )
 }
@@ -382,19 +433,5 @@ function createIcon(iconData){
 
   return icon;
 }
-
-function cambiarInfoActive(name){
-  let content;
-
-  switch(name){
-    case "EQUIPO" : content = < Equipo />; break;
-    case "SOFTWARE" :  content = < Software />; break;
-    case "ESPECIALIDADES" :  content = < Especialidades />; break;
-    default: content = < Equipo />; break;
-  }
-
-  return content;
-}
-
 
 export default ProfailMain;

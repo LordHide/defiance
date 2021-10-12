@@ -49,28 +49,28 @@
         {"name": "inconsciente", "icon": {"text":"inconsciente", "x":0.13133, "y":0.07895}, "active": false, "color1": "12, 12, 12", "color2": "12, 12, 12", "positionX": 0.14066, "positionY": 0.07395, "angle":0}
     ],
     "equipment":[
-        {"id": 13, "asociatedId": "", "name": "PISTOLA", "info": [{ "type": "range", "code": "1-4"}, { "type": "svg", "code": "dadoNaranja"}, { "type": "svg", "code": "dadoAzul"}], "slot": "icon-mano"},
-        {"id": 13, "asociatedId": "", "name": "DISPOSITIVO DE HECKER DEFENSIVO", "info": [{ "type": "i", "code": "icon-escudo"}, { "type": "svg", "code": "dadoNegro"}, { "type": "i", "code": "icon-bloqueo"}, { "type": "i", "code": "icon-bloqueo"}], "slot": "icon-mano"},
-        {"id": 13, "asociatedId": "", "name": "CASCO DE PRECISION", "info": [], "slot": "icon-casco"},
-        {"id": 13, "asociatedId": "", "name": "ARMADURA REFORZADA", "info": [{ "type": "i", "code": "icon-escudo"}, { "type": "svg", "code": "dadoVerde"}, { "type": "svg", "code": "dadoAzul"}, { "type": "i", "code": "icon-defensa"}, { "type": "svg", "code": "dadoNegro"}, { "type": "svg", "code": "dadoAmarillo"}], "slot": "icon-pecho"},
-        {"id": 13, "asociatedId": "", "name": "KIT DE REPARACION", "info": [], "slot": "icon-equipo"},
-        {"id": 13, "asociatedId": "", "name": "CARGA-D", "info": [], "slot": "icon-equipo"},
-        {"id": 13, "asociatedId": "", "name": "AUTOMEDKIT", "info": [], "slot": "icon-equipo"},
-        {"id": 13, "asociatedId": "", "name": "PISTOLA", "info": [], "slot": "icon-equipo"},
-        {"id": 13, "asociatedId": "", "name": "PISTOLA", "info": [], "slot": "icon-equipo"}
+        {"id": 13, "asociatedId": 13, "typeId": 12, "name": "PISTOLA", "info": [{ "type": "range", "code": "1-4"}, { "type": "svg", "code": "dadoNaranja"}, { "type": "svg", "code": "dadoAzul"}], "slot": "icon-mano"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "DISPOSITIVO DE HECKER DEFENSIVO", "info": [{ "type": "i", "code": "icon-escudo"}, { "type": "svg", "code": "dadoNegro"}, { "type": "i", "code": "icon-bloqueo"}, { "type": "i", "code": "icon-bloqueo"}], "slot": "icon-mano"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "CASCO DE PRECISION", "info": [], "slot": "icon-casco"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "ARMADURA REFORZADA", "info": [{ "type": "i", "code": "icon-escudo"}, { "type": "svg", "code": "dadoVerde"}, { "type": "svg", "code": "dadoAzul"}, { "type": "i", "code": "icon-defensa"}, { "type": "svg", "code": "dadoNegro"}, { "type": "svg", "code": "dadoAmarillo"}], "slot": "icon-pecho"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "KIT DE REPARACION", "info": [], "slot": "icon-equipo"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "CARGA-D", "info": [], "slot": "icon-equipo"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "AUTOMEDKIT", "info": [], "slot": "icon-equipo"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "PISTOLA", "info": [], "slot": "icon-equipo"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "PISTOLA", "info": [], "slot": "icon-equipo"}
     ],
     "software":[
-        {"id": 13, "asociatedId": "", "name": "DISPOSITIVO DE HECKER DEFENSIVO", "info": [{ "type": "range", "code": "0-4"}, { "type": "svg", "code": "dadoAmarillo"}, { "type": "i", "code": "icon-bloqueo"}, { "type": "svg", "code": "software"}, { "type": "svg", "code": "software"}, { "type": "svg", "code": "software"}], "slot": "icon-mano"},
-        {"id": 13, "asociatedId": "", "name": "SKULLBUSTER", "info": [], "slot": "icon-software"},
-        {"id": 13, "asociatedId": "", "name": "GEIST-AID", "info": [], "slot": "icon-software"},
-        {"id": 13, "asociatedId": "", "name": "PICKLOCK", "info": [], "slot": "icon-software"}
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "DISPOSITIVO DE HECKER DEFENSIVO", "info": [{ "type": "range", "code": "0-4"}, { "type": "svg", "code": "dadoAmarillo"}, { "type": "i", "code": "icon-bloqueo"}, { "type": "svg", "code": "software"}, { "type": "svg", "code": "software"}, { "type": "svg", "code": "software"}], "slot": "icon-mano"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "SKULLBUSTER", "info": [], "slot": "icon-software"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "GEIST-AID", "info": [], "slot": "icon-software"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "PICKLOCK", "info": [], "slot": "icon-software"}
     ],
     "specialties":[
-        {"id": 13, "asociatedId": "", "name": "CUERPO SUPERIOR LHOST I", "info": [{ "type": "text", "code": "ALEPH"}, { "type": "range", "code": "I"}], "slot": "icon-mano"},
-        {"id": 13, "asociatedId": "", "name": "CUERPO SUPERIOR LHOST II", "info": [{ "type": "text", "code": "ALEPH"}, { "type": "range", "code": "II"}], "slot": "icon-mano"},
-        {"id": 13, "asociatedId": "", "name": "PALBOT", "info": [{ "type": "text", "code": "INGENIERIA"}, { "type": "range", "code": "I"}], "slot": "icon-casco"},
-        {"id": 13, "asociatedId": "", "name": "CHATARRERA", "info": [{ "type": "text", "code": "BOTIN"}, { "type": "range", "code": "I"}], "slot": "icon-pecho"},
-        {"id": 13, "asociatedId": "", "name": "RECICLADORA", "info": [{ "type": "text", "code": "BOTIN"}, { "type": "range", "code": "II"}], "slot": "icon-equipo"},
-        {"id": 13, "asociatedId": "", "name": "EFICIENTE", "info": [{ "type": "text", "code": "VERSATIL"}, { "type": "range", "code": "I"}], "slot": "icon-equipo"}
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "CUERPO SUPERIOR LHOST I", "info": [{ "type": "text", "code": "ALEPH"}, { "type": "range", "code": "I"}], "slot": "icon-mano"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "CUERPO SUPERIOR LHOST II", "info": [{ "type": "text", "code": "ALEPH"}, { "type": "range", "code": "II"}], "slot": "icon-mano"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "PALBOT", "info": [{ "type": "text", "code": "INGENIERIA"}, { "type": "range", "code": "I"}], "slot": "icon-casco"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "CHATARRERA", "info": [{ "type": "text", "code": "BOTIN"}, { "type": "range", "code": "I"}], "slot": "icon-pecho"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "RECICLADORA", "info": [{ "type": "text", "code": "BOTIN"}, { "type": "range", "code": "II"}], "slot": "icon-equipo"},
+        {"id": 13, "asociatedId": "", "typeId": 12, "name": "EFICIENTE", "info": [{ "type": "text", "code": "VERSATIL"}, { "type": "range", "code": "I"}], "slot": "icon-equipo"}
     ]
 }

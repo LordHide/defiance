@@ -1,1 +1,8 @@
-{}
+{
+    "equipment": {
+        "12":{
+            "name": "Arma ligera",
+            "13": {"name": "pistola", "range": "1-4", "itenTypes":"Arma ligera", "values": [{"type": "svg", "code": "dadoNaranja"}, {"type": "svg", "code": "dadoAzul"}], "cost": [{"type": "svg", "code": "packete"}, {"type": "text", "code": "2"}], "attributes": [[{"type": "svg", "code": "especial"}, {"type": "svg", "code": "especial"}, {"type": "text", "code": "Añade"}, {"type": "svg", "code": "exito"}, {"type": "text", "code": "a tu Tirada"}]]}
+        }
+    }
+}
