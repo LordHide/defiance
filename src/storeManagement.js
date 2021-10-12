@@ -8,28 +8,35 @@ function ItenInfo({node, type, id, colorPrincipal}) {
     const iten = store[node][type][id];
 
     return (
-        <div>
+        <div className='backGroundBlack'>
+          <div className='infoContainerEquipment'>
             <div className="titliItenInfo" style={colorPrincipal}><span>{iten.name}</span></div>
-            <div className="bodyItenInfo">
-                <div className="itenType">{iten.itenTypes}</div>
-                <div className="range">{iten.range}</div>
-                <div className="cost">{
-                    iten.cost.map(info => {
-                        return createIcon(info);})
-                    }
+              <div className="bodyItenInfo">
+                <div>
+                  <div className="itenType" style={colorPrincipal}>{iten.itenTypes}</div>
                 </div>
-                <div className="cost">{
-                    iten.attributes.map(info => {
-                        let classSwich = "topButton glass ";
-                        return (
-                            <div className={classSwich}> 
-                                {info.map(iconData => {
-                                    return createIcon(iconData)
-                            })}
-                            </div>)
-                })
-                }
+                  <div className="range" style={colorPrincipal}><span>{iten.range}</span></div>
+                  <div className="cost" style={colorPrincipal}>{
+                      iten.cost.map(info => {
+                          return <div className={info.type}>{createIcon(info)}</div>})
+                      }
+                  </div>
+                  <div className="extraInfo glass">{
+                      iten.attributes.map(info => {
+                          let classSwich = "";
+                          if(info.attributes){
+
+                          }
+                          return (
+                              <div className={classSwich}> 
+                                  {info.map(iconData => {
+                                      return createIcon(iconData)
+                              })}
+                              </div>)
+                  })
+                  }
                 </div>
+              </div>
             </div>
         </div>
     );

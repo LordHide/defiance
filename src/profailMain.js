@@ -274,7 +274,7 @@ function cambiarInfoActive(name, isRemote){
 
 function Equipo({isRemote}){
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
-  const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 0.5)"};
+  const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 1)"};
   return (
     <>
       {character.equipment.map((element) => {
@@ -288,7 +288,7 @@ function Equipo({isRemote}){
 
 function Software({isRemote}){
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
-  const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 0.5)"};
+  const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 1)"};
   return (
     <>
       {character.software.map((element) => {
@@ -302,7 +302,7 @@ function Software({isRemote}){
 
 function Especialidades({isRemote}){
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
-  const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 0.5)"};
+  const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 1)"};
   return (
     <>
       {character.specialties.map((element) => {
@@ -317,7 +317,9 @@ function Especialidades({isRemote}){
 function GeneratePersonalItems({element, node, colorPrincipal, extraClass}){
 
   const [infoExtra, setinfoExtra] = useState(<></>);
-  const infoHandler = (node, element, colorPrincipal) => {setinfoExtra(<ItenInfo node={node} type={element.typeId} id={element.asociatedId} colorPrincipal={colorPrincipal} />)}
+  const infoHandler = () => {
+    setinfoExtra(<ItenInfo node={node} type={element.typeId} id={element.asociatedId} colorPrincipal={colorPrincipal} />)
+  }
 
   return (
   <div className="contenedorInfoElement">
@@ -330,7 +332,7 @@ function GeneratePersonalItems({element, node, colorPrincipal, extraClass}){
         return createIcon(iconInfo)
       }
     )}</div>
-    <div className="circleInfo" onClick={infoHandler(node, element, colorPrincipal)}>
+    <div className="circleInfo" onClick={infoHandler}>
       <i>
       i
       </i>
