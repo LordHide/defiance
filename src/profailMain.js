@@ -7,8 +7,6 @@ import svgDispenser from './svgDispenser.js';
 import trishaImg from './Img/trisha.png';
 import duchessImg from './Img/duchess.png';
 import './ProfileGlobal.css';
-import './font/css/fontello.css';
-import './font/css/fontello-codes.css';
 import { Stage, Layer, RegularPolygon, Text, Arc, Rect, Image as ImageKonva } from 'react-konva';
 //import useImage from 'use-image';
 
