@@ -4,14 +4,23 @@
     left: -6.1vw;
     width: 100vw;
     height: 100vh;
+    z-index: 1;
     background-color: rgba(30, 30, 30, 0.5);
+}
+
+.crossCard{
+    position: absolute;
+    left: 33vw;
+    top: 1vh;
+    font-size: 1vw;
+    cursor: pointer;
 }
 
 .infoContainerEquipment{
     position: absolute;
     left: 35vw;
     top: 30vh;
-    width: 25vw;
+    width: 35vw;
     border-radius: 2vw 2vw 0 0;
 }
 
@@ -21,12 +30,12 @@
     display: flex;
     align-content: center;
     justify-content: center;
-    font-size: 1.4vw;
+    font-size: 1.96vw;
 }
 
 .bodyItenInfo{
     background: linear-gradient(200deg, #91A08C, #B9AE82, #BE914E, #BE924F, #806244);
-    height: 25vh;
+    height: 35vh;
 }
 
 .bodyItenInfo > div:first-child{
@@ -36,67 +45,132 @@
 }
 
 .itenType{
-    width: 7vw;
-    font-size: 1.1vw;
+    width: 100%;
+    font-size: 1.54vw;
     clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100% );
-    padding-left: 1.3vw;
-    padding-right: 1.3vw;
+    padding-left: 1.82vw;
+    padding-right: 1.82vw;
     text-align: center;
 }
 
-.range, .cost{
+.range, .cost, .switchContainer, .damage{
     clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50% );
 }
 
 .range{
-    width: 2vw;
-    height: 2vw;
+    width: 2.8vw;
+    height: 2.8vw;
     display: flex;
     align-content: center;
     justify-content: center;
     position: relative;
-    left: 6.7vw;
-    top: 0.4vh; 
+    left: 9.38vw;
+    top: 0.56vh; 
 }
 
 .range span{
-    font-size: 1vw;
-    padding-top: 0.6vh;
+    font-size: 1.4vw;
+    padding-top: 0.84vh;
 }
 
 .cost{
-    width: 2vw;
-    height: 2vw;
+    width: 2.8vw;
+    height: 2.8vw;
     position: relative;
-    left: 16.5vw;
-    top: -3.5vh;
+    left: 23.1vw;
+    top: -4.9vh;
 }
 
 .cost .svg{
-    width: 0.8vw;
-    height: 0.8vw;
+    width: 1.12vw;
+    height: 1.12vw;
     position: relative;
-    top: 0.1vw;
-    left: 0.6vw;
+    top: 0.14vw;
+    left: 0.84vw;
 }
 
 .cost .svg img{
-    width: 0.8vw;
-    height: 0.8vw;
+    width: 1.2vw;
+    height: 1.2vw;
 }
 
 .cost .text{
-    font-size: 0.7vw;
+    font-size: 0.98vw;
     position: relative;
-    top: 0.17vw;
-    left: 0.79vw;
+    top: 0.238vw;
+    left: 1.106vw;
+}
+
+.damage{
+    width: 2.8vw;
+    height: 2.8vw;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    left: 7.88vw;
+    top: -4.879vh;
+    -webkit-clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50% );
+    clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50% );
+}
+
+.damage span{
+    padding-top: 0.8vw;
+}
+
+.damage img{
+    width: 1.2vw;
 }
 
 .extraInfo{
-    width: 18vw;
-    height: 12vh;
-    border-radius: 1vw;
+    width: 25.2vw;
+    height: 18.8vh;;
+    border-radius: 1.4vw;
     position: relative;
-    left: 3.5vw;
+    left: 4.9vw;
+    top: -4.5vh;
     background-color: rgba(67, 59, 59, 0.58);
+}
+
+.extraInfo img{
+    width: 1.2vw;
+    height: 1.2vw;
+    padding-left: 0.3vw;
+}
+
+.infoRow{
+    display: flex;
+    align-items: center;
+    margin-top: 1vh;
+    margin-left: 0.5vw;
+}
+
+.switchContainer{
+    background-color: rgb(45, 45, 45);
+    width: 2.5vw;
+    height: 2.5vw;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+
+.switchContainer img:last-child{
+    position: relative;
+    left: -0.4vw;
+}
+
+.switchRow{
+    background-color: rgb(230, 230, 230);
+    width: 100%;
+    color: rgb(30,30,30);
+    position: relative;
+    left: -1vw;
+    padding-left: 1vw;
+    z-index: 1;
+    font-size: 1.2vw;
+}
+
+.requirementRow{
+    text-align: center;
+    width: 100%;
 }

@@ -1,7 +1,8 @@
 import React, {useState, useContext} from 'react';
-import CharacterContext from './CharacterContext.js';
+import CharacterContext from './context/CharacterContext.js';
 import ItenInfo from './storeManagement.js';
-import RemoteContext from './RemoteContext.js';
+import RemoteContext from './context/RemoteContext.js';
+import InfoCardContext from './context/InfoCardContext.js';
 import svgDispenser from './svgDispenser.js';
 import trishaImg from './Img/trisha.png';
 import duchessImg from './Img/duchess.png';
@@ -316,29 +317,31 @@ function Especialidades({isRemote}){
 
 function GeneratePersonalItems({element, node, colorPrincipal, extraClass}){
 
-  const [infoExtra, setinfoExtra] = useState(<></>);
+  const [InfoContext, setInfoCardContext] = useState(<></>);
   const infoHandler = () => {
-    setinfoExtra(<ItenInfo node={node} type={element.typeId} id={element.asociatedId} colorPrincipal={colorPrincipal} />)
+    setInfoCardContext(<ItenInfo node={node} type={element.typeId} id={element.asociatedId} colorPrincipal={colorPrincipal} />)
   }
 
   return (
-  <div className="contenedorInfoElement">
-    <i className={element.slot}></i> 
-    <div className="infoElement1" title={element.name}>
-      <div>{element.name}</div>
-    </div> 
-    <div className={"infoElement2 "+extraClass}>{element.info.map(
-      (iconInfo) => {
-        return createIcon(iconInfo)
-      }
-    )}</div>
-    <div className="circleInfo" onClick={infoHandler}>
-      <i>
-      i
-      </i>
+  <InfoCardContext.Provider value={[InfoCardContext, setInfoCardContext]}>
+    <div className="contenedorInfoElement">
+      <i className={element.slot}></i> 
+      <div className="infoElement1" title={element.name}>
+        <div>{element.name}</div>
+      </div> 
+      <div className={"infoElement2 "+extraClass}>{element.info.map(
+        (iconInfo) => {
+          return createIcon(iconInfo)
+        }
+      )}</div>
+      <div className="circleInfo" onClick={infoHandler}>
+        <i>
+        i
+        </i>
+      </div>
+      {InfoContext}
     </div>
-    {infoExtra}
-  </div>
+  </InfoCardContext.Provider>
   )
 }
 

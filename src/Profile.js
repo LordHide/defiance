@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import Inventario from './inventario.js';
 import ProfailMain from './profailMain.js';
-import CharacterContext from './CharacterContext.js';
-import StoreContext from './storeContext.js';
-import RemoteContext from './RemoteContext.js';
+import CharacterContext from './context/CharacterContext.js';
+import StoreContext from './context/storeContext.js';
+import RemoteContext from './context/RemoteContext.js';
 import trishaJSON from './json/trisha.json';
 import duchessJSON from './json/duchess.json';
 import baseJSON from './json/base.json';

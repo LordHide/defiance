@@ -17,6 +17,10 @@ import inmovilizado from './Img/svg/inmovilizado.svg';
 import inconsciente from './Img/svg/inconsciente.svg';
 import oculto from './Img/svg/oculto.svg';
 import herida from './Img/svg/herida.svg';
+import especialBlack from './Img/svg/especialBlack.svg';
+import especialWhite from './Img/svg/especialWhite.svg';
+import exitoBlack from './Img/svg/exitoBlack.svg';
+import packete from './Img/svg/packete.svg';
 import cegado from './Img/svg/cegado.svg';
 
 
@@ -79,8 +83,20 @@ function svgDispenser(marker){
             svg = oculto;
             break;
         case "herida":
-                svg = herida;
-                break;
+            svg = herida;
+            break;
+        case "especialWhite":
+            svg = especialWhite;
+            break;
+        case "especialBlack":
+            svg = especialBlack;
+            break;
+        case "exitoBlack":
+            svg = exitoBlack;
+            break;
+        case "packete":
+            svg = packete;
+            break;
         case "dano":
             svg = dano;
             break;

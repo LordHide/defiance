@@ -52,7 +52,7 @@
         {"id": 13, "asociatedId": 13, "typeId": 12, "name": "PISTOLA", "info": [{ "type": "range", "code": "1-4"}, { "type": "svg", "code": "dadoNaranja"}, { "type": "svg", "code": "dadoAzul"}], "slot": "icon-mano"},
         {"id": 13, "asociatedId": "", "typeId": 12, "name": "DISPOSITIVO DE HECKER DEFENSIVO", "info": [{ "type": "i", "code": "icon-escudo"}, { "type": "svg", "code": "dadoNegro"}, { "type": "i", "code": "icon-bloqueo"}, { "type": "i", "code": "icon-bloqueo"}], "slot": "icon-mano"},
         {"id": 13, "asociatedId": "", "typeId": 12, "name": "CASCO DE PRECISION", "info": [], "slot": "icon-casco"},
-        {"id": 13, "asociatedId": "", "typeId": 12, "name": "ARMADURA REFORZADA", "info": [{ "type": "i", "code": "icon-escudo"}, { "type": "svg", "code": "dadoVerde"}, { "type": "svg", "code": "dadoAzul"}, { "type": "i", "code": "icon-defensa"}, { "type": "svg", "code": "dadoNegro"}, { "type": "svg", "code": "dadoAmarillo"}], "slot": "icon-pecho"},
+        {"id": 13, "asociatedId": 20, "typeId": 20, "name": "ARMADURA REFORZADA", "info": [{ "type": "i", "code": "icon-escudo"}, { "type": "svg", "code": "dadoVerde"}, { "type": "svg", "code": "dadoAzul"}, { "type": "i", "code": "icon-defensa"}, { "type": "svg", "code": "dadoNegro"}, { "type": "svg", "code": "dadoAmarillo"}], "slot": "icon-pecho"},
         {"id": 13, "asociatedId": "", "typeId": 12, "name": "KIT DE REPARACION", "info": [], "slot": "icon-equipo"},
         {"id": 13, "asociatedId": "", "typeId": 12, "name": "CARGA-D", "info": [], "slot": "icon-equipo"},
         {"id": 13, "asociatedId": "", "typeId": 12, "name": "AUTOMEDKIT", "info": [], "slot": "icon-equipo"},
