@@ -2,18 +2,20 @@ import React, {useContext} from 'react';
 import StoreContext from './context/storeContext.js';
 import InfoCardContext from './context/InfoCardContext.js';
 import svgDispenser from './svgDispenser.js';
+import miniImg from './miniImgDispenser.js';
 import './storeManagement.css';
 
 function ItenInfo({node, type, id, colorPrincipal}) {
     const [store, setStore] = useContext(StoreContext);
     const [infoCard, setinfoCard] = useContext(InfoCardContext);
-    const iten = store[node][type][id];
+    const iten = store["items"][id];
     const infoHandler = () => {
       setinfoCard(<></>)
     }
 
     return (
-        <div className='backGroundBlack'>
+      <>
+        <div className='backGroundBlack' onClick={infoHandler}></div>
           <div className='infoContainerEquipment'>
             <div className="titliItenInfo" style={colorPrincipal}>
               <span>{iten.name}</span>
@@ -25,19 +27,9 @@ function ItenInfo({node, type, id, colorPrincipal}) {
                 <div>
                   <div className="itenType" style={colorPrincipal}>{iten.itenTypes}</div>
                 </div>
-                  <div className="range" style={colorPrincipal}><span>{iten.range}</span></div>
-                  <div className="cost" style={colorPrincipal}>{
-                      iten.cost.map(info => {
-                          return <div className={info.type}>{createIcon(info)}</div>})
-                      }
-                  </div>
-                  <div className="damage" style={colorPrincipal}>
-                    <span>
-                      {iten.values.map(info => {
-                          return createIcon(info)
-                      })}
-                    </span>
-                  </div>
+                  <InfoHex valuesHex={{"nameHex": "firstHex", "nodeHex": iten.firstHex}} colorPrincipal={colorPrincipal} />
+                  <InfoHex valuesHex={{"nameHex": "thirdHex", "nodeHex": iten.thirdHex}} colorPrincipal={colorPrincipal} />
+                  <InfoHex valuesHex={{"nameHex": "secondHex", "nodeHex": iten.secondHex}} colorPrincipal={colorPrincipal} />
                   <div className="extraInfo glass">{
                       iten.attributes.map(info => {
                           let classSwitch = info.type+"Row";
@@ -67,8 +59,23 @@ function ItenInfo({node, type, id, colorPrincipal}) {
                 </div>
               </div>
             </div>
-        </div>
+        </>
     );
+}
+
+function InfoHex({valuesHex, colorPrincipal}){
+  let infohex = <></>;
+
+  if(valuesHex.nodeHex.length != 0)
+  infohex = <div className={valuesHex.nameHex} style={colorPrincipal}>
+    <p>
+    {valuesHex.nodeHex.map(info => {
+          return createIcon(info)
+      })}
+    </p>
+  </div>
+
+  return infohex;
 }
 
 function createIcon(iconData){
@@ -77,24 +84,34 @@ function createIcon(iconData){
   
     switch (iconData.type) {
       case "text":
-        icon = <span>{iconData.code}</span>
+        icon = <span className={iconData.class} >{iconData.code}</span>
         break;
-  
-      case "i":
-        icon = <i className={iconData.code}></i>
-        break;
-  
+
       case "range":
         icon = 
         <>
-          <div className="hexagon">
+          <div className={"hexagon "+iconData.class}>
             <i>{iconData.code}</i>
           </div>
         </>
         break;
   
       case "svg": 
-        icon = <img src={svgDispenser(iconData.code)} alt={iconData.code} />;
+        if(iconData.class == "title"){
+          icon = <div className={iconData.class} ><img className={iconData.class} src={svgDispenser(iconData.code)} alt={iconData.code} /></div>;
+        }
+        else{
+          icon = <img className={iconData.class} src={svgDispenser(iconData.code)} alt={iconData.code} />;
+        }
+        break;
+
+      case "png": 
+        if(iconData.class == "title"){
+          icon = <div className={iconData.class} ><img className={iconData.class} src={miniImg[iconData.code]} alt={iconData.code} /></div>;
+        }
+        else{
+          icon = <img className={iconData.class} src={miniImg[iconData.code]} alt={iconData.code} />;
+        }
         break;
     
       default: icon = <></>

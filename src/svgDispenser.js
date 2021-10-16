@@ -20,7 +20,15 @@ import herida from './Img/svg/herida.svg';
 import especialBlack from './Img/svg/especialBlack.svg';
 import especialWhite from './Img/svg/especialWhite.svg';
 import exitoBlack from './Img/svg/exitoBlack.svg';
+import escudo from './Img/svg/escudo.svg';
+import bloqueoWhite from './Img/svg/bloqueoWhite.svg';
+import bloqueoBlack from './Img/svg/bloqueoBlack.svg';
+import mano from './Img/svg/mano.svg';
+import casco from './Img/svg/casco.svg';
+import pecho from './Img/svg/pecho.svg';
+import equipo from './Img/svg/equipo.svg';
 import packete from './Img/svg/packete.svg';
+import accion from './Img/svg/accion.svg';
 import cegado from './Img/svg/cegado.svg';
 
 
@@ -94,8 +102,32 @@ function svgDispenser(marker){
         case "exitoBlack":
             svg = exitoBlack;
             break;
+        case "escudo":
+            svg = escudo;
+            break;
         case "packete":
             svg = packete;
+            break;
+        case "bloqueoWhite":
+            svg = bloqueoWhite;
+            break;
+        case "bloqueoBlack":
+            svg = bloqueoBlack;
+            break;
+        case "mano":
+            svg = mano;
+            break;
+        case "casco":
+            svg = casco;
+            break;
+        case "pecho":
+            svg = pecho;
+            break;
+        case "equipo":
+            svg = equipo;
+            break;
+        case "accion":
+            svg = accion;
             break;
         case "dano":
             svg = dano;

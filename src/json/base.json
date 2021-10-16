@@ -2,79 +2,250 @@
     "equipment": {
         "12":{
             "name": "Arma ligera",
-            "13": {
-                "name": "pistola", 
-                "range": "1-4", 
-                "itenTypes":"Arma ligera", 
-                "values": [
-                    {"type": "svg", "code": "dadoNaranja"}, 
-                    {"type": "svg", "code": "dadoAzul"}
-                ], 
-                "cost": [
-                    {"type": "svg", "code": "packete"}, 
-                    {"type": "text", "code": "2"}
-                ], 
-                "attributes": [
-                    {
-                        "switch":[
-                            {"type": "svg", "code": "especialWhite"}, 
-                            {"type": "svg", "code": "especialWhite"}
-                        ],
-                        "content":[
-                            {"type": "text", "code": "Añade"}, 
-                            {"type": "svg", "code": "exitoBlack"}, 
-                            {"type": "text", "code": "a tu Tirada"}
-                        ],
-                        "type": "switch"
-                    },
-                    {
-                        "switch":[
-                            {"type": "svg", "code": "especialWhite"}, 
-                            {"type": "svg", "code": "especialWhite"}
-                        ],
-                        "content":[
-                            {"type": "text", "code": "Añade"}, 
-                            {"type": "svg", "code": "especialBlack"}, 
-                            {"type": "text", "code": "a tu Tirada"}
-                        ],
-                        "type": "switch"
-                    },
-                    {
-                        "switch":[
-                            {"type": "svg", "code": "especialWhite"}, 
-                            {"type": "svg", "code": "especialWhite"}
-                        ],
-                        "content":[
-                            {"type": "text", "code": "Añade"}, 
-                            {"type": "svg", "code": "exitoBlack"}, 
-                            {"type": "text", "code": "a tu Tirada"}
-                        ],
-                        "type": "switch"
-                    }
-                ]
-            }
+            "asociatedItems": [13]
+        },
+        "13":{
+            "name": "Equipo Electronico",
+            "asociatedItems": [1]
+        },
+        "14":{
+            "name": "Hackeable",
+            "asociatedItems": [1, 20]
+        },
+        "15":{
+            "name": "Equipo Medico",
+            "asociatedItems": [2]
+        },
+        "16":{
+            "name": "Equipo Tecnico",
+            "asociatedItems": [3]
+        },
+        "17":{
+            "name": "Explosivo",
+            "asociatedItems": [4]
+        },
+        "18":{
+            "name": "Desechable",
+            "asociatedItems": [4]
+        },
+        "19":{
+            "name": "Armadura",
+            "asociatedItems": [14]
         },
         "20":{
             "name": "Armadura pesada",
-            "20": {
-                "name": "armadura reforzada", 
-                "range": "", 
-                "itenTypes":"Armadura pesada, Hackeable", 
-                "values": [], 
-                "cost": [
-                    {"type": "svg", "code": "packete"}, 
-                    {"type": "text", "code": "9"}
-                ], 
-                "attributes": [
-                    {
-                        "switch":[],
-                        "content":[
-                            {"type": "text", "code": "Requisito Combate IP"}
-                        ],
-                        "type": "requirement"
-                    }
-                ]
-            }
+            "asociatedItems": [20]
+        },
+        "trisha":{
+            "name": "Trisha",
+            "asociatedItems": [1, 2, 3, 4, 13, 20]
+        }
+    },
+    "items": {
+        "1": {
+            "name": "dispositivo de hacker defensivo",
+            "firstHex": [
+                {"type": "svg", "code": "escudo", "class": "title"},
+                {"type": "svg", "code": "dadoNegro", "class": "content"},
+                {"type": "svg", "code": "bloqueoWhite", "class": "content"},
+                {"type": "svg", "code": "bloqueoWhite", "class": "content"}
+            ],
+            "itenTypes":"Equipo Electronico, Hackeable", 
+            "secondHex": [],
+            "thirdHex": [
+                {"type": "svg", "code": "packete", "class": "title"},
+                {"type": "text", "code": "3", "class": "content"}
+            ],
+            "attributes": [
+                {
+                    "switch":[
+                        {"type": "text", "code": "0-4"}
+                    ],
+                    "content":[
+                        {"type": "text", "code": "Hackear"},
+                        {"type": "svg", "code": "dadoAmarillo"},
+                        {"type": "svg", "code": "bloqueoBlack"},
+                        {"type": "svg", "code": "bloqueoBlack"}
+                    ],
+                    "type": "switch"
+                },
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "text", "code": "Los demás Personajes en Alcance de tu Dispositivo suman un"}, 
+                        {"type": "svg", "code": "bloqueoWhite"},
+                        {"type": "text", "code": "a su"},
+                        {"type": "svg", "code": "escudo"},
+                        {"type": "text", "code": "cuando enfrenten a una Tirada de Hackear de un Enemigo."}
+                    ],
+                    "type": "text"
+                }
+            ]
+        },
+        "2": {
+            "name": "automedikit",
+            "firstHex": [
+                {"type": "svg", "code": "escudo", "class": "title"},
+                {"type": "text", "code": "-", "class": "content"}
+            ],
+            "itenTypes":"Equipo Medico", 
+            "secondHex": [],
+            "thirdHex": [
+                {"type": "png", "code": "miniTrisha", "class": "miniAvatar"}
+            ],
+            "attributes": [
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "svg", "code": "accion"},
+                        {"type": "text", "code": "AutoMedikit: Descarta esta carta de Equipo para recuperarte de la inconsciencia. Curate hasta 8"},
+                        {"type": "svg", "code": "herida"},
+                        {"type": "text", "code": ". Sufres 1 Secuela. \n"},
+                        {"type": "text", "code": "Esta carta no puede intercambiarse de ninguna forma con otro Personaje."}
+                    ],
+                    "type": "text"
+                }
+            ]
+        },
+        "3": {
+            "name": "kit de reparacion",
+            "firstHex": [
+                {"type": "svg", "code": "escudo", "class": "title"},
+                {"type": "text", "code": "-", "class": "content"}
+            ],
+            "itenTypes":"Equipo Tecnico", 
+            "secondHex": [],
+            "thirdHex": [
+                {"type": "png", "code": "miniTrisha", "class": "miniAvatar"}
+            ],
+            "attributes": [
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "svg", "code": "accion"},
+                        {"type": "text", "code": "Reparar Estructura: Descarta esta carta para curar hasta 2"},
+                        {"type": "svg", "code": "herida"},
+                        {"type": "text", "code": "de un Remoto en Alcance 0-2.\n"},
+                        {"type": "svg", "code": "accion"},
+                        {"type": "text", "code": "Reparar Chasis: Descarta esta carta de Equipo para retirar una carta de Secualas de un Remoto adyacente"}
+                    ],
+                    "type": "text"
+                }
+            ]
+        },
+        "4": {
+            "name": "Carga-D",
+            "firstHex": [
+                {"type": "svg", "code": "escudo", "class": "title"},
+                {"type": "text", "code": "-", "class": "content"}
+            ],
+            "itenTypes":"Explosivo, Desechable", 
+            "secondHex": [],
+            "thirdHex": [
+                {"type": "png", "code": "miniTrisha", "class": "miniAvatar"}
+            ],
+            "attributes": [
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "svg", "code": "accion"},
+                        {"type": "text", "code": "Demolicion: Descarta esta carta para eliminar una Estructura en Alcance 1-2.\n"},
+                        {"type": "svg", "code": "accion"},
+                        {"type": "text", "code": "Explosion Controlada: Ejecuta el Ataque:"}
+                    ],
+                    "type": "text"
+                },
+                {
+                    "switch":[
+                        {"type": "text", "code": "1-1"}
+                    ],
+                    "content":[
+                        {"type": "text", "code": "Ataque"}, 
+                        {"type": "svg", "code": "dadoNaranja"},
+                        {"type": "svg", "code": "dadoNaranja"},
+                        {"type": "svg", "code": "exitoBlack"}
+                    ],
+                    "type": "switch"
+                },
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "text", "code": "Descarta esta carta\n"}
+                    ],
+                    "type": "text"
+                }
+            ]
+        },
+        "13": {
+            "name": "pistola",
+            "firstHex": [
+                {"type": "text", "code": "1-4", "class": "content"}
+            ],
+            "itenTypes":"Arma ligera", 
+            "secondHex": [
+                {"type": "svg", "code": "dadoNaranja", "class": "content"},
+                {"type": "svg", "code": "dadoAzul", "class": "content"}
+            ],
+            "thirdHex": [
+                {"type": "png", "code": "miniTrisha", "class": "miniAvatar"}
+            ],
+            "attributes": [
+                {
+                    "switch":[
+                        {"type": "svg", "code": "especialWhite"}, 
+                        {"type": "svg", "code": "especialWhite"}
+                    ],
+                    "content":[
+                        {"type": "text", "code": "Añade"}, 
+                        {"type": "svg", "code": "exitoBlack"}, 
+                        {"type": "text", "code": "a tu Tirada"}
+                    ],
+                    "type": "switch"
+                }
+            ]
+        },
+        "14": {
+            "name": "casco de precision",
+            "firstHex": [{"type": "png", "code": "miniTrisha", "class": "miniAvatar"}],
+            "itenTypes":"Armadura", 
+            "secondHex": [],
+            "thirdHex": [],
+            "attributes": [
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "text", "code": "Añade +1 al Alcance Maximo de las armas que tengas equipadas (excepto las Armas CC)."}
+                    ],
+                    "type": "text"
+                }
+            ]
+        },
+        "20": {
+            "name": "armadura reforzada", 
+            "firstHex": [
+                {"type": "svg", "code": "escudo", "class": "title"},
+                {"type": "svg", "code": "dadoVerde", "class": "content"},
+                {"type": "svg", "code": "dadoAzul", "class": "content"}
+            ], 
+            "itenTypes":"Armadura pesada, Hackeable", 
+            "secondHex": [
+                {"type": "svg", "code": "defensa", "class": "title"},
+                {"type": "svg", "code": "dadoNegro", "class": "content"},
+                {"type": "svg", "code": "dadoAmarillo", "class": "content"}
+            ], 
+            "thirdHex": [
+                {"type": "svg", "code": "packete", "class": "title"}, 
+                {"type": "text", "code": "9", "class": "content"}
+            ],
+            "attributes": [
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "text", "code": "Requisito Combate IP"}
+                    ],
+                    "type": "requirement"
+                }
+            ]
         }
     }
 }

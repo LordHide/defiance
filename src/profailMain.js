@@ -323,7 +323,7 @@ function GeneratePersonalItems({element, node, colorPrincipal, extraClass}){
   return (
   <InfoCardContext.Provider value={[InfoCardContext, setInfoCardContext]}>
     <div className="contenedorInfoElement">
-      <i className={element.slot}></i> 
+      {createIcon(element.slot)}
       <div className="infoElement1" title={element.name}>
         <div>{element.name}</div>
       </div> 
@@ -410,24 +410,20 @@ function createIcon(iconData){
 
   switch (iconData.type) {
     case "text":
-      icon = <span>{iconData.code}</span>
-      break;
-
-    case "i":
-      icon = <i className={iconData.code}></i>
+      icon = <span className={iconData.class} >{iconData.code}</span>
       break;
 
     case "range":
       icon = 
       <>
-        <div className="hexagon">
+        <div className={"hexagon "+iconData.class}>
           <i>{iconData.code}</i>
         </div>
       </>
       break;
 
     case "svg": 
-      icon = <img src={svgDispenser(iconData.code)} alt={iconData.code} />;
+      icon = <img className={iconData.class} src={svgDispenser(iconData.code)} alt={iconData.code} />;
       break;
   
     default: icon = <></>

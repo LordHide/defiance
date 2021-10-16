@@ -18,10 +18,11 @@
 
 .infoContainerEquipment{
     position: absolute;
-    left: 35vw;
-    top: 30vh;
+    left: 27vw;
+    top: -29vh;
     width: 35vw;
     border-radius: 2vw 2vw 0 0;
+    z-index: 2;
 }
 
 .titliItenInfo{
@@ -30,12 +31,12 @@
     display: flex;
     align-content: center;
     justify-content: center;
-    font-size: 1.96vw;
+    font-size: 1.6vw;
 }
 
 .bodyItenInfo{
     background: linear-gradient(200deg, #91A08C, #B9AE82, #BE914E, #BE924F, #806244);
-    height: 35vh;
+    height: 40vh;
 }
 
 .bodyItenInfo > div:first-child{
@@ -53,35 +54,43 @@
     text-align: center;
 }
 
-.range, .cost, .switchContainer, .damage{
+.firstHex, .thirdHex, .secondHex, .switchContainer{
     clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50% );
 }
 
-.range{
-    width: 2.8vw;
-    height: 2.8vw;
+.firstHex, .thirdHex, .secondHex{
+    width: 3.5vw;
+    height: 3.5vw;
     display: flex;
     align-content: center;
     justify-content: center;
     position: relative;
-    left: 9.38vw;
-    top: 0.56vh; 
 }
 
-.range span{
+.firstHex{
+    left: 0.87vw;
+    top: 0.3vh;
+}
+
+.firstHex p, .thirdHex p, .secondHex p{
     font-size: 1.4vw;
     padding-top: 0.84vh;
+    width: 70%;
+    margin: 0;
 }
 
-.cost{
-    width: 2.8vw;
-    height: 2.8vw;
-    position: relative;
-    left: 23.1vw;
-    top: -4.9vh;
+.firstHex span, .secondHex span, .thirdHex span{
+    width: 100%;
+    text-align: center;
+    display: block;
 }
 
-.cost .svg{
+.thirdHex{
+    left: 30.7vw;
+    top: -6.4vh;
+}
+
+.thirdHex .svg{
     width: 1.12vw;
     height: 1.12vw;
     position: relative;
@@ -89,37 +98,48 @@
     left: 0.84vw;
 }
 
-.cost .svg img{
-    width: 1.2vw;
-    height: 1.2vw;
-}
-
-.cost .text{
+.thirdHex .text{
     font-size: 0.98vw;
     position: relative;
     top: 0.238vw;
     left: 1.106vw;
 }
 
-.damage{
-    width: 2.8vw;
-    height: 2.8vw;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    position: relative;
-    left: 7.88vw;
-    top: -4.879vh;
-    -webkit-clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50% );
-    clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50% );
+.secondHex{
+    left: 2.67vw;
+    top: -6.5vh;
 }
 
-.damage span{
-    padding-top: 0.8vw;
+img.title{
+    width: 50%;
+    height: 50%;
 }
 
-.damage img{
+div.title{
+    width: 100%;
+    margin-left: 22%;
+}
+
+img.content{
     width: 1.2vw;
+    height: 1.2vw;
+}
+
+img.title ~ img.content{
+    position: relative;
+    top: -0.6vw;
+    left: 0.5vw;
+    width: 0.9vw;
+    max-height: 0.9vw;
+}
+
+.content:not(.title ~ .content){
+    margin-top: 1.6vh;
+}
+
+.miniAvatar{
+    width: 100%;
+    height: 100%;
 }
 
 .extraInfo{
@@ -132,17 +152,25 @@
     background-color: rgba(67, 59, 59, 0.58);
 }
 
-.extraInfo img{
-    width: 1.2vw;
-    height: 1.2vw;
-    padding-left: 0.3vw;
-}
-
 .infoRow{
     display: flex;
     align-items: center;
     margin-top: 1vh;
     margin-left: 0.5vw;
+    white-space: pre-wrap;
+}
+
+.switchRow img{
+    width: 1.2vw;
+    height: 1.2vw;
+    padding-left: 0.3vw;
+}
+
+.textRow img{
+    width: 1.2vw;
+    height: 1.2vw;
+    padding-right: 0.3vw;
+    padding-left: 0.3vw;
 }
 
 .switchContainer{
@@ -154,9 +182,19 @@
     z-index: 2;
 }
 
+.switchContainer img{
+    width: 1.2vw;
+    height: 1.2vw;
+}
+
 .switchContainer img:last-child{
     position: relative;
     left: -0.4vw;
+}
+
+.switchContainer span{
+    position: relative;
+    left: 0.4vw;
 }
 
 .switchRow{
@@ -173,4 +211,63 @@
 .requirementRow{
     text-align: center;
     width: 100%;
+}
+
+@media screen and ( max-width: 1000px) {
+    .infoContainerEquipment{
+        width: 60vw;
+        left: 15vw;
+    }
+    .crossCard{
+        left:57vw;
+        font-size: 2vw;
+    }
+    .bodyItenInfo{
+        height: 60vh;
+    }
+    .titliItenInfo{
+        font-size: 2.6vw;
+    }
+    .itenType{
+        font-size: 2.54vw;
+    }
+    .firstHex, .secondHex, .thirdHex{
+        width: 5.5vw;
+        height: 5.5vw;
+    }
+    .secondHex{
+        top: -9.1vh;
+    }
+    .thirdHex{
+        left: 53.7vw;
+        top: -9.4vh;
+    }
+    .firstHex p, .thirdHex p, .secondHex p {
+        font-size: 2vw;
+    }
+    img.content{
+        width: 1.9vw;
+        height: 1.9vw;
+    }
+    .content:not(.title ~ .content) {
+        margin-top: 2.5vh;
+    }
+    .extraInfo{
+        width: 49.2vw;
+        height: 28.8vh;
+    }
+    .switchRow {
+        font-size: 2vw;
+    }
+    .switchRow img {
+        width: 1.8vw;
+        height: 1.8vw;
+        padding-left: 0.3vw;
+        padding-top: 0.1vw;
+    }
+    .switchContainer {
+        width: 3vw;
+        height: 3vw;
+        font-size: 1.5vw;
+    }
 }
