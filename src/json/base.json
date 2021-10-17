@@ -38,7 +38,7 @@
         },
         "trisha":{
             "name": "Trisha",
-            "asociatedItems": [1, 2, 3, 4, 13, 20]
+            "asociatedItems": [13, 1, 14, 20, 3, 4, 2]
         }
     },
     "items": {

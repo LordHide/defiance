@@ -25,6 +25,16 @@
     z-index: 2;
 }
 
+.infoContainerEquipment.extra1{
+    top: -17vw;
+    left: 29vw;
+}
+
+.infoContainerEquipment.extra2{
+    top: -16vw;
+    left: 28vw;
+}
+
 .titliItenInfo{
     border-radius: 2vw 2vw 0 0;
     text-transform: uppercase;
@@ -32,6 +42,8 @@
     align-content: center;
     justify-content: center;
     font-size: 1.6vw;
+    height: 3.7vh;
+    box-shadow: 5px 1px 15px black
 }
 
 .bodyItenInfo{
@@ -249,6 +261,14 @@ img.title ~ img.content{
         width: 60vw;
         left: 15vw;
     }
+    .infoContainerEquipment.extra1{
+        top: -35vh;
+        left: 18vw;
+    }
+    .infoContainerEquipment.extra2{
+        top: -32vh;
+        left: 16.5vw;
+    }
     .crossCard{
         left:57vw;
         font-size: 2vw;
@@ -258,6 +278,7 @@ img.title ~ img.content{
     }
     .titliItenInfo{
         font-size: 2.6vw;
+        height: 6vh;
     }
     .itenType{
         font-size: 2.54vw;

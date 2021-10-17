@@ -5,18 +5,49 @@ import svgDispenser from './svgDispenser.js';
 import miniImg from './miniImgDispenser.js';
 import './storeManagement.css';
 
-function ItenInfo({node, type, id, colorPrincipal}) {
+function ItenInfo({nodeInfo, colorPrincipal}) {
+
+    let cardNode = <></>;
+
     const [store, setStore] = useContext(StoreContext);
     const [infoCard, setinfoCard] = useContext(InfoCardContext);
-    const iten = store["items"][id];
+    const iten = store["items"][nodeInfo.id];
     const infoHandler = () => {
       setinfoCard(<></>)
+    }
+    const scrollHandler = (evt) => {
+      const newId = newIdHandler(evt.deltaY < 0 ? 1 : -1, store, nodeInfo);
+      setinfoCard(<ItenInfo nodeInfo={{"type":nodeInfo.type, "id": newId}} colorPrincipal={colorPrincipal} />)
+    };
+
+    const keyHandler = (evt) => {
+      const newId = newIdHandler(evt.code == "ArrowDown" ? -1 : 1, store, nodeInfo);
+      setinfoCard(<ItenInfo nodeInfo={{"type":nodeInfo.type, "id": newId}} colorPrincipal={colorPrincipal} />)
+    };
+
+    const swHandler = (evt) => {
+      const newId = newIdHandler(evt.deltaY < 0 ? 1 : -1, store, nodeInfo);
+      setinfoCard(<ItenInfo nodeInfo={{"type":nodeInfo.type, "id": newId}} colorPrincipal={colorPrincipal} />)
+    };
+
+
+    if(nodeInfo.type !== ""){
+      cardNode = <>
+        <div className='infoContainerEquipment extra1'>
+          <div className="titliItenInfo" style={colorPrincipal}></div>
+          <div className="bodyItenInfo"></div>
+        </div>
+        <div className='infoContainerEquipment extra2'>
+          <div className="titliItenInfo" style={colorPrincipal}></div>
+          <div className="bodyItenInfo"></div>
+        </div></>;
     }
 
     return (
       <>
         <div className='backGroundBlack' onClick={infoHandler}></div>
-          <div className='infoContainerEquipment'>
+          {cardNode}
+          <div className='infoContainerEquipment' onWheel={scrollHandler} onKeyDown={keyHandler} tabIndex={0} style={{"outline": "none"}}>
             <div className="titliItenInfo" style={colorPrincipal}>
               <span>{iten.name}</span>
               <div className="crossCard" onClick={infoHandler}>
@@ -63,11 +94,31 @@ function ItenInfo({node, type, id, colorPrincipal}) {
     );
 }
 
+function newIdHandler(idModifier, store, nodeInfo) {
+  const asociatedIndex = store.equipment[nodeInfo.type].asociatedItems;
+  const currentIndex = asociatedIndex.indexOf(nodeInfo.id);
+
+  let indexValue = currentIndex + idModifier;
+  let newId = 0;
+
+  if(indexValue == asociatedIndex.length){
+    indexValue = 0;
+  }
+  if(indexValue == -1){
+    indexValue = asociatedIndex.length - 1;
+  }
+
+  newId = asociatedIndex[indexValue];
+
+  return newId
+}
+
+
 function InfoHex({valuesHex, colorPrincipal}){
-  let infohex = <></>;console.log(valuesHex.nodeHex);
+  let infohex = <></>;
 
   if(valuesHex.nodeHex.length != 0){
-    let contentNum = valuesHex.nodeHex.filter(nodeHex => nodeHex.class == "content").length
+    let contentNum = valuesHex.nodeHex.filter(nodeHex => nodeHex.class == "content" ||  nodeHex.class == "miniAvatar").length
     let gridColumns = {"gridTemplateColumns": "repeat("+contentNum+", 1fr)", "gridTemplateRows": valuesHex.nodeHex[0].class == "title" ? "57% 30%" : "100% 30%"};
 
     infohex = <div className={valuesHex.nameHex} style={colorPrincipal}>
@@ -101,22 +152,12 @@ function createIcon(iconData){
         </>
         break;
   
-      case "svg": /*
-        if(iconData.class == "title"){
-          icon = <div className={iconData.class} ><img className={iconData.class} src={svgDispenser(iconData.code)} alt={iconData.code} /></div>;
-        }
-        else{*/
+      case "svg": 
           icon = <img className={iconData.class} src={svgDispenser(iconData.code)} alt={iconData.code} />;
-        //}
         break;
 
-      case "png": /*
-        if(iconData.class == "title"){
-          icon = <div className={iconData.class} ><img className={iconData.class} src={miniImg[iconData.code]} alt={iconData.code} /></div>;
-        }
-        else{*/
+      case "png":
           icon = <img className={iconData.class} src={miniImg[iconData.code]} alt={iconData.code} />;
-        //}
         break;
     
       default: icon = <></>

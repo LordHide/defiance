@@ -313,11 +313,11 @@ function Especialidades({isRemote}){
   );
 }
 
-function GeneratePersonalItems({element, node, colorPrincipal, extraClass}){
+function GeneratePersonalItems({element, colorPrincipal, extraClass}){
 
   const [InfoContext, setInfoCardContext] = useState(<></>);
   const infoHandler = () => {
-    setInfoCardContext(<ItenInfo node={node} type={element.typeId} id={element.asociatedId} colorPrincipal={colorPrincipal} />)
+    setInfoCardContext(<ItenInfo nodeInfo={{"type":"trisha", "id": element.asociatedId}} colorPrincipal={colorPrincipal} />)
   }
 
   return (
