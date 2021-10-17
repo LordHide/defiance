@@ -79,6 +79,19 @@
     margin: 0;
 }
 
+.gridHex{
+    display: grid;
+    grid-column-gap: 3%;
+    width: 70%;
+}
+
+.gridHex div.svgtitle{
+    grid-column: 1/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .firstHex span, .secondHex span, .thirdHex span{
     width: 100%;
     text-align: center;
@@ -111,18 +124,34 @@
 }
 
 img.title{
-    width: 50%;
-    height: 50%;
+    width: 52%;
+    height: 100%;
 }
 
-div.title{
+div.svgtitle{
     width: 100%;
-    margin-left: 22%;
 }
 
 img.content{
-    width: 1.2vw;
-    height: 1.2vw;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.svgtitle ~ div.svgcontent{
+    height: 88%;
+}
+
+.textcontent{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.textcontent .content{
+    font-size: 1.1vw;
 }
 
 img.title ~ img.content{
@@ -132,10 +161,10 @@ img.title ~ img.content{
     width: 0.9vw;
     max-height: 0.9vw;
 }
-
+/*
 .content:not(.title ~ .content){
     margin-top: 1.6vh;
-}
+}*/
 
 .miniAvatar{
     width: 100%;
@@ -158,6 +187,7 @@ img.title ~ img.content{
     margin-top: 1vh;
     margin-left: 0.5vw;
     white-space: pre-wrap;
+    font-size: 1vw;
 }
 
 .switchRow img{
@@ -180,6 +210,7 @@ img.title ~ img.content{
     display: flex;
     align-items: center;
     z-index: 2;
+    font-size: 1vw;
 }
 
 .switchContainer img{
@@ -244,13 +275,16 @@ img.title ~ img.content{
     }
     .firstHex p, .thirdHex p, .secondHex p {
         font-size: 2vw;
-    }
+    }/*
     img.content{
         width: 1.9vw;
         height: 1.9vw;
     }
     .content:not(.title ~ .content) {
         margin-top: 2.5vh;
+    }*/
+    .textcontent .content{
+        font-size: 1.7vw;
     }
     .extraInfo{
         width: 49.2vw;
@@ -258,6 +292,9 @@ img.title ~ img.content{
     }
     .switchRow {
         font-size: 2vw;
+    }
+    .infoRow{
+        font-size: 1.5vw;
     }
     .switchRow img {
         width: 1.8vw;

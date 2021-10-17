@@ -64,16 +64,21 @@ function ItenInfo({node, type, id, colorPrincipal}) {
 }
 
 function InfoHex({valuesHex, colorPrincipal}){
-  let infohex = <></>;
+  let infohex = <></>;console.log(valuesHex.nodeHex);
 
-  if(valuesHex.nodeHex.length != 0)
-  infohex = <div className={valuesHex.nameHex} style={colorPrincipal}>
-    <p>
-    {valuesHex.nodeHex.map(info => {
-          return createIcon(info)
-      })}
-    </p>
-  </div>
+  if(valuesHex.nodeHex.length != 0){
+    let contentNum = valuesHex.nodeHex.filter(nodeHex => nodeHex.class == "content").length
+    let gridColumns = {"gridTemplateColumns": "repeat("+contentNum+", 1fr)", "gridTemplateRows": valuesHex.nodeHex[0].class == "title" ? "57% 30%" : "100% 30%"};
+
+    infohex = <div className={valuesHex.nameHex} style={colorPrincipal}>
+    <div className="gridHex" style={gridColumns}>
+      {valuesHex.nodeHex.map(info => {
+            return <div className={info.type+""+info.class}>{createIcon(info)}</div>
+        })
+      }
+      </div>
+    </div>
+  }
 
   return infohex;
 }
@@ -96,22 +101,22 @@ function createIcon(iconData){
         </>
         break;
   
-      case "svg": 
+      case "svg": /*
         if(iconData.class == "title"){
           icon = <div className={iconData.class} ><img className={iconData.class} src={svgDispenser(iconData.code)} alt={iconData.code} /></div>;
         }
-        else{
+        else{*/
           icon = <img className={iconData.class} src={svgDispenser(iconData.code)} alt={iconData.code} />;
-        }
+        //}
         break;
 
-      case "png": 
+      case "png": /*
         if(iconData.class == "title"){
           icon = <div className={iconData.class} ><img className={iconData.class} src={miniImg[iconData.code]} alt={iconData.code} /></div>;
         }
-        else{
+        else{*/
           icon = <img className={iconData.class} src={miniImg[iconData.code]} alt={iconData.code} />;
-        }
+        //}
         break;
     
       default: icon = <></>
