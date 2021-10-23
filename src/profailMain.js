@@ -1,8 +1,9 @@
 import React, {useState, useContext} from 'react';
 import CharacterContext from './context/CharacterContext.js';
-import ItenInfo from './storeManagement.js';
+import {ItenInfo, StoreList} from './storeManagement.js';
 import RemoteContext from './context/RemoteContext.js';
 import InfoCardContext from './context/InfoCardContext.js';
+import StoreListContext from './context/StoreListContext.js';
 import svgDispenser from './svgDispenser.js';
 import trishaImg from './Img/trisha.png';
 import duchessImg from './Img/duchess.png';
@@ -272,27 +273,41 @@ function cambiarInfoActive(name, isRemote){
 }
 
 function Equipo({isRemote}){
+  const [InfoContext, setInfoCardContext] = useState(<></>);
+  const [ListContext, setStoreListContext] = useState(<></>);
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
   const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 1)"};
   return (
-    <>
-      {character.equipment.map((element) => {
+    <InfoCardContext.Provider value={[InfoCardContext, setInfoCardContext]}>
+            <StoreListContext.Provider value={[ListContext, setStoreListContext]}>
+      {character.slots[0].items.map((element) => {
         return (
-          <GeneratePersonalItems element={element} node={"equipment"} colorPrincipal={colorPrincipal} extraClass={""} />
+              <GeneratePersonalItems element={element} node={"equipment"} colorPrincipal={colorPrincipal} extraClass={""} typeId={0} />
         )
       })}
-    </>
+        {ListContext}
+        {InfoContext}
+      </StoreListContext.Provider>
+    </InfoCardContext.Provider>
   );
 }
 
 function Software({isRemote}){
+  const [InfoContext, setInfoCardContext] = useState(<></>);
+  const [ListContext, setStoreListContext] = useState(<></>);
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
   const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 1)"};
   return (
     <>
-      {character.software.map((element) => {
+      {character.slots[1].items.map((element) => {
         return (
-          <GeneratePersonalItems element={element} node={"software"} colorPrincipal={colorPrincipal} extraClass={""} />
+          <InfoCardContext.Provider value={[InfoCardContext, setInfoCardContext]}>
+            <StoreListContext.Provider value={[ListContext, setStoreListContext]}>
+              <GeneratePersonalItems element={element} node={"software"} colorPrincipal={colorPrincipal} extraClass={""} typeId={1} />
+              {ListContext}
+              {InfoContext}
+            </StoreListContext.Provider>
+          </InfoCardContext.Provider>
         )
       })}
     </>
@@ -300,46 +315,57 @@ function Software({isRemote}){
 }
 
 function Especialidades({isRemote}){
+  const [InfoContext, setInfoCardContext] = useState(<></>);
+  const [ListContext, setStoreListContext] = useState(<></>);
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
   const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 1)"};
   return (
     <>
-      {character.specialties.map((element) => {
+      {character.slots[2].items.map((element) => {
         return (
-          <GeneratePersonalItems element={element} node={"specialty"} colorPrincipal={colorPrincipal} extraClass={"Specialty"} />
+          <InfoCardContext.Provider value={[InfoCardContext, setInfoCardContext]}>
+            <StoreListContext.Provider value={[ListContext, setStoreListContext]}>
+              <GeneratePersonalItems element={element} node={"specialty"} colorPrincipal={colorPrincipal} extraClass={"Specialty"} isRemote={isRemote} typeId={2} />
+              {ListContext}
+              {InfoContext}
+            </StoreListContext.Provider>
+          </InfoCardContext.Provider>
         )
       })}
     </>
   );
 }
 
-function GeneratePersonalItems({element, colorPrincipal, extraClass}){
+function GeneratePersonalItems({element, colorPrincipal, extraClass, isRemote, typeId}){
 
-  const [InfoContext, setInfoCardContext] = useState(<></>);
+  const [infoCard, setinfoCard] = useContext(InfoCardContext);
+  const [listStore, setlistStore] = useContext(StoreListContext);
+  
   const infoHandler = () => {
-    setInfoCardContext(<ItenInfo nodeInfo={{"type":"trisha", "id": element.asociatedId}} colorPrincipal={colorPrincipal} />)
+    element.asociatedId != -1 ? setinfoCard(<ItenInfo nodeInfo={{"type":"trisha", "subType": typeId, "id": element.asociatedId, "slotId":-1, "isRemote":isRemote }} actionPermit={{"editActive":false, "unequipActive":false, "buyActivve":false}} colorPrincipal={colorPrincipal} />):setinfoCard(<></>);
+  }
+  const listHandler = () => {
+    setlistStore(<StoreList nodeInfo={{"typeList":["trisha"], "subType": typeId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={colorPrincipal} />);
+    element.asociatedId != -1 ? setinfoCard(<ItenInfo nodeInfo={{"type":"trisha", "subType": typeId, "id": element.asociatedId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={colorPrincipal} />):setinfoCard(<></>);
   }
 
   return (
-  <InfoCardContext.Provider value={[InfoCardContext, setInfoCardContext]}>
-    <div className="contenedorInfoElement">
-      {createIcon(element.slot)}
-      <div className="infoElement1" title={element.name}>
-        <div>{element.name}</div>
-      </div> 
-      <div className={"infoElement2 "+extraClass}>{element.info.map(
-        (iconInfo) => {
-          return createIcon(iconInfo)
-        }
-      )}</div>
-      <div className="circleInfo" onClick={infoHandler}>
-        <i>
-        i
-        </i>
+      <div className="contenedorInfoElement">
+        {createIcon(element.slot)}
+        <div className="infoElement1" title={element.name} onClick={listHandler}>
+          <div>{element.name}</div>
+        </div> 
+        <div className={"infoElement2 "+extraClass} onClick={listHandler}>{element.info.map(
+          (iconInfo) => {
+            return createIcon(iconInfo)
+          }
+        )}</div>
+        <div className="circleInfo" onClick={infoHandler}>
+          <i>
+          i
+          </i>
+        </div>
       </div>
-      {InfoContext}
-    </div>
-  </InfoCardContext.Provider>
   )
 }
 

@@ -4,16 +4,18 @@
     left: -6.1vw;
     width: 100vw;
     height: 100vh;
-    z-index: 1;
     background-color: rgba(30, 30, 30, 0.5);
 }
 
 .crossCard{
     position: absolute;
+    cursor: pointer;
+}
+
+.crossCard{
     left: 33vw;
     top: 1vh;
     font-size: 1vw;
-    cursor: pointer;
 }
 
 .infoContainerEquipment{
@@ -22,7 +24,6 @@
     top: -29vh;
     width: 35vw;
     border-radius: 2vw 2vw 0 0;
-    z-index: 2;
 }
 
 .infoContainerEquipment.extra1{

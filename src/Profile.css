@@ -72,6 +72,7 @@
     padding: 0.2vw;
     height: 3.5vh;
     background-color: rgba(62, 54, 54, 0.7);
+    cursor: pointer;
 }
 .infoElement2 div{
     height: 3.5vh;

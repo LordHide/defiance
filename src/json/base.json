@@ -1,5 +1,5 @@
 {
-    "equipment": {
+    "type": {
         "12":{
             "name": "Arma ligera",
             "asociatedItems": [13]
@@ -38,7 +38,7 @@
         },
         "trisha":{
             "name": "Trisha",
-            "asociatedItems": [13, 1, 14, 20, 3, 4, 2]
+            "asociatedItems": [[13, 1, 14, 20, 3, 4, 2], [1], []]
         }
     },
     "items": {
@@ -80,6 +80,10 @@
                     ],
                     "type": "text"
                 }
+            ],
+            "slots":[
+                {"TypeId":1, "icon": [{"type": "svg", "code": "mano"}]},
+                {"TypeId":3, "icon": [{"type": "svg", "code": "casco"}]}
             ]
         },
         "2": {
@@ -105,6 +109,9 @@
                     ],
                     "type": "text"
                 }
+            ],
+            "slots":[
+                {"TypeId":6, "icon": [{"type": "svg", "code": "equipo"}]}
             ]
         },
         "3": {
@@ -131,6 +138,9 @@
                     ],
                     "type": "text"
                 }
+            ],
+            "slots":[
+                {"TypeId":6, "icon": [{"type": "svg", "code": "equipo"}]}
             ]
         },
         "4": {
@@ -174,6 +184,9 @@
                     ],
                     "type": "text"
                 }
+            ],
+            "slots":[
+                {"TypeId":6, "icon": [{"type": "svg", "code": "equipo"}]}
             ]
         },
         "13": {
@@ -202,6 +215,9 @@
                     ],
                     "type": "switch"
                 }
+            ],
+            "slots":[
+                {"TypeId":1, "icon": [{"type": "svg", "code": "mano"}]}
             ]
         },
         "14": {
@@ -218,6 +234,9 @@
                     ],
                     "type": "text"
                 }
+            ],
+            "slots":[
+                {"TypeId":3, "icon": [{"type": "svg", "code": "casco"}]}
             ]
         },
         "20": {
@@ -245,6 +264,9 @@
                     ],
                     "type": "requirement"
                 }
+            ],
+            "slots":[
+                {"TypeId":5, "icon": [{"type": "svg", "code": "casco"}, {"type": "svg", "code": "pecho"}]}
             ]
         }
     }

@@ -1,0 +1,64 @@
+.listStoreContainer{
+    width: 94vw;
+    height: 83vh;
+    position: absolute;
+    top: -44.2vh;
+    left: -3vw;
+    background-color: rgb(91, 83, 83);
+    border-radius: 1vw;
+}
+
+.topListSegment{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1%;
+}
+
+.titleList{
+    margin-left: 1%;
+    font-size: 2vw;
+}
+
+.titleList img{
+    width: 2vw;
+}
+
+.crossList{
+    margin-right: 1%;
+    font-size: 2vw;
+}
+
+.typeContainer{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 10vh;
+    padding-left: 2vw;
+}
+
+.typeTitle{
+    grid-column: 1/6;
+    margin-bottom: 3vh;
+    font-size: 2vw;
+}
+
+.item{
+    padding: 5%;
+    font-size: 1.5vw;
+    text-transform: capitalize;
+}
+
+.item img{
+    width: 1.2vw;
+    padding-right: 2%;
+}
+
+.item.active{
+    background-color: rgb(129,121,121);
+    cursor: pointer;
+}
+
+.item.deactive{
+    background-color: rgb(129,121,121);
+    opacity: 65%;
+    cursor: not-allowed;
+}
