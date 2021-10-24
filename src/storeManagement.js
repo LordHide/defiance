@@ -15,7 +15,7 @@ function ItenInfo({nodeInfo, actionPermit, colorPrincipal}) {
     const [infoCard, setinfoCard] = useContext(InfoCardContext);
     const [character, setCharacter] = useContext(nodeInfo.isRemote ? RemoteContext : CharacterContext);
     const activeIten = getItemActive(character, nodeInfo);
-    const iten = store["items"][nodeInfo.id];console.log(activeIten == undefined)
+    const iten = store.items[nodeInfo.id];
     const validSlot = activeIten != undefined ? correctSlot(iten.slots, activeIten.typeSlot):false;
     const swipeDiff = useRef(0);
     const infoHandler = () => {
@@ -89,7 +89,7 @@ function ItenInfo({nodeInfo, actionPermit, colorPrincipal}) {
                   }
                 </div>
               </div>
-              {activeIten != undefined ? <EditButtons actionPermit={actionPermit} valid = {{"validSlot":validSlot, "isRemote":nodeInfo.isRemote, "validItem":activeIten.asociatedId == nodeInfo.id}} nodeInfo={nodeInfo} /> : <></>}
+              {activeIten != undefined ? <EditButtons actionPermit={actionPermit} valid = {{"isRemote":nodeInfo.isRemote, "validItem":activeIten.asociatedId == nodeInfo.id}} nodeInfo={nodeInfo} /> : <></>}
             </div>
         </>
     );
@@ -197,31 +197,13 @@ function EditButtons({actionPermit, valid, nodeInfo}){
 
   const [character, setCharacter] = useContext(valid.isRemote ? RemoteContext : CharacterContext);
   const [store, setStore] = useContext(StoreContext);
-  const unEquipClick = (nodeInfo) => {
-    const storePosition = getStorePosition(store, nodeInfo);
-    const itemPosition = getItemPosition(character, nodeInfo);
-    character.slots[nodeInfo.subType].items[itemPosition] = {"slotId": item.slotId, "typeSlot":item.typeSlot, "asociatedId": -1, "name": "", "info": [], "slot": item.slot};
-    store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1);
-    setCharacter({...character});
-    setStore({...store});
-  };
-  const equipClick = (nodeInfo) => {
-    return () => {
-        character.slots[nodeInfo.subType].items.map((item, index) => {
-          if(item.slotId == nodeInfo.slotId){
-            const storePosition = store.type[character.name].asociatedItems[nodeInfo.subType].indexOf(item.asociatedId);
-            character.slots[nodeInfo.subType].items[index] = {"slotId": item.slotId, "typeSlot":item.typeSlot, "asociatedId": -1, "name": "", "info": [], "slot": item.slot};
-            store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1);
-            setCharacter({...character});
-            setStore({...store});
-          }
-        });
-      }
-  };
+
+  const unEquipClick = useUnEquip(valid);
+  const equipClick = useEquip(valid);
 
     buttons = <div>
-      {(actionPermit.editActive && valid.validSlot) ? <button onClick={equipClick(nodeInfo)}>Equipar</button> : <></>}
-      {(actionPermit.unequipActive && valid.validItem) ? <button onClick={unEquipClick(nodeInfo)}>Descartar</button> : <></>}
+      {(actionPermit.editActive && !valid.validItem) ? <button onClick={()=>equipClick(nodeInfo)}>Equipar</button> : <></>}
+      {(actionPermit.unequipActive && valid.validItem) ? <button onClick={()=>unEquipClick(nodeInfo)}>Descartar</button> : <></>}
       {actionPermit.buyActivve ? <button>Comprar</button> : <></>}
     </div>;
 
@@ -230,18 +212,18 @@ function EditButtons({actionPermit, valid, nodeInfo}){
 
 function getItemActive(character, nodeInfo){
   const activeIten = character.slots[nodeInfo.subType].items.find(
-    element => element.slotId == nodeInfo.slotId
+    element => element.slotId === nodeInfo.slotId
     );
 
   return activeIten;
 }
 
-function getItemPosition(store, nodeInfo){
+function getItemPosition(character, nodeInfo){
 
   let itemPosition;
 
   character.slots[nodeInfo.subType].items.map((item, index) => {
-    if(item.slotId == nodeInfo.slotId){
+    if(item.slotId === nodeInfo.slotId){
       itemPosition = index;
     }
   });
@@ -249,8 +231,38 @@ function getItemPosition(store, nodeInfo){
   return itemPosition;
 }
 
-function getStorePosition(){
-  return store.type[character.name].asociatedItems[nodeInfo.subType].indexOf(item.asociatedId);
+function getStorePosition(store, nodeInfo, extraParm){
+  return store.type[extraParm.name].asociatedItems[nodeInfo.subType].indexOf(extraParm.asociatedId);
+}
+
+function useUnEquip(valid){
+  const [character, setCharacter] = useContext(valid.isRemote ? RemoteContext : CharacterContext);
+  const [store, setStore] = useContext(StoreContext);
+  return (nodeInfo) => {
+    const itemPosition = getItemPosition(character, nodeInfo);
+    const item = character.slots[nodeInfo.subType].items[itemPosition];
+    const storePosition = getStorePosition(store, nodeInfo, {"name":character.name, "asociatedId":item.asociatedId});
+
+    character.slots[nodeInfo.subType].items[itemPosition] = {"slotId": item.slotId, "typeSlot":item.typeSlot, "asociatedId": -1, "name": "", "info": [], "slot": item.slot};
+    store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1);
+    setCharacter({...character});
+    setStore({...store});
+  };
+}
+
+function useEquip(valid){
+  const [character, setCharacter] = useContext(valid.isRemote ? RemoteContext : CharacterContext);
+  const [store, setStore] = useContext(StoreContext);
+  return (nodeInfo) => {
+    const itemPosition = getItemPosition(character, nodeInfo);
+    const item = character.slots[nodeInfo.subType].items[itemPosition];
+    const storePosition = getStorePosition(store, nodeInfo, {"name":character.name, "asociatedId":item.asociatedId});
+
+    character.slots[nodeInfo.subType].items[itemPosition] = {"slotId": item.slotId, "typeSlot":item.typeSlot, "asociatedId": -1, "name": "", "info": [], "slot": item.slot};
+    store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1);
+    setCharacter({...character});
+    setStore({...store});
+  };
 }
 
 function ItenModule({store, relevantId, selectHandler}){
@@ -275,16 +287,16 @@ function correctSlot(activeSlot, typeSlot){
   let validate = false;
 
   activeSlot.map(slotInfo => {
-    if(typeSlot == 1 && (slotInfo.TypeId == 1 || slotInfo.TypeId == 2)){
+    if(typeSlot === 1 && (slotInfo.TypeId === 1 || slotInfo.TypeId === 2)){
       validate = true;
     }
-    else if(typeSlot == 3 && (slotInfo.TypeId == 3 || slotInfo.TypeId == 5)){
+    else if(typeSlot === 3 && (slotInfo.TypeId === 3 || slotInfo.TypeId === 5)){
       validate = true;
     }
-    else if(typeSlot == 4 && (slotInfo.TypeId == 4 || slotInfo.TypeId == 5)){
+    else if(typeSlot === 4 && (slotInfo.TypeId === 4 || slotInfo.TypeId === 5)){
       validate = true;
     }
-    else if(typeSlot == slotInfo.TypeId || validate){
+    else if(typeSlot === slotInfo.TypeId || validate){
       validate = true;
     }
   });
@@ -304,11 +316,9 @@ function createIcon(iconData){
 
       case "range":
         icon = 
-        <>
           <div className={"hexagon "+iconData.class}>
             <i>{iconData.code}</i>
           </div>
-        </>
         break;
   
       case "svg": 

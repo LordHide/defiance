@@ -278,17 +278,13 @@ function Equipo({isRemote}){
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
   const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 1)"};
   return (
-    <InfoCardContext.Provider value={[InfoCardContext, setInfoCardContext]}>
-            <StoreListContext.Provider value={[ListContext, setStoreListContext]}>
+    <>
       {character.slots[0].items.map((element) => {
         return (
               <GeneratePersonalItems element={element} node={"equipment"} colorPrincipal={colorPrincipal} extraClass={""} typeId={0} />
         )
       })}
-        {ListContext}
-        {InfoContext}
-      </StoreListContext.Provider>
-    </InfoCardContext.Provider>
+    </>
   );
 }
 
@@ -301,13 +297,7 @@ function Software({isRemote}){
     <>
       {character.slots[1].items.map((element) => {
         return (
-          <InfoCardContext.Provider value={[InfoCardContext, setInfoCardContext]}>
-            <StoreListContext.Provider value={[ListContext, setStoreListContext]}>
               <GeneratePersonalItems element={element} node={"software"} colorPrincipal={colorPrincipal} extraClass={""} typeId={1} />
-              {ListContext}
-              {InfoContext}
-            </StoreListContext.Provider>
-          </InfoCardContext.Provider>
         )
       })}
     </>
@@ -323,13 +313,7 @@ function Especialidades({isRemote}){
     <>
       {character.slots[2].items.map((element) => {
         return (
-          <InfoCardContext.Provider value={[InfoCardContext, setInfoCardContext]}>
-            <StoreListContext.Provider value={[ListContext, setStoreListContext]}>
               <GeneratePersonalItems element={element} node={"specialty"} colorPrincipal={colorPrincipal} extraClass={"Specialty"} isRemote={isRemote} typeId={2} />
-              {ListContext}
-              {InfoContext}
-            </StoreListContext.Provider>
-          </InfoCardContext.Provider>
         )
       })}
     </>

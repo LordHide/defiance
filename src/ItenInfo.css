@@ -1,7 +1,7 @@
 .backGroundBlack{
     position: absolute;
-    top: -56vh;
-    left: -6.1vw;
+    top: 0vh;
+    left: 0vw;
     width: 100vw;
     height: 100vh;
     background-color: rgba(30, 30, 30, 0.5);
@@ -21,18 +21,19 @@
 .infoContainerEquipment{
     position: absolute;
     left: 27vw;
-    top: -29vh;
+    top: 18vh;
     width: 35vw;
     border-radius: 2vw 2vw 0 0;
+    color: #EEE;
 }
 
 .infoContainerEquipment.extra1{
-    top: -17vw;
+    top: 14vh;
     left: 29vw;
 }
 
 .infoContainerEquipment.extra2{
-    top: -16vw;
+    top: 16vh;
     left: 28vw;
 }
 
@@ -174,10 +175,6 @@ img.title ~ img.content{
     width: 0.9vw;
     max-height: 0.9vw;
 }
-/*
-.content:not(.title ~ .content){
-    margin-top: 1.6vh;
-}*/
 
 .miniAvatar{
     width: 100%;
@@ -297,14 +294,7 @@ img.title ~ img.content{
     }
     .firstHex p, .thirdHex p, .secondHex p {
         font-size: 2vw;
-    }/*
-    img.content{
-        width: 1.9vw;
-        height: 1.9vw;
     }
-    .content:not(.title ~ .content) {
-        margin-top: 2.5vh;
-    }*/
     .textcontent .content{
         font-size: 1.7vw;
     }
