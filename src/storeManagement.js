@@ -198,17 +198,12 @@ function EditButtons({actionPermit, valid, nodeInfo}){
   const [character, setCharacter] = useContext(valid.isRemote ? RemoteContext : CharacterContext);
   const [store, setStore] = useContext(StoreContext);
   const unEquipClick = (nodeInfo) => {
-    return () => {
-        character.slots[nodeInfo.subType].items.map((item, index) => {
-          if(item.slotId == nodeInfo.slotId){
-            const storePosition = store.type[character.name].asociatedItems[nodeInfo.subType].indexOf(item.asociatedId);
-            character.slots[nodeInfo.subType].items[index] = {"slotId": item.slotId, "typeSlot":item.typeSlot, "asociatedId": -1, "name": "", "info": [], "slot": item.slot};
-            store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1);
-            setCharacter({...character});
-            setStore({...store});
-          }
-        });
-      }
+    const storePosition = getStorePosition(store, nodeInfo);
+    const itemPosition = getItemPosition(character, nodeInfo);
+    character.slots[nodeInfo.subType].items[itemPosition] = {"slotId": item.slotId, "typeSlot":item.typeSlot, "asociatedId": -1, "name": "", "info": [], "slot": item.slot};
+    store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1);
+    setCharacter({...character});
+    setStore({...store});
   };
   const equipClick = (nodeInfo) => {
     return () => {
@@ -239,6 +234,23 @@ function getItemActive(character, nodeInfo){
     );
 
   return activeIten;
+}
+
+function getItemPosition(store, nodeInfo){
+
+  let itemPosition;
+
+  character.slots[nodeInfo.subType].items.map((item, index) => {
+    if(item.slotId == nodeInfo.slotId){
+      itemPosition = index;
+    }
+  });
+
+  return itemPosition;
+}
+
+function getStorePosition(){
+  return store.type[character.name].asociatedItems[nodeInfo.subType].indexOf(item.asociatedId);
 }
 
 function ItenModule({store, relevantId, selectHandler}){

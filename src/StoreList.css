@@ -17,10 +17,12 @@
 .titleList{
     margin-left: 1%;
     font-size: 2vw;
+    width: 12%;
 }
 
 .titleList img{
     width: 2vw;
+    margin-right: 9%;
 }
 
 .crossList{
