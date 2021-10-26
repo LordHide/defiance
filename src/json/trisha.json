@@ -51,9 +51,9 @@
     "slots":{
         "0":{"name":"equipment",
             "items":[
-                {"slotId": 1, "typeSlot":1, "asociatedId": -1, "slot": { "type": "svg", "code": "mano"}},
+                {"slotId": 1, "typeSlot":1, "asociatedId": 13, "slot": { "type": "svg", "code": "mano"}},
                 {"slotId": 2, "typeSlot":1, "asociatedId": 1, "slot": { "type": "svg", "code": "mano"}},
-                {"slotId": 3, "typeSlot":3, "asociatedId": 14, "slot": { "type": "svg", "code": "casco"}},
+                {"slotId": 3, "typeSlot":3, "asociatedId": 20, "slot": { "type": "svg", "code": "casco"}},
                 {"slotId": 4, "typeSlot":4, "asociatedId": 20, "slot": { "type": "svg", "code": "pecho"}},
                 {"slotId": 5, "typeSlot":6, "asociatedId": 3, "slot": { "type": "svg", "code": "equipo"}},
                 {"slotId": 6, "typeSlot":6, "asociatedId": 4, "slot": { "type": "svg", "code": "equipo"}},

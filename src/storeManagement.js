@@ -282,15 +282,22 @@ function useEquip(valid){
     const itemUnassign = character.slots[nodeInfo.subType].items[itemPositionEliminado];
     const storePosition = getStorePosition(store, nodeInfo, {"name":character.name, "asociatedId":itemAssign.asociatedId});
 
+    if(correctSlot(store.items[itemAssign.asociatedId].slots, itemUnassign.typeSlot)){
+      character.slots[nodeInfo.subType].items[itemPositionEliminado] = createrCharacterSlot(itemUnassign, {"id": itemAssign.asociatedId}, "assign");
+    }
+    else{
+      character.slots[nodeInfo.subType].items[itemPositionEliminado] = createrCharacterSlot(itemUnassign, {"id": itemAssign.asociatedId}, "unAssign");
+    }
+
     if(store.items[nodeInfo.id].slots[0].TypeId == 2 || store.items[nodeInfo.id].slots[0].TypeId == 5){
       const siblingItemPosition = getItemPositionBySlotId(character, nodeInfo);
       character.slots[nodeInfo.subType].items[siblingItemPosition] = createrCharacterSlot(itemAssign, nodeInfo, "assign");
     }
 
     character.slots[nodeInfo.subType].items[itemPosition] = createrCharacterSlot(itemAssign, nodeInfo, "assign");
-    itemUnassign !== undefined ? character.slots[nodeInfo.subType].items[itemPositionEliminado] = createrCharacterSlot(itemUnassign, nodeInfo, "unAssign") : <></>;
-    store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1);
-    getStorePosition(store, nodeInfo, {"name":character.name, "asociatedId":nodeInfo.id}) ? store.type[character.name].asociatedItems[nodeInfo.subType].push(nodeInfo.id) : <></>;
+    //itemUnassign !== undefined ? character.slots[nodeInfo.subType].items[itemPositionEliminado] = createrCharacterSlot(itemUnassign, {"id": itemAssign.asociatedId}, "assign") : <></>;
+    //storePosition !== -1 ? store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1) : <></>;
+    getStorePosition(store, nodeInfo, {"name":character.name, "asociatedId":nodeInfo.id}) === -1 ? store.type[character.name].asociatedItems[nodeInfo.subType].push(nodeInfo.id) : <></>;
     setCharacter({...character});
     setStore({...store});
     setlistStore(<></>);

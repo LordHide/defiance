@@ -333,7 +333,7 @@ function GeneratePersonalItems({element, colorPrincipal, extraClass, isRemote, t
     element.asociatedId != -1 ? setinfoCard(<ItenInfo nodeInfo={{"type":"trisha", "subType": typeId, "id": element.asociatedId, "slotId":-1, "isRemote":isRemote }} actionPermit={{"editActive":false, "unequipActive":false, "buyActivve":false}} colorPrincipal={colorPrincipal} />):setinfoCard(<></>);
   }
   const listHandler = () => {
-    setlistStore(<StoreList nodeInfo={{"typeList":["trisha", 12], "subType": typeId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={colorPrincipal} />);
+    setlistStore(<StoreList nodeInfo={{"typeList":["trisha", 19], "subType": typeId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={colorPrincipal} />);
     element.asociatedId != -1 ? setinfoCard(<ItenInfo nodeInfo={{"type":"trisha", "subType": typeId, "id": element.asociatedId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={colorPrincipal} />):setinfoCard(<></>);
   }
 
@@ -348,7 +348,9 @@ function GeneratePersonalItems({element, colorPrincipal, extraClass, isRemote, t
           (item !== undefined && item.firstHex.length !==0 && correctSlot ) ?
             item.firstHex.map(
               (iconInfo) => {
-                return createIcon(iconInfo)
+                if(iconInfo.code !== '-' && !iconInfo.class.includes("void")){
+                  return createIcon(iconInfo);
+                }
               }
             ): <></>
           }
