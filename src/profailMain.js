@@ -1,5 +1,6 @@
 import React, {useState, useContext} from 'react';
 import CharacterContext from './context/CharacterContext.js';
+import StoreContext from './context/storeContext.js';
 import {ItenInfo, StoreList} from './storeManagement.js';
 import RemoteContext from './context/RemoteContext.js';
 import InfoCardContext from './context/InfoCardContext.js';
@@ -324,12 +325,15 @@ function GeneratePersonalItems({element, colorPrincipal, extraClass, isRemote, t
 
   const [infoCard, setinfoCard] = useContext(InfoCardContext);
   const [listStore, setlistStore] = useContext(StoreListContext);
+  const [store, setStore] = useContext(StoreContext);
+  const item = store.items[element.asociatedId];
+  const correctSlot = item !== undefined ? activeSlot(item.slots[0].TypeId, element.typeSlot) : false;
   
   const infoHandler = () => {
     element.asociatedId != -1 ? setinfoCard(<ItenInfo nodeInfo={{"type":"trisha", "subType": typeId, "id": element.asociatedId, "slotId":-1, "isRemote":isRemote }} actionPermit={{"editActive":false, "unequipActive":false, "buyActivve":false}} colorPrincipal={colorPrincipal} />):setinfoCard(<></>);
   }
   const listHandler = () => {
-    setlistStore(<StoreList nodeInfo={{"typeList":["trisha"], "subType": typeId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={colorPrincipal} />);
+    setlistStore(<StoreList nodeInfo={{"typeList":["trisha", 12], "subType": typeId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={colorPrincipal} />);
     element.asociatedId != -1 ? setinfoCard(<ItenInfo nodeInfo={{"type":"trisha", "subType": typeId, "id": element.asociatedId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={colorPrincipal} />):setinfoCard(<></>);
   }
 
@@ -337,13 +341,26 @@ function GeneratePersonalItems({element, colorPrincipal, extraClass, isRemote, t
       <div className="contenedorInfoElement">
         {createIcon(element.slot)}
         <div className="infoElement1" title={element.name} onClick={listHandler}>
-          <div>{element.name}</div>
+          <div>{(item !== undefined && item.firstHex.length !==0) ?item.name:""}</div>
         </div> 
-        <div className={"infoElement2 "+extraClass} onClick={listHandler}>{element.info.map(
-          (iconInfo) => {
-            return createIcon(iconInfo)
+        <div className={"infoElement2 "+extraClass} onClick={listHandler}>
+          {
+          (item !== undefined && item.firstHex.length !==0 && correctSlot ) ?
+            item.firstHex.map(
+              (iconInfo) => {
+                return createIcon(iconInfo)
+              }
+            ): <></>
           }
-        )}</div>
+        {
+        (item !== undefined && item.secondHex.length !==0 && correctSlot ) ?
+          item.secondHex.map(
+            (iconInfo) => {
+              return createIcon(iconInfo)
+            }
+          ):<></>
+        }
+        </div>
         <div className="circleInfo" onClick={infoHandler}>
           <i>
           i
@@ -420,20 +437,20 @@ function createIcon(iconData){
 
   switch (iconData.type) {
     case "text":
-      icon = <span className={iconData.class} >{iconData.code}</span>
+      icon = <span>{iconData.code}</span>
       break;
 
     case "range":
       icon = 
       <>
-        <div className={"hexagon "+iconData.class}>
+        <div className={"hexagon "}>
           <i>{iconData.code}</i>
         </div>
       </>
       break;
 
     case "svg": 
-      icon = <img className={iconData.class} src={svgDispenser(iconData.code)} alt={iconData.code} />;
+      icon = <img src={svgDispenser(iconData.code)} alt={iconData.code} />;
       break;
   
     default: icon = <></>
@@ -441,6 +458,22 @@ function createIcon(iconData){
   }
 
   return icon;
+}
+
+function activeSlot(TypeId, typeSlot){
+  let validate = true;
+
+  if(TypeId == undefined && typeSlot == undefined)
+    return validate;
+
+  if(TypeId == 2 && typeSlot == 1){
+    validate = false;
+  }
+  else if(TypeId == 5 && typeSlot == 3){
+    validate = false;
+  }
+
+  return validate;
 }
 
 export default ProfailMain;

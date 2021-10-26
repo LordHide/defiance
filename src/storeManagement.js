@@ -89,7 +89,7 @@ function ItenInfo({nodeInfo, actionPermit, colorPrincipal}) {
                   }
                 </div>
               </div>
-              {activeIten != undefined ? <EditButtons actionPermit={actionPermit} valid = {{"isRemote":nodeInfo.isRemote, "validItem":activeIten.asociatedId == nodeInfo.id}} nodeInfo={nodeInfo} /> : <></>}
+              {activeIten != undefined ? <EditButtons actionPermit={actionPermit} valid = {{"validSlot":validSlot, "isRemote":nodeInfo.isRemote, "validItem":activeIten.asociatedId == nodeInfo.id}} nodeInfo={nodeInfo} /> : <></>}
             </div>
         </>
     );
@@ -175,19 +175,22 @@ function StoreList({nodeInfo, actionPermit, colorPrincipal}){
           x
         </div>
       </div>
+      <div className="listTypeContainer">
       {
         nodeInfo.typeList.map(typeId => {
           const type = store.type[typeId];
+          const asociatedItems = Array.isArray(type.asociatedItems[0]) ? type.asociatedItems[nodeInfo.subType] : type.asociatedItems
           return<div className="typeContainer">
             <div className="typeTitle">//{type.name}</div>
             {
-              type.asociatedItems[nodeInfo.subType].map(itemId => {
+              asociatedItems.map(itemId => {
                 return <ItenModule store={store} relevantId={{"itemId":itemId, "typeId": typeId, "typeSlot": activeIten.typeSlot}} selectHandler={selectHandler} />
               })
             }
           </div>
         })
       }
+      </div>
     </div>
   </>;
 }
@@ -202,7 +205,7 @@ function EditButtons({actionPermit, valid, nodeInfo}){
   const equipClick = useEquip(valid);
 
     buttons = <div>
-      {(actionPermit.editActive && !valid.validItem) ? <button onClick={()=>equipClick(nodeInfo)}>Equipar</button> : <></>}
+      {(actionPermit.editActive && !valid.validItem && valid.validSlot ) ? <button onClick={()=>equipClick(nodeInfo)}>Equipar</button> : <></>}
       {(actionPermit.unequipActive && valid.validItem) ? <button onClick={()=>unEquipClick(nodeInfo)}>Descartar</button> : <></>}
       {actionPermit.buyActivve ? <button>Comprar</button> : <></>}
     </div>;
@@ -218,12 +221,25 @@ function getItemActive(character, nodeInfo){
   return activeIten;
 }
 
-function getItemPosition(character, nodeInfo){
+function getItemPositionBySlotId(character, nodeInfo){
 
   let itemPosition;
 
   character.slots[nodeInfo.subType].items.map((item, index) => {
     if(item.slotId === nodeInfo.slotId){
+      itemPosition = index;
+    }
+  });
+
+  return itemPosition;
+}
+
+function getItemPositionByAsociatedId(character, nodeInfo){
+
+  let itemPosition;
+
+  character.slots[nodeInfo.subType].items.map((item, index) => {
+    if(item.asociatedId === nodeInfo.id){
       itemPosition = index;
     }
   });
@@ -238,30 +254,47 @@ function getStorePosition(store, nodeInfo, extraParm){
 function useUnEquip(valid){
   const [character, setCharacter] = useContext(valid.isRemote ? RemoteContext : CharacterContext);
   const [store, setStore] = useContext(StoreContext);
+  const [listStore, setlistStore] = useContext(StoreListContext);
+  const [infoCard, setinfoCard] = useContext(InfoCardContext);
   return (nodeInfo) => {
-    const itemPosition = getItemPosition(character, nodeInfo);
+    const itemPosition = getItemPositionBySlotId(character, nodeInfo);
     const item = character.slots[nodeInfo.subType].items[itemPosition];
     const storePosition = getStorePosition(store, nodeInfo, {"name":character.name, "asociatedId":item.asociatedId});
 
-    character.slots[nodeInfo.subType].items[itemPosition] = {"slotId": item.slotId, "typeSlot":item.typeSlot, "asociatedId": -1, "name": "", "info": [], "slot": item.slot};
+    character.slots[nodeInfo.subType].items[itemPosition] = createrCharacterSlot(item, nodeInfo, "unAssign");
     store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1);
     setCharacter({...character});
     setStore({...store});
+    setlistStore(<></>);
+    setinfoCard(<></>);
   };
 }
 
 function useEquip(valid){
   const [character, setCharacter] = useContext(valid.isRemote ? RemoteContext : CharacterContext);
   const [store, setStore] = useContext(StoreContext);
+  const [listStore, setlistStore] = useContext(StoreListContext);
+  const [infoCard, setinfoCard] = useContext(InfoCardContext);
   return (nodeInfo) => {
-    const itemPosition = getItemPosition(character, nodeInfo);
-    const item = character.slots[nodeInfo.subType].items[itemPosition];
-    const storePosition = getStorePosition(store, nodeInfo, {"name":character.name, "asociatedId":item.asociatedId});
+    const itemPosition = getItemPositionBySlotId(character, nodeInfo);
+    const itemPositionEliminado = getItemPositionByAsociatedId(character, nodeInfo);
+    const itemAssign = character.slots[nodeInfo.subType].items[itemPosition];
+    const itemUnassign = character.slots[nodeInfo.subType].items[itemPositionEliminado];
+    const storePosition = getStorePosition(store, nodeInfo, {"name":character.name, "asociatedId":itemAssign.asociatedId});
 
-    character.slots[nodeInfo.subType].items[itemPosition] = {"slotId": item.slotId, "typeSlot":item.typeSlot, "asociatedId": -1, "name": "", "info": [], "slot": item.slot};
+    if(store.items[nodeInfo.id].slots[0].TypeId == 2 || store.items[nodeInfo.id].slots[0].TypeId == 5){
+      const siblingItemPosition = getItemPositionBySlotId(character, nodeInfo);
+      character.slots[nodeInfo.subType].items[siblingItemPosition] = createrCharacterSlot(itemAssign, nodeInfo, "assign");
+    }
+
+    character.slots[nodeInfo.subType].items[itemPosition] = createrCharacterSlot(itemAssign, nodeInfo, "assign");
+    itemUnassign !== undefined ? character.slots[nodeInfo.subType].items[itemPositionEliminado] = createrCharacterSlot(itemUnassign, nodeInfo, "unAssign") : <></>;
     store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1);
+    getStorePosition(store, nodeInfo, {"name":character.name, "asociatedId":nodeInfo.id}) ? store.type[character.name].asociatedItems[nodeInfo.subType].push(nodeInfo.id) : <></>;
     setCharacter({...character});
     setStore({...store});
+    setlistStore(<></>);
+    setinfoCard(<></>);
   };
 }
 
@@ -310,15 +343,8 @@ function createIcon(iconData){
     let icon;
   
     switch (iconData.type) {
-      case "text":
+      case "text": case "range":
         icon = <span className={iconData.class} >{iconData.code}</span>
-        break;
-
-      case "range":
-        icon = 
-          <div className={"hexagon "+iconData.class}>
-            <i>{iconData.code}</i>
-          </div>
         break;
   
       case "svg": 
@@ -335,6 +361,17 @@ function createIcon(iconData){
   
     return icon;
   }
+
+function createrCharacterSlot(item, nodeInfo, typeAssignment){
+  let newSlot = {"slotId": item.slotId, "typeSlot":item.typeSlot, "asociatedId": -1, "name": "", "info": [], "slot": item.slot};
+
+  if(typeAssignment == "assign"){
+    newSlot.asociatedId = nodeInfo.id;
+    newSlot.name = item.name;
+  }
+
+  return newSlot;
+}
 
 
 export {ItenInfo, StoreList};

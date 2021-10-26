@@ -38,7 +38,7 @@
         },
         "trisha":{
             "name": "Trisha",
-            "asociatedItems": [[13, 1, 14, 20, 3, 4, 2], [1], []]
+            "asociatedItems": [[ 1, 14, 20, 3, 4, 2], [1], []]
         }
     },
     "items": {
@@ -192,7 +192,7 @@
         "13": {
             "name": "pistola",
             "firstHex": [
-                {"type": "text", "code": "1-4", "class": "content"}
+                {"type": "range", "code": "1-4", "class": "content"}
             ],
             "itenTypes":"Arma ligera", 
             "secondHex": [
