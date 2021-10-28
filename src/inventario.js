@@ -13,7 +13,7 @@ import './inventario.css';
 function Inventario({isRemote}) {
 
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
-  const colorPrincipal= "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")";
+  const colorPrincipal= +character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B;
   const colorSecondary= "rgba("+character.colorSecon.R+","+character.colorSecon.G+","+character.colorSecon.B+")";
   const profileImg = characterImg(character.name);
 
@@ -22,10 +22,13 @@ function Inventario({isRemote}) {
         <img src={profileImg} className="character" alt="character" />
         {character.slots[0].items.map( (info, index) => {
                 return<>
-                  <div className={"hexagon slot type"+info.typeSlot} style={{"backgroundColor": colorPrincipal}}></div>
-                  <div className={"hexagon slotType type"+info.typeSlot} style={{"backgroundColor": colorPrincipal}}></div>
+                  <div className={"hexagon slot type"+info.typeSlot} style={{"backgroundColor": "rgba("+colorPrincipal+", 1)"}}></div>
+                  <div className={"hexagon slotType type"+info.typeSlot} style={{"backgroundColor": "rgba("+colorPrincipal+", 1)"}}></div>
                 </>
-              } ) }
+              } ) 
+        }
+        <div className={"softwareTitle"} style={{"backgroundColor": "rgba("+colorPrincipal+", 1)"}}>Software</div>
+        <div className={"software"} style={{"backgroundColor": "rgba("+colorPrincipal+", 0.6)"}}></div>
       </div>
   );
 }

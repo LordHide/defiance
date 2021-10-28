@@ -33,7 +33,7 @@ function ProfailMain({isRemote, first}) {
   return (
       <div className="line">
         <img src={profileImg} className={first ? "character reform" : "character imgRightTransition"} alt="character" />
-        <Stage width={window.innerWidth*0.62} height={window.innerWidth*0.2}>
+        <Stage className='konvanStage' width={window.innerWidth*0.62} height={window.innerWidth*0.2}>
           <Layer>
             <CharacterContext.Provider value={[character, setCharacter]}>
             <RemoteContext.Provider value={[character, setCharacter]}>

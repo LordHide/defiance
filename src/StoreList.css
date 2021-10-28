@@ -68,7 +68,7 @@
     width: 15vw;
     white-space: pre-wrap;
     vertical-align: middle;
-    align-content: center;
+    align-items: center;
     display: flex;
     justify-content: center;
 }
