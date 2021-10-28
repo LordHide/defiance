@@ -1,0 +1,86 @@
+.Inventory .character{
+    animation-name: imgLeftTransition;
+    animation-duration: 2s;
+    left: 39vw;
+    position: absolute;
+    margin-left: 0;
+}
+
+@keyframes imgLeftTransition {
+    from {left: 5vw;}
+    to {left: 39vw;}
+}
+.hexagon.slot{
+    height: 12vh;
+    width: 12vh;
+    position: absolute;
+}
+.hexagon.slotType{
+    height: 9vh;
+    width: 16vh;
+    position: absolute;
+    opacity: 0.6;
+}
+
+.slot.type1:first-of-type{
+    top: 31vh;
+    left: 28vw;
+}
+
+.slotType.type1:nth-of-type(2){
+    top: 33vh;
+    left: 30vw;
+}
+
+.slot.type1{
+    top: 31vh;
+    left: 61vw;
+}
+
+.slotType.type1{
+    top: 33vh;
+    left: 63vw;
+}
+
+.slot.type3{
+    top: 1vh;
+    left: 61vw;
+}
+
+.slot.type4{
+    top: 16vh;
+    left: 28vw;
+}
+
+.slot.type6:nth-of-type(9){
+    top: 46vh;
+    left: 28vw;
+}
+
+.slotType.type6:nth-of-type(10){
+    top: 48vh;
+    left: 30vw;
+}
+
+.slot.type6:nth-of-type(11){
+    top: 46vh;
+    left: 61vw;
+}
+.slotType.type6:nth-of-type(12){
+    top: 48vh;
+    left: 63vw;
+}
+
+.slot.type6:nth-of-type(13){
+    top: 61vh;
+    left: 28vw;
+}
+.slotType.type6:nth-of-type(14){
+    top: 63vh;
+    left: 30vw;
+}
+
+.slot.type6:nth-of-type(15){
+    top: 61vh;
+    left: 61vw;
+}

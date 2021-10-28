@@ -4,6 +4,27 @@
     max-height: 76vh;
 }
 
+.character.imgRightTransition{
+  animation-name: imgRightTransition;
+  animation-duration: 2s;
+}
+
+.character.reform{
+  animation-name: reform;
+  animation-duration: 2s;
+}
+
+@keyframes imgRightTransition {
+  from {margin-left: 39vw;}
+  to {margin-left: 5vw;}
+}
+
+@keyframes reform {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+
 .infoContainer{
     display: flex;
     height: 33vh;
@@ -118,14 +139,17 @@
 
 .hexagon {
     clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50% );
-    position: relative;
-    width: 46%;
-    height: 80%;
     color: rgb(141, 132, 132);
-    background: linear-gradient(-180deg, black, #020);
     display: flex;
     align-content: center;
     justify-content: center;
+  }
+
+  .hexagon.range{
+    position: relative;
+    width: 46%;
+    height: 80%;
+    background: linear-gradient(-180deg, black, #020);
   }
   
   .hexagon i {

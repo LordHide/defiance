@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import Inventario from './inventario.js';
 import ProfailMain from './profailMain.js';
 import CharacterContext from './context/CharacterContext.js';
@@ -21,6 +21,7 @@ function Profile({name}) {
   const [ListContext, setStoreListContext] = useState(<></>);
   const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")"};
   const [displayContent, elegirTop] = useState("EQUIPO");
+  const first = useRef(true);
 
   return (
     <CharacterContext.Provider value={[stateCharacterContext, setStateCharacterContext]}>
@@ -32,11 +33,11 @@ function Profile({name}) {
         <div className="topButtonDiv">
           {character.subMenu.map(info => {let classutton = "topButton glass ";
             classutton += info.name == displayContent ? "active" : "deacticated";
-            return <button className={classutton} onClick={() => elegirTop(info.name)}>{info.name}</button>;})}
+            return <button className={classutton} onClick={() => {elegirTop(info.name); first.current = false}}>{info.name}</button>;})}
           <button className="glass type deacticated">{character.type}</button>
         </div>
         <div className="App glass">
-          {loadActiveContent(displayContent, character)}
+          {loadActiveContent(displayContent, character, first.current)}
         </div>
         {ListContext}
         {InfoContext}
@@ -66,13 +67,13 @@ function loadRemote(name){
   return characterJSON;
 }
 
-function loadActiveContent(displayContent, character){
+function loadActiveContent(displayContent, character, first){
   let content;
 
   switch(displayContent){
-    case "EQUIPO" : content = < ProfailMain isRemote={false} />; break;
-    case "INVENTARIO" :  content = < Inventario />; break;
-    case "REMOTO" :  content = < ProfailMain isRemote={true} remote={character.Remote} />; break;
+    case "EQUIPO" : content = < ProfailMain isRemote={false} first={first} />; break;
+    case "INVENTARIO" :  content = < Inventario first={first} />; break;
+    case "REMOTO" :  content = < ProfailMain isRemote={true} remote={character.Remote} first={first} />; break;
     default: content = < Inventario />; break;
   }
 

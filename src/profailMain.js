@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useRef} from 'react';
 import CharacterContext from './context/CharacterContext.js';
 import StoreContext from './context/storeContext.js';
 import {ItenInfo, StoreList} from './storeManagement.js';
@@ -6,13 +6,12 @@ import RemoteContext from './context/RemoteContext.js';
 import InfoCardContext from './context/InfoCardContext.js';
 import StoreListContext from './context/StoreListContext.js';
 import svgDispenser from './svgDispenser.js';
-import trishaImg from './Img/trisha.png';
-import duchessImg from './Img/duchess.png';
+import characterImg from './pngDispenser.js';
 import './ProfileGlobal.css';
 import { Stage, Layer, RegularPolygon, Text, Arc, Rect, Image as ImageKonva } from 'react-konva';
 //import useImage from 'use-image';
 
-function ProfailMain({isRemote}) {
+function ProfailMain({isRemote, first}) {
 
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
   const colorPrincipal= "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")";
@@ -33,7 +32,7 @@ function ProfailMain({isRemote}) {
 
   return (
       <div className="line">
-        <img src={profileImg} className="character" alt="character" />
+        <img src={profileImg} className={first ? "character reform" : "character imgRightTransition"} alt="character" />
         <Stage width={window.innerWidth*0.62} height={window.innerWidth*0.2}>
           <Layer>
             <CharacterContext.Provider value={[character, setCharacter]}>
@@ -210,17 +209,6 @@ function stateGeneration(info, index, handleClick){
   </> 
 }
 
-function characterImg(name){
-    let imgReference;
-    switch(name){
-      case "trisha" : imgReference = trishaImg; break;
-      case "Duchess" : imgReference = duchessImg; break;
-      default: return imgReference = trishaImg; break;
-    }
-  
-    return imgReference;
-}
-
 function CreateInfoContainer({isRemote}){
 
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
@@ -333,7 +321,7 @@ function GeneratePersonalItems({element, colorPrincipal, extraClass, isRemote, t
     element.asociatedId != -1 ? setinfoCard(<ItenInfo nodeInfo={{"type":"trisha", "subType": typeId, "id": element.asociatedId, "slotId":-1, "isRemote":isRemote }} actionPermit={{"editActive":false, "unequipActive":false, "buyActivve":false}} colorPrincipal={colorPrincipal} />):setinfoCard(<></>);
   }
   const listHandler = () => {
-    setlistStore(<StoreList nodeInfo={{"typeList":["trisha", 19], "subType": typeId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={colorPrincipal} />);
+    setlistStore(<StoreList nodeInfo={{"typeList":["trisha", 20], "subType": typeId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={colorPrincipal} />);
     element.asociatedId != -1 ? setinfoCard(<ItenInfo nodeInfo={{"type":"trisha", "subType": typeId, "id": element.asociatedId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={colorPrincipal} />):setinfoCard(<></>);
   }
 
@@ -445,7 +433,7 @@ function createIcon(iconData){
     case "range":
       icon = 
       <>
-        <div className={"hexagon "}>
+        <div className={"hexagon range"}>
           <i>{iconData.code}</i>
         </div>
       </>

@@ -227,7 +227,20 @@ function getItemPositionBySlotId(character, nodeInfo){
 
   character.slots[nodeInfo.subType].items.map((item, index) => {
     if(item.slotId === nodeInfo.slotId){
-      itemPosition = index;
+      return itemPosition = index;
+    }
+  });
+
+  return itemPosition;
+}
+
+function getItemPositionByTypeSlot(character, nodeInfo, notIndex){
+
+  let itemPosition;
+
+  character.slots[nodeInfo.subType].items.map((item, index) => {
+    if(item.typeSlot === nodeInfo.typeSlot && index !== notIndex){
+      return itemPosition = index;
     }
   });
 
@@ -261,7 +274,21 @@ function useUnEquip(valid){
     const item = character.slots[nodeInfo.subType].items[itemPosition];
     const storePosition = getStorePosition(store, nodeInfo, {"name":character.name, "asociatedId":item.asociatedId});
 
-    character.slots[nodeInfo.subType].items[itemPosition] = createrCharacterSlot(item, nodeInfo, "unAssign");
+    if(store.items[item.asociatedId].slots[0].TypeId == 5){
+      const siblingItemPositionHead = getItemPositionByTypeSlot(character, {"subType":nodeInfo.subType, "typeSlot": 3}, -1);
+      const siblingItemPositionChest = getItemPositionByTypeSlot(character, {"subType":nodeInfo.subType, "typeSlot": 4}, -1);
+      character.slots[nodeInfo.subType].items[siblingItemPositionHead] = createrCharacterSlot(character.slots[nodeInfo.subType].items[siblingItemPositionHead], nodeInfo, "unAssign");
+      character.slots[nodeInfo.subType].items[siblingItemPositionChest] = createrCharacterSlot(character.slots[nodeInfo.subType].items[siblingItemPositionChest], nodeInfo, "unAssign");
+    }
+    else if(store.items[item.asociatedId].slots[0].TypeId == 2){
+      const siblingItemPositionHand1 = getItemPositionByTypeSlot(character, {"subType":nodeInfo.subType, "typeSlot": 1}, -1);
+      const siblingItemPositionHand2 = getItemPositionByTypeSlot(character, {"subType":nodeInfo.subType, "typeSlot": 1}, siblingItemPositionHand1 );
+      character.slots[nodeInfo.subType].items[siblingItemPositionHand1] = createrCharacterSlot(character.slots[nodeInfo.subType].items[siblingItemPositionHand1], nodeInfo, "unAssign");
+      character.slots[nodeInfo.subType].items[siblingItemPositionHand2] = createrCharacterSlot(character.slots[nodeInfo.subType].items[siblingItemPositionHand2], nodeInfo, "unAssign");
+    }
+    else{
+      character.slots[nodeInfo.subType].items[itemPosition] = createrCharacterSlot(item, nodeInfo, "unAssign");
+    }
     store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1);
     setCharacter({...character});
     setStore({...store});
@@ -282,21 +309,53 @@ function useEquip(valid){
     const itemUnassign = character.slots[nodeInfo.subType].items[itemPositionEliminado];
     const storePosition = getStorePosition(store, nodeInfo, {"name":character.name, "asociatedId":itemAssign.asociatedId});
 
-    if(correctSlot(store.items[itemAssign.asociatedId].slots, itemUnassign.typeSlot)){
-      character.slots[nodeInfo.subType].items[itemPositionEliminado] = createrCharacterSlot(itemUnassign, {"id": itemAssign.asociatedId}, "assign");
+    if(itemAssign.asociatedId !== -1){
+      if(itemUnassign === undefined){
+        character.slots[nodeInfo.subType].items[itemPositionEliminado] = createrCharacterSlot(itemAssign, {"id": itemAssign.asociatedId}, "unAssign");
+        storePosition !== -1 ? store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1) : <></>;
+      }
+      else if(correctSlot(store.items[itemAssign.asociatedId].slots, itemUnassign !== undefined ? itemUnassign.typeSlot:-1)){
+        character.slots[nodeInfo.subType].items[itemPositionEliminado] = createrCharacterSlot(itemUnassign, {"id": itemAssign.asociatedId}, "assign");
+      }
+      else{
+        character.slots[nodeInfo.subType].items[itemPositionEliminado] = createrCharacterSlot(itemUnassign, {"id": itemAssign.asociatedId}, "unAssign");
+        storePosition !== -1 ? store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1) : <></>;
+      }
+      if(store.items[itemAssign.asociatedId].slots[0].TypeId == 5){
+        const siblingItemPositionHead = getItemPositionByTypeSlot(character, {"subType":nodeInfo.subType, "typeSlot": 3}, -1);
+        const siblingItemPositionChest = getItemPositionByTypeSlot(character, {"subType":nodeInfo.subType, "slotypeSlottId": 4}, -1);
+        character.slots[nodeInfo.subType].items[siblingItemPositionHead] = createrCharacterSlot(character.slots[nodeInfo.subType].items[siblingItemPositionHead], {"id": itemAssign.asociatedId}, "unAssign");
+        character.slots[nodeInfo.subType].items[siblingItemPositionChest] = createrCharacterSlot(character.slots[nodeInfo.subType].items[siblingItemPositionChest], {"id": itemAssign.asociatedId}, "unAssign");
+      }
+      else if(store.items[itemAssign.asociatedId].slots[0].TypeId == 2){
+        const siblingItemPositionHand1 = getItemPositionByTypeSlot(character, {"subType":nodeInfo.subType, "typeSlot": 1}, -1);
+        const siblingItemPositionHand2 = getItemPositionByTypeSlot(character, {"subType":nodeInfo.subType, "typeSlot": 1}, siblingItemPositionHand1 );
+        character.slots[nodeInfo.subType].items[siblingItemPositionHand1] = createrCharacterSlot(character.slots[nodeInfo.subType].items[siblingItemPositionHand1], {"id": itemAssign.asociatedId}, "unAssign");
+        character.slots[nodeInfo.subType].items[siblingItemPositionHand2] = createrCharacterSlot(character.slots[nodeInfo.subType].items[siblingItemPositionHand2], {"id": itemAssign.asociatedId}, "unAssign");
+      }
+    }
+    else if(itemPositionEliminado !== undefined){
+      character.slots[nodeInfo.subType].items[itemPositionEliminado] = createrCharacterSlot(itemUnassign, {"id": itemAssign.asociatedId}, "unAssign");
+      storePosition !== -1 ? store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1) : <></>;
+    }
+
+    if(store.items[nodeInfo.id].slots[0].TypeId == 5){
+      const siblingItemPositionHead = getItemPositionByTypeSlot(character, {"subType":nodeInfo.subType, "typeSlot": 3}, -1);
+      const siblingItemPositionChest = getItemPositionByTypeSlot(character, {"subType":nodeInfo.subType, "typeSlot": 4}, -1);
+      character.slots[nodeInfo.subType].items[siblingItemPositionHead] = createrCharacterSlot(character.slots[nodeInfo.subType].items[siblingItemPositionHead], nodeInfo, "assign");
+      character.slots[nodeInfo.subType].items[siblingItemPositionChest] = createrCharacterSlot(character.slots[nodeInfo.subType].items[siblingItemPositionChest], nodeInfo, "assign");
+    }
+    else if(store.items[nodeInfo.id].slots[0].TypeId == 2){
+      const siblingItemPositionHand1 = getItemPositionByTypeSlot(character, {"subType":nodeInfo.subType, "typeSlot": 1}, -1);
+      const siblingItemPositionHand2 = getItemPositionByTypeSlot(character, {"subType":nodeInfo.subType, "typeSlot": 1}, siblingItemPositionHand1 );
+      character.slots[nodeInfo.subType].items[siblingItemPositionHand1] = createrCharacterSlot(character.slots[nodeInfo.subType].items[siblingItemPositionHand1], nodeInfo, "assign");
+      character.slots[nodeInfo.subType].items[siblingItemPositionHand2] = createrCharacterSlot(character.slots[nodeInfo.subType].items[siblingItemPositionHand2], nodeInfo, "assign");
     }
     else{
-      character.slots[nodeInfo.subType].items[itemPositionEliminado] = createrCharacterSlot(itemUnassign, {"id": itemAssign.asociatedId}, "unAssign");
+      character.slots[nodeInfo.subType].items[itemPosition] = createrCharacterSlot(itemAssign, nodeInfo, "assign");
     }
 
-    if(store.items[nodeInfo.id].slots[0].TypeId == 2 || store.items[nodeInfo.id].slots[0].TypeId == 5){
-      const siblingItemPosition = getItemPositionBySlotId(character, nodeInfo);
-      character.slots[nodeInfo.subType].items[siblingItemPosition] = createrCharacterSlot(itemAssign, nodeInfo, "assign");
-    }
-
-    character.slots[nodeInfo.subType].items[itemPosition] = createrCharacterSlot(itemAssign, nodeInfo, "assign");
     //itemUnassign !== undefined ? character.slots[nodeInfo.subType].items[itemPositionEliminado] = createrCharacterSlot(itemUnassign, {"id": itemAssign.asociatedId}, "assign") : <></>;
-    //storePosition !== -1 ? store.type[character.name].asociatedItems[nodeInfo.subType].splice(storePosition, 1) : <></>;
     getStorePosition(store, nodeInfo, {"name":character.name, "asociatedId":nodeInfo.id}) === -1 ? store.type[character.name].asociatedItems[nodeInfo.subType].push(nodeInfo.id) : <></>;
     setCharacter({...character});
     setStore({...store});
@@ -308,6 +367,7 @@ function useEquip(valid){
 function ItenModule({store, relevantId, selectHandler}){
 
   const activeSlot = store.items[relevantId.itemId].slots;
+  const unlock = store.items[relevantId.itemId].unlock;
   const validSlot = correctSlot(activeSlot, relevantId.typeSlot);
   let itenModule = <></>;
 
@@ -318,8 +378,13 @@ function ItenModule({store, relevantId, selectHandler}){
       })
     }</div>
   });
-  return <div className={validSlot ? "item active" : "item deactive" } onClick={ validSlot ? ()=>{selectHandler(relevantId.itemId, relevantId.typeId)} : null}>
-    {itenModule}{store.items[relevantId.itemId].name}
+  return <div className={ unlock && validSlot ? "item active" : "item deactive" } onClick={ unlock && validSlot ? ()=>{selectHandler(relevantId.itemId, relevantId.typeId)} : null}>
+    <div className="itemSlots">
+      {itenModule}
+    </div>
+    <div className="contentSlot">
+      {unlock ? store.items[relevantId.itemId].name : "????????"}
+    </div>
   </div>;
 }
 

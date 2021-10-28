@@ -48,17 +48,34 @@
     grid-column: 1/6;
     margin-bottom: 3vh;
     font-size: 2vw;
+    margin-bottom: 0;
 }
 
 .item{
-    padding: 5%;
+    padding: 0.9vw;
     font-size: 1.5vw;
     text-transform: capitalize;
+    display: flex;
+    width: 16.4vw;
+    height: 7vh;
+}
+
+.itemSlots{
+    width: 3.4vw;
+}
+
+.contentSlot{
+    width: 15vw;
+    white-space: pre-wrap;
+    vertical-align: middle;
+    align-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .item img{
     width: 1.2vw;
-    padding-right: 2%;
+    margin-right: 0.7vw;
 }
 
 .item.active{
