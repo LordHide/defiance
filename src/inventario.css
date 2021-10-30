@@ -59,6 +59,10 @@
     animation-fill-mode: forwards;
     animation-duration: 0.2s;
     opacity: 0;
+    vertical-align: middle;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 .hexagon.slotType{
     height: 9vh;
@@ -68,6 +72,10 @@
     animation-fill-mode: forwards;
     animation-duration: 0.2s;
     opacity: 0;
+}
+
+.hexagon img{
+    height: 50%;
 }
 
 .slotType img{

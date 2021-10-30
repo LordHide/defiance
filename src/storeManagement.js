@@ -5,7 +5,7 @@ import InfoCardContext from './context/InfoCardContext.js';
 import RemoteContext from './context/RemoteContext.js';
 import CharacterContext from './context/CharacterContext.js';
 import svgDispenser from './svgDispenser.js';
-import miniImg from './miniImgDispenser.js';
+import pngDispenser from './pngDispenser.js';
 import './ItenInfo.css';
 import './StoreList.css';
 
@@ -424,7 +424,7 @@ function createIcon(iconData){
         break;
 
       case "png":
-          icon = <img className={iconData.class} src={miniImg[iconData.code]} alt={iconData.code} />;
+          icon = <img className={iconData.class} src={pngDispenser(iconData.code)} alt={iconData.code} />;
         break;
     
       default: icon = <></>
