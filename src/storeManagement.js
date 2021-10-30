@@ -446,4 +446,4 @@ function createrCharacterSlot(item, nodeInfo, typeAssignment){
 }
 
 
-export {ItenInfo, StoreList};
+export {ItenInfo, StoreList, createIcon};

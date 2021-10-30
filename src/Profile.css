@@ -7,16 +7,16 @@
 
 .character.imgRightTransition{
   animation-name: imgRightTransition;
-  animation-duration: 2s;
+  animation-duration: 1.6s;
 }
 
 .character.reform{
   animation-name: reform;
-  animation-duration: 2s;
+  animation-duration: 1.6s;
 }
 
 @keyframes imgRightTransition {
-  from {left: 39vw;}
+  from {left: 25vw;}
   to {left: 5vw;}
 }
 
