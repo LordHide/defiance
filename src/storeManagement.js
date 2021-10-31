@@ -67,11 +67,14 @@ function ItenInfo({nodeInfo, actionPermit, colorPrincipal}) {
                           let switchContainer = <></>;
                           if(info.type == "switch"){
                             classSwitch = "switchRow";
-                            switchContainer = <div className="switchContainer">
+                            switchContainer = 
+                            <div className="switchContainer">
+                              <div className="switchGrid" style={{"gridTemplateColumns": "repeat("+info.switch.length+", 1fr)", "gridTemplateRows":"repeat(1, 1fr);"}}>
                                 {info.switch.map(iconData => {
-                                      return createIcon(iconData)
+                                      return <div>{createIcon(iconData)}</div>
                                   })
                                 }
+                                </div>
                             </div>
                           }
 

@@ -4,6 +4,10 @@
             "name": "Botin",
             "asociatedItems": [3]
         },
+        "2":{
+            "name": "Software basico",
+            "asociatedItems": [5, 6, 7]
+        },
         "12":{
             "name": "Arma ligera",
             "asociatedItems": [13]
@@ -46,7 +50,7 @@
         },
         "trisha":{
             "name": "Trisha",
-            "asociatedItems": [[ 13, 1, 3, 4, 2], [1], []]
+            "asociatedItems": [[ 13, 1, 3, 4, 2], [1, 5, 6, 7], []]
         }
     },
     "items": {
@@ -205,6 +209,101 @@
             ],
             "unlock": true
         },
+        "5": {
+            "name": "Picklock",
+            "firstHex": [
+                {"type": "svg", "code": "software", "class": "title void"}
+            ],
+            "itenTypes":"Daemon", 
+            "secondHex": [],
+            "thirdHex": [],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "text", "code": "You may add"},
+                        {"type": "svg", "code": "dadoAmarillo"},
+                        {"type": "text", "code": "to your interact with Console Roll. Ymay re-roll one die from all your interact with Consoloe Roll"}
+                    ],
+                    "type": "text"
+                }
+            ],
+            "slots":[
+                {"TypeId":7, "icon": [{"type": "svg", "code": "equipo"}]}
+            ],
+            "unlock": true
+        },
+        "6": {
+            "name": "Geist-Aid",
+            "firstHex": [
+                {"type": "svg", "code": "software", "class": "title void"}
+            ],
+            "itenTypes":"Support", 
+            "secondHex": [],
+            "thirdHex": [],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [
+                {
+                    "switch":[
+                        {"type": "svg", "code": "bloqueoWhite"}, 
+                        {"type": "svg", "code": "especialWhite"}
+                    ],
+                    "content":[
+                        {"type": "text", "code": "Impose the "}, 
+                        {"type": "svg", "code": "concentrado"},
+                        {"type": "text", "code": "Focus State to a Character within Range of your Hacking Device."}
+                    ],
+                    "type": "switch"
+                },
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "text", "code": "Impose the "},
+                        {"type": "svg", "code": "concentrado"},
+                        {"type": "text", "code": "Focus State to the Character."}
+                    ],
+                    "type": "text"
+                }
+            ],
+            "slots":[
+                {"TypeId":7, "icon": [{ "type": "svg", "code": "software"}]}
+            ],
+            "unlock": true
+        },
+        "7": {
+            "name": "Skullbuster",
+            "firstHex": [
+                {"type": "svg", "code": "software", "class": "title void"}
+            ],
+            "itenTypes":"Killer", 
+            "secondHex": [],
+            "thirdHex": [],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "text", "code": "Add"},
+                        {"type": "svg", "code": "dadoAmarillo"},
+                        {"type": "text", "code": "to the value of your Hacking Device in thes Hacking Roll. Inflict 2 "},
+                        {"type": "svg", "code": "herida"},
+                        {"type": "text", "code": " (insted of 1"},
+                        {"type": "svg", "code": "herida"},
+                        {"type": "text", "code": " ) for each"},
+                        {"type": "svg", "code": "exitoBlack"},
+                        {"type": "text", "code": "not nullified by the"},
+                        {"type": "svg", "code": "escudo"},
+                        {"type": "text", "code": "BTS of the Enemy"}
+                    ],
+                    "type": "text"
+                }
+            ],
+            "slots":[
+                {"TypeId":7, "icon": [{"type": "svg", "code": "equipo"}]}
+            ],
+            "unlock": true
+        },
         "13": {
             "name": "pistola",
             "firstHex": [
@@ -289,7 +388,7 @@
             "slots":[
                 {"TypeId":5, "icon": [{"type": "svg", "code": "casco"}, {"type": "svg", "code": "pecho"}]}
             ],
-            "unlock": false
+            "unlock": true
         }
     }
 }

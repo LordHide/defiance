@@ -20,9 +20,8 @@ function Inventario({isRemote}) {
   const profileImg = characterImg(character.name);
   const [infoCard, setinfoCard] = useContext(InfoCardContext);
   const [listStore, setlistStore] = useContext(StoreListContext);
-  const typeId = 0;
 
-  const listHandler = (element) => {
+  const listHandler = (element, typeId) => {
     const typelistSlot = getTypelistSlot(element.typeSlot);
     setlistStore(<StoreList nodeInfo={{"typeList":typelistSlot, "subType": typeId, "slotId":element.slotId, "isRemote":false}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={{"backgroundColor": "rgba("+colorPrincipal+", 1)"}} />);
     element.asociatedId != -1 ? setinfoCard(<ItenInfo nodeInfo={{"type":"trisha", "subType": typeId, "id": element.asociatedId, "slotId":element.slotId, "isRemote":false}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={{"backgroundColor": "rgba("+colorPrincipal+", 1)"}} />):setinfoCard(<></>);
@@ -32,6 +31,7 @@ function Inventario({isRemote}) {
   let leftEven = 15;
   let leftOdd = 48;
   let animationDelay = 1.7;
+  let animationSoftware = 1.8;
 
   return (
       <div className="Inventory">
@@ -41,7 +41,7 @@ function Inventario({isRemote}) {
                 animationDelay = infoIntervaloCorrecto("animationDelay", index, animationDelay);
                 top = infoIntervaloCorrecto("top", index, top);
                 return<>
-                  <div 
+                  <div
                     className={"hexagon slot type"+info.typeSlot} 
                     style={{
                       "top": top+"vh",
@@ -50,11 +50,11 @@ function Inventario({isRemote}) {
                       "animationDelay": animationDelay+"s",
                       "backgroundColor": "rgba("+colorPrincipal+", 1)"
                     }}
-                    onClick={() => {return listHandler(info)}}
+                    onClick={() => {return listHandler(info, 0)}}
                   >
                     {itemInfo !== undefined ? createIcon(itemInfo.image):<></>}
                   </div>
-                  <div 
+                  <div
                     className={"hexagon slotType type"+info.typeSlot} 
                     style={{
                       "top": (top+2)+"vh",
@@ -73,7 +73,26 @@ function Inventario({isRemote}) {
         }
         <div className={"softwareTitle"} style={{"backgroundColor": "rgba("+colorPrincipal+", 1)"}}>Software</div>
         <div className={"software"} style={{"backgroundColor": "rgba("+colorPrincipal+", 0.6)"}}>
-          
+          {character.slots[1].items.map( (info, index) => {
+            if(index > 0){
+              const itemInfo = store.items[info.asociatedId];
+              animationSoftware +=0.2;
+              return <div className="softwareRow" style={{
+                    'animation-delay': animationSoftware+"s"
+                  }}>
+                  <div className="slotType">{createIcon(info.slot)}</div>
+                  <div 
+                    className="softwareInfo"
+                    style={{
+                    "backgroundColor": "rgba("+colorPrincipal+", 1)"
+                    }}
+                    onClick={() => {return listHandler(info, 1)}}
+                    >
+                    {itemInfo.name}
+                  </div>
+                </div>
+            }
+          })}
         </div>
       </div>
   );
@@ -91,6 +110,9 @@ function getTypelistSlot(typeSlot){
   }
   else if(typeSlot === 6){
     return ["trisha", 21];
+  }
+  else if(typeSlot === 7){
+    return ["trisha", 2];
   }
 }
 

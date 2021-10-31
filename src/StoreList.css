@@ -29,6 +29,7 @@
 .crossList{
     margin-right: 1%;
     font-size: 2vw;
+    cursor: pointer;
 }
 
 .listTypeContainer{

@@ -156,17 +156,18 @@ img.content{
     height: 88%;
 }
 
-.textcontent{
+.textcontent, .rangecontent{
     display: flex;
     text-align: center;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-}
-
-.textcontent .content{
     font-size: 1.1vw;
 }
+/*
+.textcontent .content{
+    font-size: 1.1vw;
+}*/
 
 img.title ~ img.content{
     position: relative;
@@ -218,24 +219,30 @@ img.title ~ img.content{
     width: 2.5vw;
     height: 2.5vw;
     display: flex;
-    align-items: center;
+    align-content: center;
+    justify-content: center;
+    position: relative;
     z-index: 2;
     font-size: 1vw;
 }
 
+.switchGrid{
+    grid-template-rows: 100% 30%;
+    display: grid;
+    width: 70%;
+}
+
+.switchGrid div{
+    vertical-align: middle;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
 .switchContainer img{
-    width: 1.2vw;
-    height: 1.2vw;
-}
-
-.switchContainer img:last-child{
-    position: relative;
-    left: -0.4vw;
-}
-
-.switchContainer span{
-    position: relative;
-    left: 0.4vw;
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 .switchRow{
@@ -295,7 +302,7 @@ img.title ~ img.content{
     .firstHex p, .thirdHex p, .secondHex p {
         font-size: 2vw;
     }
-    .textcontent .content{
+    .textcontent, .rangecontent{
         font-size: 1.7vw;
     }
     .extraInfo{
