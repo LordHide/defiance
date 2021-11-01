@@ -12,3 +12,35 @@ button, div {
 i{
   font-style: normal;
 }
+
+.loading{
+  width: 100vw;
+  height: 100vh;
+  vertical-align: middle;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.logoLoading{
+  width: 77vw;
+}
+
+.containerCircleLoading{
+  vertical-align: middle;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.circleLoading{
+  animation-name: logoLoadTransition;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes logoLoadTransition {
+  from {transform: rotateZ(360deg);}
+  to {transform: rotateZ(0deg);}
+}
