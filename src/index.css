@@ -82,40 +82,72 @@ i{
   color: rgb(240, 240, 240)
 }
 
-.characterButton{
-  width: 100vw;
-  height: 17vh;
-  opacity: 0.65;
-  cursor: pointer;
+.characterdivContainer{
   vertical-align: middle;
   align-items: center;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+}
+
+.characterButton{
+  width: 15vw;
+  height: 75vh;
+  opacity: 0.65;
+  cursor: pointer;
   margin-top: 4vh;
+  color: rgb(240, 240, 240);
+  text-transform: uppercase;
+  transition: clip-path 1s;
+  clip-path: polygon(0 50%, 50% 100%, 100% 50%, 50% 0 );
 }
 
 .characterButton:hover{
   opacity: 1;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .characterButton img{
-  max-height: 100%;
-  width: 9vw;
+  height: 100%;
 }
 
 .characterButton div{
+  position: relative;
   text-align: center;
-  color: rgb(240, 240, 240);
-  width: 95vw;
-  text-transform: uppercase;
-  font-size: 5vw;
+  top: -53%;
+  left: 0;
+  text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 }
 
 @media screen and ( max-width: 1000px) {
-  .characterButton{
-    opacity: 1;
-  }
   .expansionButton{
     opacity: 1;
+  }
+  .characterButton{
+    width: 100vw;
+    height: 17vh;
+    opacity: 1;
+    cursor: pointer;
+    vertical-align: middle;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 4vh;
+  }
+  
+  .characterButton:hover{
+    opacity: 1;
+  }
+  
+  .characterButton img{
+    max-height: 100%;
+    width: 9vw;
+  }
+  
+  .characterButton div{
+    text-align: center;
+    color: rgb(240, 240, 240);
+    width: 95vw;
+    text-transform: uppercase;
+    font-size: 5vw;
   }
 }

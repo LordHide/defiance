@@ -5,14 +5,14 @@
             "type": "Ingeniera",
             "nameFull": "uma sørensen",
             "colorPrime": {
-                "R": 96,
-                "G": 74,
-                "B": 151
+                "R": 103,
+                "G": 78,
+                "B": 167
             },
             "colorSecon": {
-                "R": 96,
-                "G": 74,
-                "B": 151
+                "R": 72,
+                "G": 48,
+                "B": 132
             }
         },
         {
@@ -20,14 +20,14 @@
             "type": "Ingeniera",
             "nameFull": "cadin \"FIRSTSTRIKE\"",
             "colorPrime": {
-                "R": 96,
-                "G": 74,
-                "B": 151
+                "R": 103,
+                "G": 78,
+                "B": 167
             },
             "colorSecon": {
-                "R": 96,
-                "G": 74,
-                "B": 151
+                "R": 72,
+                "G": 48,
+                "B": 132
             }
         },
         {
@@ -35,14 +35,14 @@
             "type": "Ingeniera",
             "nameFull": "QIANG GāO",
             "colorPrime": {
-                "R": 96,
-                "G": 74,
-                "B": 151
+                "R": 103,
+                "G": 78,
+                "B": 167
             },
             "colorSecon": {
-                "R": 96,
-                "G": 74,
-                "B": 151
+                "R": 72,
+                "G": 48,
+                "B": 132
             }
         },
         {
@@ -50,14 +50,14 @@
             "type": "Ingeniera",
             "nameFull": "RAHMAN ROUHANI",
             "colorPrime": {
-                "R": 96,
-                "G": 74,
-                "B": 151
+                "R": 103,
+                "G": 78,
+                "B": 167
             },
             "colorSecon": {
-                "R": 96,
-                "G": 74,
-                "B": 151
+                "R": 72,
+                "G": 48,
+                "B": 132
             }
         },
         {
@@ -65,14 +65,14 @@
             "type": "Ingeniera",
             "nameFull": "JAZMíN \"JAZZ\"",
             "colorPrime": {
-                "R": 96,
-                "G": 74,
-                "B": 151
+                "R": 103,
+                "G": 78,
+                "B": 167
             },
             "colorSecon": {
-                "R": 96,
-                "G": 74,
-                "B": 151
+                "R": 72,
+                "G": 48,
+                "B": 132
             }
         },
         {
@@ -80,14 +80,14 @@
             "type": "Ingeniera",
             "nameFull": "TRISHALA \"TRISHA\" N33",
             "colorPrime": {
-                "R": 96,
-                "G": 74,
-                "B": 151
+                "R": 103,
+                "G": 78,
+                "B": 167
             },
             "colorSecon": {
-                "R": 96,
-                "G": 74,
-                "B": 151
+                "R": 72,
+                "G": 48,
+                "B": 132
             }
         }
     ]

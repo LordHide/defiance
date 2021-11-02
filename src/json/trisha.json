@@ -9,14 +9,14 @@
         {"name":"defense", "max":[{ "type": "svg", "code": "dadoNegro"}, { "type": "svg", "code": "dadoNegro"}], "current":0, "modifier":0, "marker": "defensa", "positionX": 0.547, "positionY":0.114}
     ],
     "colorPrime": {
-        "R": 96,
-        "G": 74,
-        "B": 151
+        "R": 103,
+        "G": 78,
+        "B": 167
     },
     "colorSecon": {
-        "R": 96,
-        "G": 74,
-        "B": 151
+        "R": 72,
+        "G": 48,
+        "B": 132
     },
     "subMenu":[
         {"name": "EQUIPO"},

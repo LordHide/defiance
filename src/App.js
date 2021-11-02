@@ -58,16 +58,34 @@ function ChooseExpansion({onCharacterChange}){
 function ChoseCharacter({onProfileChange}){
   return <div className="characterdivContainer">
     {charactersJSON.characterInfo.map((character) => {
-      const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")"};
+      const imagenCharacter = detectMob() ? "mini"+character.name : character.name.toLowerCase();
+      const colorPrincipal= "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")";
+      const colorSecondary= "rgba("+character.colorSecon.R+","+character.colorSecon.G+","+character.colorSecon.B+")";
       return<>
-      <div style={colorPrincipal} className="characterButton" onClick={() => onProfileChange(character.name)} > 
-        {createIcon({"type": "png", "code": "mini"+character.name, "class": "characterImg"})} 
+      <div style={{"background": "linear-gradient("+colorPrincipal+", "+colorSecondary+")"}} className="characterButton" onClick={() => onProfileChange(character.name)} > 
+        { createIcon({"type": "png", "code": imagenCharacter, "class": "characterImg"}) } 
         <div>{character.nameFull}</div>
       </div>
       </>
     })
     }
   </div>
+}
+
+function detectMob() {
+  const toMatch = [
+      /Android/i,
+      /webOS/i,
+      /iPhone/i,
+      /iPad/i,
+      /iPod/i,
+      /BlackBerry/i,
+      /Windows Phone/i
+  ];
+  
+  return toMatch.some((toMatchItem) => {
+      return navigator.userAgent.match(toMatchItem);
+  });
 }
 
 export default App;
