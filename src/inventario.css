@@ -37,6 +37,7 @@
     animation-fill-mode: forwards;
     animation-duration: 0.6s;
     animation-delay: 1.8s;
+    animation-timing-function: linear;
 }
 
 .softwareTitle{
@@ -52,6 +53,7 @@
     animation-fill-mode: forwards;
     animation-duration: 0.2s;
     animation-delay: 1.8s;
+    animation-timing-function: linear;
 }
 
 .hexagon.slot{
@@ -61,6 +63,7 @@
     animation-name: hexagonFormTransition;
     animation-fill-mode: forwards;
     animation-duration: 0.2s;
+    animation-timing-function: linear;
     opacity: 0;
     vertical-align: middle;
     align-items: center;
@@ -74,6 +77,7 @@
     animation-name: hexagonTypeFormTransition;
     animation-fill-mode: forwards;
     animation-duration: 0.2s;
+    animation-timing-function: linear;
     opacity: 0;
 }
 
@@ -115,6 +119,7 @@
     animation-name: softwareItemTransition;
     animation-fill-mode: forwards;
     animation-duration: 0.6s;
+    animation-timing-function: linear;
     overflow: hidden;
     opacity: 0;
 }

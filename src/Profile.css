@@ -13,6 +13,7 @@
 .character.reform{
   animation-name: reform;
   animation-duration: 1.6s;
+  animation-timing-function: linear;
 }
 
 @keyframes imgRightTransition {

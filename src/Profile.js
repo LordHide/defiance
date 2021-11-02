@@ -52,7 +52,7 @@ function Profile({name}) {
 function loadCharacter(name){
   let characterJSON;
   switch(name){
-    case "trisha" : characterJSON = trishaJSON; break;
+    case "Trisha" : characterJSON = trishaJSON; break;
   }
 
   return characterJSON;
@@ -61,7 +61,7 @@ function loadCharacter(name){
 function loadRemote(name){
   let characterJSON;
   switch(name){
-    case "trisha" : characterJSON = duchessJSON; break;
+    case "Trisha" : characterJSON = duchessJSON; break;
   }
 
   return characterJSON;

@@ -1,7 +1,8 @@
 import Profile from './Profile';
 import React, {useEffect, useState} from 'react';
 import {createIcon} from './storeManagement.js';
-//<button onClick={() => elegirpersonaje(< Profile name="trisha"/>)} > trisha </button>
+import charactersJSON from './json/characters.json';
+
 function App() {
   const [isLoading, setLoading] = useState(true);
   const [isExpansion, setExpansion] = useState(false);
@@ -38,15 +39,35 @@ function Loading(){
 }
 
 function ChooseExpansion({onCharacterChange}){
-  return <>
-    <button onClick={() => onCharacterChange(true)} > Default </button>
-    <button onClick={() => onCharacterChange(true)} > Outcast </button>
-    <button onClick={() => onCharacterChange(true)} > Revenant </button>
-  </>
+  return <div className="expansionButtonContainer">
+    <div className="expansionButton" onClick={() => onCharacterChange(true)} > 
+      {createIcon({"type": "png", "code": "core", "class": "expansionImg"})} 
+      <div> CORE </div> 
+    </div>
+    <div className="expansionButton" onClick={() => onCharacterChange(true)} > 
+      {createIcon({"type": "png", "code": "outcast", "class": "expansionImg"})} 
+      <div> OUTCAST </div> 
+    </div>
+    <div className="expansionButton" onClick={() => onCharacterChange(true)} > 
+      {createIcon({"type": "png", "code": "revenant", "class": "expansionImg"})} 
+      <div> REVENANT </div> 
+    </div>
+  </div>
 }
 
 function ChoseCharacter({onProfileChange}){
-  return <button onClick={() => onProfileChange("trisha")} > trisha </button>
+  return <div className="characterdivContainer">
+    {charactersJSON.characterInfo.map((character) => {
+      const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")"};
+      return<>
+      <div style={colorPrincipal} className="characterButton" onClick={() => onProfileChange(character.name)} > 
+        {createIcon({"type": "png", "code": "mini"+character.name, "class": "characterImg"})} 
+        <div>{character.nameFull}</div>
+      </div>
+      </>
+    })
+    }
+  </div>
 }
 
 export default App;
