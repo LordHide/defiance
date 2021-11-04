@@ -50,7 +50,23 @@
         },
         "trisha":{
             "name": "Trisha",
-            "asociatedItems": [[ 13, 1, 3, 4, 2], [1, 5, 6, 7], []]
+            "asociatedItems": [[ 13, 8, 1, 3, 4, 2], [1, 5, 6, 7], []]
+        },
+        "uma":{
+            "name": "uma",
+            "asociatedItems": [[ 21, 22, 14, 23], [], []]
+        },
+        "qiang":{
+            "name": "qiang",
+            "asociatedItems": [[ 24, 25], [], []]
+        },
+        "cadin":{
+            "name": "cadin",
+            "asociatedItems": [[ 26, 27], [], []]
+        },
+        "rahman":{
+            "name": "rahman",
+            "asociatedItems": [[ 28, 29, 30], [], []]
         }
     },
     "items": {
@@ -98,7 +114,7 @@
                 {"TypeId":1, "icon": [{"type": "svg", "code": "mano"}]},
                 {"TypeId":3, "icon": [{"type": "svg", "code": "casco"}]}
             ],
-            "unlock": true
+            "unlock": false
         },
         "2": {
             "name": "automedikit",
@@ -304,6 +320,38 @@
             ],
             "unlock": true
         },
+        "8":{
+            "name": "mono de trabajo",
+            "firstHex": [{"type": "png", "code": "miniTrisha", "class": "miniAvatar void"}],
+            "itenTypes":"armadura", 
+            "secondHex": [],
+            "thirdHex": [],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "text", "code": "Tienes dos espacios adicionales de"}, 
+                        {"type": "svg", "code": "equipo"}, 
+                        {"type": "text", "code": "(asigna las cartas de Equipo a esta carta para utilizarlos)."}
+                    ],
+                    "type": "text"
+                },
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "text", "code": "Puedes ejecutar como Acción Gratuita:\n"},
+                        {"type": "svg", "code": "accion"},
+                        {"type": "text", "code": "Equipar"}
+                    ],
+                    "type": "text"
+                }
+            ],
+            "slots":[
+                {"TypeId":4, "icon": [{"type": "svg", "code": "pecho"}]}
+            ],
+            "unlock": true
+        },
         "13": {
             "name": "pistola",
             "firstHex": [
@@ -333,13 +381,13 @@
                 }
             ],
             "slots":[
-                {"TypeId":2, "icon": [{"type": "svg", "code": "mano"}, {"type": "svg", "code": "mano"}]}
+                {"TypeId":1, "icon": [{"type": "svg", "code": "mano"}]}
             ],
             "unlock": true
         },
         "14": {
             "name": "casco de precision",
-            "firstHex": [{"type": "png", "code": "miniTrisha", "class": "miniAvatar"}],
+            "firstHex": [{"type": "png", "code": "miniTrisha", "class": "miniAvatar void"}],
             "itenTypes":"Armadura", 
             "secondHex": [],
             "thirdHex": [],
@@ -356,7 +404,7 @@
             "slots":[
                 {"TypeId":3, "icon": [{"type": "svg", "code": "casco"}]}
             ],
-            "unlock": false
+            "unlock": true
         },
         "20": {
             "name": "armadura reforzada", 
@@ -387,6 +435,341 @@
             ],
             "slots":[
                 {"TypeId":5, "icon": [{"type": "svg", "code": "casco"}, {"type": "svg", "code": "pecho"}]}
+            ],
+            "unlock": false
+        },
+        "21": {
+            "name": "pistola",
+            "firstHex": [
+                {"type": "range", "code": "1-4", "class": "content"}
+            ],
+            "itenTypes":"Arma ligera", 
+            "secondHex": [
+                {"type": "svg", "code": "dadoNaranja", "class": "content"},
+                {"type": "svg", "code": "dadoAzul", "class": "content"}
+            ],
+            "thirdHex": [
+                {"type": "png", "code": "miniTrisha", "class": "miniAvatar"}
+            ],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [
+                {
+                    "switch":[
+                        {"type": "svg", "code": "especialWhite"}, 
+                        {"type": "svg", "code": "especialWhite"}
+                    ],
+                    "content":[
+                        {"type": "text", "code": "Añade"}, 
+                        {"type": "svg", "code": "exitoBlack"}, 
+                        {"type": "text", "code": "a tu Tirada"}
+                    ],
+                    "type": "switch"
+                }
+            ],
+            "slots":[
+                {"TypeId":1, "icon": [{"type": "svg", "code": "mano"}]}
+            ],
+            "unlock": true
+        },
+        "22": {
+            "name": "pistola",
+            "firstHex": [
+                {"type": "range", "code": "1-4", "class": "content"}
+            ],
+            "itenTypes":"Arma ligera", 
+            "secondHex": [
+                {"type": "svg", "code": "dadoNaranja", "class": "content"},
+                {"type": "svg", "code": "dadoAzul", "class": "content"}
+            ],
+            "thirdHex": [
+                {"type": "png", "code": "miniTrisha", "class": "miniAvatar"}
+            ],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [
+                {
+                    "switch":[
+                        {"type": "svg", "code": "especialWhite"}, 
+                        {"type": "svg", "code": "especialWhite"}
+                    ],
+                    "content":[
+                        {"type": "text", "code": "Añade"}, 
+                        {"type": "svg", "code": "exitoBlack"}, 
+                        {"type": "text", "code": "a tu Tirada"}
+                    ],
+                    "type": "switch"
+                }
+            ],
+            "slots":[
+                {"TypeId":1, "icon": [{"type": "svg", "code": "mano"}]}
+            ],
+            "unlock": true
+        },
+        "23": {
+            "name": "ARMADURA TÁCTICA",
+            "firstHex": [
+                {"type": "svg", "code": "defensa", "class": "title"},
+                {"type": "svg", "code": "dadoNegro", "class": "content"}
+            ],
+            "itenTypes":"Armadura", 
+            "secondHex": [],
+            "thirdHex": [
+                {"type": "png", "code": "miniTrisha", "class": "miniAvatar"}
+            ],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [],
+            "slots":[
+                {"TypeId":4, "icon": [{"type": "svg", "code": "pecho"}]}
+            ],
+            "unlock": true
+        },
+        "24": {
+            "name": "escopeta pesada",
+            "firstHex": [
+                {"type": "range", "code": "1-5", "class": "content"}
+            ],
+            "itenTypes":"Arma Pesada, Escopeta", 
+            "secondHex": [
+                {"type": "svg", "code": "dadoAzul", "class": "content"},
+                {"type": "svg", "code": "dadoAzul", "class": "content"}
+            ],
+            "thirdHex": [
+                {"type": "png", "code": "miniTrisha", "class": "miniAvatar"}
+            ],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [
+                {
+                    "switch":[
+                        {"type": "svg", "code": "bloqueoWhite"}, 
+                        {"type": "svg", "code": "bloqueoWhite"}
+                    ],
+                    "content":[
+                        {"type": "text", "code": "Añade 1"}, 
+                        {"type": "svg", "code": "exitoBlack"}, 
+                        {"type": "text", "code": "a tu Tirada"}
+                    ],
+                    "type": "switch"
+                },
+                {
+                    "switch":[
+                        {"type": "svg", "code": "exitoBlack"}, 
+                        {"type": "svg", "code": "especialWhite"}
+                    ],
+                    "content":[
+                        {"type": "text", "code": "Inflinge 1"}, 
+                        {"type": "svg", "code": "herida"}, 
+                        {"type": "text", "code": "a un Enemigo adyacente al objetivo."}
+                    ],
+                    "type": "switch"
+                },
+                {
+                    "switch":[
+                        {"type": "svg", "code": "especialWhite"}
+                    ],
+                    "content":[
+                        {"type": "text", "code": "El objetivo recibe el Estado"}, 
+                        {"type": "svg", "code": "aturdido"}, 
+                        {"type": "text", "code": "Aturdido."}
+                    ],
+                    "type": "switch"
+                }
+            ],
+            "slots":[
+                {"TypeId":2, "icon": [{"type": "svg", "code": "mano"}, {"type": "svg", "code": "mano"}]}
+            ],
+            "unlock": true
+        },
+        "25": {
+            "name": "armadura Pesada", 
+            "firstHex": [
+                {"type": "svg", "code": "escudo", "class": "title"},
+                {"type": "svg", "code": "dadoNegro", "class": "content"}
+            ], 
+            "itenTypes":"Armadura pesada, Hackeable", 
+            "secondHex": [
+                {"type": "svg", "code": "defensa", "class": "title"},
+                {"type": "svg", "code": "dadoNegro", "class": "content"},
+                {"type": "svg", "code": "dadoNegro", "class": "content"}
+            ], 
+            "thirdHex": [
+                {"type": "png", "code": "miniTrisha", "class": "miniAvatar"}
+            ],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "text", "code": "Requisito Combate IP"}
+                    ],
+                    "type": "requirement"
+                }
+            ],
+            "slots":[
+                {"TypeId":5, "icon": [{"type": "svg", "code": "casco"}, {"type": "svg", "code": "pecho"}]}
+            ],
+            "unlock": true
+        },
+        "26": {
+            "name": "ARMADURA TÁCTICA",
+            "firstHex": [
+                {"type": "svg", "code": "defensa", "class": "title"},
+                {"type": "svg", "code": "dadoNegro", "class": "content"}
+            ],
+            "itenTypes":"Armadura", 
+            "secondHex": [],
+            "thirdHex": [
+                {"type": "png", "code": "miniTrisha", "class": "miniAvatar"}
+            ],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [],
+            "slots":[
+                {"TypeId":4, "icon": [{"type": "svg", "code": "pecho"}]}
+            ],
+            "unlock": true
+        },
+        "27": {
+            "name": "destripadores",
+            "firstHex": [
+                {"type": "range", "code": "1-1", "class": "content"}
+            ],
+            "itenTypes":"Arma CC", 
+            "secondHex": [
+                {"type": "svg", "code": "dadoAmarillo", "class": "content"},
+                {"type": "svg", "code": "dadoNaranja", "class": "content"}
+            ],
+            "thirdHex": [
+                {"type": "png", "code": "miniTrisha", "class": "miniAvatar"}
+            ],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [
+                {
+                    "switch":[
+                        {"type": "svg", "code": "exitoBlack"}, 
+                        {"type": "svg", "code": "especialWhite"}
+                    ],
+                    "content":[
+                        {"type": "text", "code": "Inflinge 1"}, 
+                        {"type": "svg", "code": "herida"}, 
+                        {"type": "text", "code": "a un Enemigo adyacente que no sea el objetivo."}
+                    ],
+                    "type": "switch"
+                },
+                {
+                    "switch":[
+                        {"type": "svg", "code": "especialWhite"}, 
+                        {"type": "svg", "code": "especialWhite"}
+                    ],
+                    "content":[
+                        {"type": "text", "code": "Ganas 1"}, 
+                        {"type": "svg", "code": "herida"}, 
+                        {"type": "text", "code": "para añadir"},
+                        {"type": "svg", "code": "exitoBlack"}, 
+                        {"type": "svg", "code": "exitoBlack"}, 
+                        {"type": "text", "code": "a tu tirada (máximo una vez por Tirada)."}
+                    ],
+                    "type": "switch"
+                }
+            ],
+            "slots":[
+                {"TypeId":2, "icon": [{"type": "svg", "code": "mano"}, {"type": "svg", "code": "mano"}]}
+            ],
+            "unlock": true
+        },
+        "28": {
+            "name": "pistola",
+            "firstHex": [
+                {"type": "range", "code": "1-4", "class": "content"}
+            ],
+            "itenTypes":"Arma ligera", 
+            "secondHex": [
+                {"type": "svg", "code": "dadoNaranja", "class": "content"},
+                {"type": "svg", "code": "dadoAzul", "class": "content"}
+            ],
+            "thirdHex": [
+                {"type": "png", "code": "miniTrisha", "class": "miniAvatar"}
+            ],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [
+                {
+                    "switch":[
+                        {"type": "svg", "code": "especialWhite"}, 
+                        {"type": "svg", "code": "especialWhite"}
+                    ],
+                    "content":[
+                        {"type": "text", "code": "Añade"}, 
+                        {"type": "svg", "code": "exitoBlack"}, 
+                        {"type": "text", "code": "a tu Tirada"}
+                    ],
+                    "type": "switch"
+                }
+            ],
+            "slots":[
+                {"TypeId":1, "icon": [{"type": "svg", "code": "mano"}]}
+            ],
+            "unlock": true
+        },
+        "29": {
+            "name": "medkit",
+            "firstHex": [
+                {"type": "svg", "code": "escudo", "class": "title void"},
+                {"type": "text", "code": "-", "class": "content"}
+            ],
+            "itenTypes":"Equipo Médico", 
+            "secondHex": [],
+            "thirdHex": [
+                {"type": "png", "code": "miniTrisha", "class": "miniAvatar"}
+            ],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "svg", "code": "accion"},
+                        {"type": "text", "code": "Primeros Auxilios: Descarta esta carta para curar hasta 6"},
+                        {"type": "svg", "code": "herida"},
+                        {"type": "text", "code": "de un Personaje (excepto Remotos) en Alcance 0-2. El Personaje curado recibe una secuela.\n"},
+                        {"type": "svg", "code": "accion"},
+                        {"type": "text", "code": "Reanimación Asistida: Descarta esta carta de Equipo para recuperar de la Inconsciencia de Personaje (excepto Remotos) en Alcance 0-2 y curarle hasta 8"},
+                        {"type": "svg", "code": "herida"},
+                        {"type": "text", "code": ". El Personaje tratado sufre una Secuela.\n"}
+                    ],
+                    "type": "text"
+                }
+            ],
+            "slots":[
+                {"TypeId":6, "icon": [{"type": "svg", "code": "equipo"}]}
+            ],
+            "unlock": true
+        },
+        "30": {
+            "name": "medkit",
+            "firstHex": [
+                {"type": "svg", "code": "escudo", "class": "title void"},
+                {"type": "text", "code": "-", "class": "content"}
+            ],
+            "itenTypes":"Equipo Médico", 
+            "secondHex": [],
+            "thirdHex": [
+                {"type": "png", "code": "miniTrisha", "class": "miniAvatar"}
+            ],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [
+                {
+                    "switch":[],
+                    "content":[
+                        {"type": "svg", "code": "accion"},
+                        {"type": "text", "code": "Primeros Auxilios: Descarta esta carta para curar hasta 6"},
+                        {"type": "svg", "code": "herida"},
+                        {"type": "text", "code": "de un Personaje (excepto Remotos) en Alcance 0-2. El Personaje curado recibe una secuela.\n"},
+                        {"type": "svg", "code": "accion"},
+                        {"type": "text", "code": "Reanimación Asistida: Descarta esta carta de Equipo para recuperar de la Inconsciencia de Personaje (excepto Remotos) en Alcance 0-2 y curarle hasta 8"},
+                        {"type": "svg", "code": "herida"},
+                        {"type": "text", "code": ". El Personaje tratado sufre una Secuela.\n"}
+                    ],
+                    "type": "text"
+                }
+            ],
+            "slots":[
+                {"TypeId":6, "icon": [{"type": "svg", "code": "equipo"}]}
             ],
             "unlock": true
         }

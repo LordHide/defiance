@@ -1,0 +1,70 @@
+{
+    "name":"uma",
+    "type": "Pistolera",
+    "nameFull": "UMA SøRENSEN",
+    "stats":[
+        {"name":"health", "max":8, "current":8, "modifier":0, "marker": "salud", "positionX": 0.590, "positionY":0.034},
+        {"name":"aggro", "max":5, "current":0, "modifier":0, "marker": "agro", "positionX": 0.590, "positionY":0.0737},
+        {"name":"movement", "max":6, "current":0, "modifier":0, "marker": "velocidad", "positionX": 0.547, "positionY":0.0737},
+        {"name":"defense", "max":[{ "type": "svg", "code": "dadoAzul"}], "current":0, "modifier":0, "marker": "defensa", "positionX": 0.547, "positionY":0.114}
+    ],
+    "colorPrime": {
+        "R": 82,
+        "G": 155,
+        "B": 177
+    },
+    "colorSecon": {
+        "R": 88,
+        "G": 107,
+        "B": 104
+    },
+    "subMenu":[
+        {"name": "EQUIPO"},
+        {"name": "INVENTARIO"},
+        {"name": "DEFIANCE"}
+    ],
+    "infoContainer":[
+        {"name": "EQUIPO"},
+        {"name": "ESPECIALIDADES"}
+    ],
+    "personalSkill": [{"title": "Daño por Saturación", "Content":[
+            { "type": "text", "code": "Si estás equipada con dos Armas Ligeras puedes añadir un"},
+            { "type": "svg", "code": "dadoAmarillo"},
+            { "type": "text", "code": " a tus Tiradas de Ataque."}]
+        },
+        {"title": "Fiable", "Content":[
+            { "type": "text", "code": "Si estás equipada con dos Armas Ligeras puedes añadir a tus Tiradas de Ataque un"},
+            { "type": "svg", "code": "exitoBlack"},
+            { "type": "text", "code": " por cada cara blanca obtebida en cualquiera de tus dados."}]
+        }
+    ],
+    "characterState":[
+        {"name": "aturdido", "icon": {"text":"aturdido", "x":0.09533, "y":0.04095}, "active": false, "color1": "142, 76, 0", "color2": "142, 76, 0", "positionX": 0.10533, "positionY": 0.05395, "positionXBlur": -7, "positionYBlur": 0, "angle":0},
+        {"name": "ardiendo", "icon": {"text":"ardiendo", "x":0.13133, "y":0.02095}, "active": false, "color1": "223, 121, 43", "color2": "238, 43, 43", "positionX": 0.14066, "positionY": 0.03395, "positionXBlur": 0, "positionYBlur": 7, "angle":180},
+        {"name": "marcado", "icon": {"text":"marcado", "x":0.16733, "y":0.04095}, "active": false, "color1": "249, 21, 45", "color2": "239, 15, 239", "positionX": 0.17616, "positionY": 0.05395, "positionXBlur": 7, "positionYBlur": 0, "angle":0},
+        {"name": "concentrado", "icon": {"text":"concentrado", "x":0.09533, "y":0.09095}, "active": false, "color1": "210, 179, 26", "color2": "233, 233, 42", "positionX": 0.10533, "positionY": 0.0944, "positionXBlur": 7, "positionYBlur": 0, "angle":180},
+        {"name": "cegado", "icon": {"text":"cegado", "x":0.13133, "y":0.10895}, "active": false, "color1": "33, 185, 48", "color2": "96, 135, 17", "positionX": 0.14066, "positionY": 0.1143, "positionXBlur": 0, "positionYBlur": 7, "angle":0},
+        {"name": "inmovilizado", "icon": {"text":"inmovilizado", "x":0.16733, "y":0.09095}, "active": false, "color1": "26, 47, 128", "color2": "52, 186, 225", "positionX": 0.17616, "positionY": 0.0944, "positionXBlur": -7, "positionYBlur": 0, "angle":180},
+        {"name": "oculto", "icon": {"text":"oculto", "x":0.13133, "y":0.05295}, "active": false, "color1": "249, 249, 249", "color2": "249, 249, 249", "positionX": 0.14066, "positionY": 0.07395, "angle":180},
+        {"name": "inconsciente", "icon": {"text":"inconsciente", "x":0.13133, "y":0.07895}, "active": false, "color1": "12, 12, 12", "color2": "12, 12, 12", "positionX": 0.14066, "positionY": 0.07395, "angle":0}
+    ],
+    "slots":{
+        "0":{"name":"equipment",
+            "items":[
+                {"slotId": 1, "typeSlot":1, "asociatedId": 21, "slot": { "type": "svg", "code": "mano"}},
+                {"slotId": 2, "typeSlot":1, "asociatedId": 22, "slot": { "type": "svg", "code": "mano"}},
+                {"slotId": 3, "typeSlot":3, "asociatedId": 14, "slot": { "type": "svg", "code": "casco"}},
+                {"slotId": 4, "typeSlot":4, "asociatedId": 23, "slot": { "type": "svg", "code": "pecho"}},
+                {"slotId": 5, "typeSlot":6, "asociatedId": -1, "slot": { "type": "svg", "code": "equipo"}},
+                {"slotId": 6, "typeSlot":6, "asociatedId": -1, "slot": { "type": "svg", "code": "equipo"}},
+                {"slotId": 7, "typeSlot":6, "asociatedId": 2, "slot": { "type": "svg", "code": "equipo"}}
+            ]
+        },
+        "1":{"name":"software",
+            "items":[]
+        },
+        "2":{"name":"specialties",
+            "items":[]
+        }
+    }
+}

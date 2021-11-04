@@ -1,0 +1,343 @@
+.backGroundBlack{
+    position: absolute;
+    top: 0vh;
+    left: 0vw;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(30, 30, 30, 0.5);
+}
+
+.crossCard{
+    position: absolute;
+    cursor: pointer;
+}
+
+.crossCard{
+    left: 33vw;
+    top: 1vh;
+    font-size: 1vw;
+}
+
+.infoContainerEquipment{
+    position: absolute;
+    left: 27vw;
+    top: 18vh;
+    width: 35vw;
+    border-radius: 2vw 2vw 0 0;
+    color: #EEE;
+    z-index: 2;
+}
+
+.infoContainerEquipment.extra1{
+    top: 14vh;
+    left: 29vw;
+}
+
+.infoContainerEquipment.extra2{
+    top: 16vh;
+    left: 28vw;
+}
+
+.bodyItenInfo > img{
+    position: absolute;
+    top: 20%;
+    left: 38%;
+    z-index: 1;
+}
+
+.titliItenInfo{
+    border-radius: 2vw 2vw 0 0;
+    text-transform: uppercase;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-size: 1.6vw;
+    height: 3.7vh;
+    box-shadow: 5px 1px 15px black
+}
+
+.editButtons{
+    position: absolute;
+}
+
+.bodyItenInfo{
+    background: linear-gradient(200deg, #91A08C, #B9AE82, #BE914E, #BE924F, #806244);
+    height: 40vh;
+}
+
+.bodyItenInfo > div:first-child{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.itenType{
+    width: 100%;
+    font-size: 1.54vw;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100% );
+    padding-left: 1.82vw;
+    padding-right: 1.82vw;
+    text-align: center;
+}
+
+.firstHex, .thirdHex, .secondHex, .switchContainer{
+    clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50% );
+}
+
+.firstHex, .thirdHex, .secondHex{
+    width: 3.5vw;
+    height: 3.5vw;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.firstHex{
+    left: 0.87vw;
+    top: 18%;
+}
+
+.firstHex p, .thirdHex p, .secondHex p{
+    font-size: 1.4vw;
+    padding-top: 0.84vh;
+    width: 70%;
+    margin: 0;
+}
+
+.gridHex{
+    display: grid;
+    grid-column-gap: 3%;
+    width: 70%;
+}
+
+.gridHex div.svgtitle{
+    grid-column: 1/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.firstHex span, .secondHex span, .thirdHex span{
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+.thirdHex{
+    left: 30.7vw;
+    top: 18%;
+}
+
+.thirdHex .svg{
+    width: 1.12vw;
+    height: 1.12vw;
+    position: relative;
+    top: 0.14vw;
+    left: 0.84vw;
+}
+
+.thirdHex .text{
+    font-size: 0.98vw;
+    position: relative;
+    top: 0.238vw;
+    left: 1.106vw;
+}
+
+.secondHex{
+    left: 2.67vw;
+    top: 33%;
+}
+
+.gridHex img.title{
+    width: 52%;
+    height: 100%;
+}
+
+div.svgtitle{
+    width: 100%;
+}
+
+.gridHex img.content{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.svgtitle ~ div.svgcontent{
+    height: 88%;
+}
+
+.textcontent, .rangecontent{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.1vw;
+}
+/*
+.textcontent .content{
+    font-size: 1.1vw;
+}*/
+
+.gridHex img.title ~ .gridHex img.content{
+    position: relative;
+    top: -0.6vw;
+    left: 0.5vw;
+    width: 0.9vw;
+    max-height: 0.9vw;
+}
+
+.miniAvatar{
+    width: 100%;
+    height: 100%;
+}
+
+.extraInfo{
+    width: 25.2vw;
+    height: 22.8vh;
+    border-radius: 1.4vw;
+    position: absolute;
+    left: 4.9vw;
+    bottom: 1%;
+    background-color: rgba(67, 59, 59, 0.58);
+    z-index: 2;
+}
+
+.infoRow{
+    display: flex;
+    align-items: center;
+    margin-top: 1vh;
+    margin-left: 0.5vw;
+    white-space: pre-wrap;
+    font-size: 1vw;
+}
+
+.switchRow img{
+    width: 1.2vw;
+    height: 1.2vw;
+    padding-left: 0.3vw;
+}
+
+.textRow img{
+    width: 1.2vw;
+    height: 1.2vw;
+    padding-right: 0.3vw;
+    padding-left: 0.3vw;
+}
+
+.switchContainer{
+    background-color: rgb(45, 45, 45);
+    width: 2.5vw;
+    height: 2.5vw;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    font-size: 1vw;
+}
+
+.switchGrid{
+    grid-template-rows: 100% 30%;
+    display: grid;
+    width: 70%;
+}
+
+.switchGrid div{
+    vertical-align: middle;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.switchContainer img{
+    width: 100%;
+    height: 100%;
+    max-height: 2vh;
+    display: block;
+}
+
+.switchRow{
+    background-color: rgb(230, 230, 230);
+    width: 100%;
+    color: rgb(30,30,30);
+    position: relative;
+    left: -1vw;
+    padding-left: 1vw;
+    z-index: 1;
+    font-size: 1.2vw;
+}
+
+.requirementRow{
+    text-align: center;
+    width: 100%;
+}
+
+@media screen and ( max-width: 1000px) {
+    .infoContainerEquipment{
+        width: 60vw;
+        left: 15vw;
+    }
+    .infoContainerEquipment.extra1{
+        top: -35vh;
+        left: 18vw;
+    }
+    .infoContainerEquipment.extra2{
+        top: -32vh;
+        left: 16.5vw;
+    }
+    .crossCard{
+        left:57vw;
+        font-size: 2vw;
+    }
+    .bodyItenInfo{
+        height: 60vh;
+    }
+    .titliItenInfo{
+        font-size: 2.6vw;
+        height: 6vh;
+    }
+    .itenType{
+        font-size: 2.54vw;
+    }
+    .firstHex, .secondHex, .thirdHex{
+        width: 5.5vw;
+        height: 5.5vw;
+    }
+    .secondHex{
+        top: -9.1vh;
+    }
+    .thirdHex{
+        left: 53.7vw;
+        top: -9.4vh;
+    }
+    .firstHex p, .thirdHex p, .secondHex p {
+        font-size: 2vw;
+    }
+    .textcontent, .rangecontent{
+        font-size: 1.7vw;
+    }
+    .extraInfo{
+        width: 49.2vw;
+        height: 28.8vh;
+    }
+    .switchRow {
+        font-size: 2vw;
+    }
+    .infoRow{
+        font-size: 1.5vw;
+    }
+    .switchRow img {
+        width: 1.8vw;
+        height: 1.8vw;
+        padding-left: 0.3vw;
+        padding-top: 0.1vw;
+    }
+    .switchContainer {
+        width: 3vw;
+        height: 3vw;
+        font-size: 1.5vw;
+    }
+}

@@ -21,12 +21,10 @@
     "subMenu":[
         {"name": "EQUIPO"},
         {"name": "INVENTARIO"},
-        {"name": "REMOTO"},
         {"name": "DEFIANCE"}
     ],
     "infoContainer":[
         {"name": "EQUIPO"},
-        {"name": "SOFTWARE"},
         {"name": "ESPECIALIDADES"}
     ],
     "personalSkill": [{"title": "Post Human", "Content":[
@@ -52,9 +50,9 @@
         "0":{"name":"equipment",
             "items":[
                 {"slotId": 1, "typeSlot":1, "asociatedId": 13, "slot": { "type": "svg", "code": "mano"}},
-                {"slotId": 2, "typeSlot":1, "asociatedId": 13, "slot": { "type": "svg", "code": "mano"}},
+                {"slotId": 2, "typeSlot":1, "asociatedId": -1, "slot": { "type": "svg", "code": "mano"}},
                 {"slotId": 3, "typeSlot":3, "asociatedId": -1, "slot": { "type": "svg", "code": "casco"}},
-                {"slotId": 4, "typeSlot":4, "asociatedId": -1, "slot": { "type": "svg", "code": "pecho"}},
+                {"slotId": 4, "typeSlot":4, "asociatedId": 8, "slot": { "type": "svg", "code": "pecho"}},
                 {"slotId": 5, "typeSlot":6, "asociatedId": 3, "slot": { "type": "svg", "code": "equipo"}},
                 {"slotId": 6, "typeSlot":6, "asociatedId": 4, "slot": { "type": "svg", "code": "equipo"}},
                 {"slotId": 7, "typeSlot":6, "asociatedId": 2, "slot": { "type": "svg", "code": "equipo"}}

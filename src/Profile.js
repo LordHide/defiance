@@ -7,10 +7,14 @@ import RemoteContext from './context/RemoteContext.js';
 import InfoCardContext from './context/InfoCardContext.js';
 import StoreListContext from './context/StoreListContext.js';
 import trishaJSON from './json/trisha.json';
+import rahmanJSON from './json/rahman.json';
+import cadinJSON from './json/cadin.json';
+import qiangJSON from './json/qiang.json';
+import umaJSON from './json/uma.json';
 import duchessJSON from './json/duchess.json';
 import baseJSON from './json/base.json';
-import './ProfileGlobal.css';
-import './Profile.css';
+import './css/ProfileGlobal.css';
+import './css/Profile.css';
 
 function Profile({name}) {
   const character = loadCharacter(name);
@@ -19,7 +23,8 @@ function Profile({name}) {
   const [stateStoreContext, setStateStoreContext] = useState(baseJSON)
   const [InfoContext, setInfoCardContext] = useState(<></>);
   const [ListContext, setStoreListContext] = useState(<></>);
-  const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")"};
+  const colorPrincipal= "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")";
+  const colorSecondary= "rgba("+character.colorSecon.R+","+character.colorSecon.G+","+character.colorSecon.B+")";
   const [displayContent, elegirTop] = useState("EQUIPO");
   const first = useRef(true);
 
@@ -29,7 +34,7 @@ function Profile({name}) {
       <StoreContext.Provider value={[stateStoreContext, setStateStoreContext]}>
       <InfoCardContext.Provider value={[InfoCardContext, setInfoCardContext]}>
       <StoreListContext.Provider value={[ListContext, setStoreListContext]}>
-        <div className="titliFullName" style={colorPrincipal}><span>{character.nameFull}</span></div>
+        <div className="titliFullName" style={{"background": "linear-gradient("+colorPrincipal+", "+colorSecondary+")"}}><span>{character.nameFull}</span></div>
         <div className="topButtonDiv">
           {character.subMenu.map(info => {let classutton = "topButton glass ";
             classutton += info.name == displayContent ? "active" : "deacticated";
@@ -53,6 +58,10 @@ function loadCharacter(name){
   let characterJSON;
   switch(name){
     case "Trisha" : characterJSON = trishaJSON; break;
+    case "uma" : characterJSON = umaJSON; break;
+    case "qiang" : characterJSON = qiangJSON; break;
+    case "cadin" : characterJSON = cadinJSON; break;
+    case "rahman" : characterJSON = rahmanJSON; break;
   }
 
   return characterJSON;

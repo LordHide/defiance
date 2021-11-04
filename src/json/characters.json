@@ -1,78 +1,63 @@
 {
     "characterInfo":[
         {
-            "name":"Trisha",
+            "name":"uma",
             "type": "Ingeniera",
             "nameFull": "uma sørensen",
             "colorPrime": {
-                "R": 103,
-                "G": 78,
-                "B": 167
+                "R": 82,
+                "G": 155,
+                "B": 177
             },
             "colorSecon": {
-                "R": 72,
-                "G": 48,
-                "B": 132
+                "R": 88,
+                "G": 107,
+                "B": 104
             }
         },
         {
-            "name":"Trisha",
-            "type": "Ingeniera",
-            "nameFull": "cadin \"FIRSTSTRIKE\"",
-            "colorPrime": {
-                "R": 103,
-                "G": 78,
-                "B": 167
-            },
-            "colorSecon": {
-                "R": 72,
-                "G": 48,
-                "B": 132
-            }
-        },
-        {
-            "name":"Trisha",
+            "name":"qiang",
             "type": "Ingeniera",
             "nameFull": "QIANG GāO",
             "colorPrime": {
-                "R": 103,
-                "G": 78,
-                "B": 167
+                "R": 202,
+                "G": 191,
+                "B": 68
             },
             "colorSecon": {
-                "R": 72,
-                "G": 48,
-                "B": 132
+                "R": 95,
+                "G": 100,
+                "B": 75
             }
         },
         {
-            "name":"Trisha",
+            "name":"cadin",
             "type": "Ingeniera",
-            "nameFull": "RAHMAN ROUHANI",
+            "nameFull": "cadin \"FIRSTSTRIKE\"",
             "colorPrime": {
-                "R": 103,
-                "G": 78,
-                "B": 167
+                "R": 99,
+                "G": 146,
+                "B": 69
             },
             "colorSecon": {
-                "R": 72,
-                "G": 48,
-                "B": 132
+                "R": 89,
+                "G": 106,
+                "B": 98
             }
         },
         {
-            "name":"Trisha",
+            "name":"jazmin",
             "type": "Ingeniera",
             "nameFull": "JAZMíN \"JAZZ\"",
             "colorPrime": {
-                "R": 103,
-                "G": 78,
-                "B": 167
+                "R": 195,
+                "G": 62,
+                "B": 56
             },
             "colorSecon": {
-                "R": 72,
-                "G": 48,
-                "B": 132
+                "R": 110,
+                "G": 98,
+                "B": 97
             }
         },
         {
@@ -88,6 +73,21 @@
                 "R": 72,
                 "G": 48,
                 "B": 132
+            }
+        },
+        {
+            "name":"rahman",
+            "type": "Ingeniera",
+            "nameFull": "RAHMAN ROUHANI",
+            "colorPrime": {
+                "R": 190,
+                "G": 107,
+                "B": 63
+            },
+            "colorSecon": {
+                "R": 134,
+                "G": 120,
+                "B": 95
             }
         }
     ]

@@ -1,0 +1,236 @@
+.character{
+    position: absolute;
+/*    width:19vw;*/
+    left: 5vw;
+    max-height: 76vh;
+}
+
+.character.imgRightTransition{
+  animation-name: imgRightTransition;
+  animation-duration: 1.6s;
+}
+
+.character.reform{
+  animation-name: reform;
+  animation-duration: 1.6s;
+  animation-timing-function: linear;
+}
+
+@keyframes imgRightTransition {
+  from {left: 25vw;}
+  to {left: 5vw;}
+}
+
+@keyframes reform {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.infoContainer{
+    display: flex;
+    height: 33vh;
+    width: 88vw;
+    position: absolute;
+    top: 40vh;
+    color: #FFF;
+    left: 2vw;
+    backdrop-filter: blur(20px);
+}
+.contenedorGroupElements{
+    width: 40%;
+    max-height: 100%;
+    overflow-y: auto;
+}
+.konvajs-content{
+  left: 24vw;
+}
+::-webkit-scrollbar {
+    width: 0.5VW;
+  }
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.contenedorInfoElement{
+    margin-top: 1%;
+    color: #FFF;
+    display: flex;
+}
+.contenedorInfoElement > img{
+    margin-left: 1%;
+    width: 2vw;
+}
+.infoElement1{
+    margin-left: 0.4vw;
+    width: 12vw;
+    height: 10%;
+    font-size: 1.3vw;
+    position: relative;
+    display: flex;
+    flex: 0 0 12vw;
+    flex-direction: column;
+    justify-content: center;
+}
+.infoElement2{
+    width: 17vw;
+    max-width: 15vw;
+    font-size: 0.8vw;
+    display: flex;
+}
+.infoElement1 div{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+}
+.infoElement1, .infoElement2{
+    padding: 0.2vw;
+    height: 3.5vh;
+    background-color: rgba(62, 54, 54, 0.7);
+    cursor: pointer;
+}
+.infoElement2 div{
+    height: 3.5vh;
+    width: 3.5vh;
+}
+.infoElement2 i{
+    margin-left: 3%;
+    font-size: 2em;
+}
+.infoElement2 img{
+    margin-left: 3%;
+}
+.infoElement2 span{
+    font-size: 1.1vw;
+    margin-right: 15px;
+}
+.infoElement2.Specialty{
+    display: flex;
+    justify-content: end;
+}
+.infoOptions{
+    position: relative;
+    top: 35.5vh;
+    font-size: 1.7vw;
+    left: -60vw;
+    padding: 0.2vw;
+    height: 100%;
+    border-left: 1px rgb(112, 112, 112);
+    border-right: 1px rgb(112, 112, 112);
+    border-top: 1px rgb(112, 112, 112);
+    border-bottom: 0;
+    border-style: solid;
+    color: #EEE;
+    cursor: pointer;
+}
+.infoOptions.activo{
+    background-color: rgb(62, 54, 54);
+}
+.infoOptions.deactivated{
+    background-color: rgba(183, 183, 183, 0.6);
+}
+
+.hexagon {
+    clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50% );
+    color: rgb(141, 132, 132);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .hexagon.range{
+    position: relative;/*
+    width: 46%;
+    height: 80%;*/
+    background: linear-gradient(-180deg, black, #020);
+  }
+  
+  .hexagon i {
+    z-index: 1;
+    margin: auto;
+    font-size: 1.2vw;
+    color: #FFF;
+    background: linear-gradient(45deg, #020, #020);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .circleInfo{
+    background-color: rgb(62, 54, 54);
+    color: #FFF;
+    display: flex;
+    width: 2.5vw;
+    height: 2.5vw;
+    align-content: center;
+    justify-content: center;
+    border-radius: 2.5vw;
+    margin-left: 2%;
+    cursor: pointer;
+  }
+
+  .circleInfo i{
+    margin: auto;
+    font-size: 1.5vw;
+  }
+
+  .personalSkill{
+    max-width: 27%;
+    max-height: 100%;
+    margin-left: 2%;
+  }
+
+  .textSkill{
+    white-space: pre-wrap;
+    margin-top: 3%;
+    font-size: 1.1vw;
+  }
+
+  .textSkill img{
+    width: 1.1vw;
+    margin-left: 2%;
+  }
+
+  .titleSkill{
+    background-color: rgba(203, 115, 27, 0.7);
+    height: 10%;
+    margin-top: 5%;
+    font-size: 1.4vw;
+    padding-top: 2%;
+    padding-left: 5%;
+  }
+
+  .healthStatIcon{
+    position: absolute;
+    left: 88.7vw;
+    top: 6.3vh;
+    width: 1.5vw;
+  }
+
+  .aggroStatIcon{
+    position: absolute;
+    left: 83.7vw;
+    top: 22.8vh;
+    width: 1.5vw;
+  }
+
+  .movementStatIcon{
+    position: absolute;
+    left: 83.7vw;
+    top: 14.6vh;
+    width: 1.5vw;
+  }
+
+  .defenseStatIcon{
+    position: absolute;
+    left: 88.7vw;
+    top: 14.6vh;
+    width: 1.5vw;
+  }

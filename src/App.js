@@ -1,6 +1,6 @@
 import Profile from './Profile';
 import React, {useEffect, useState} from 'react';
-import {createIcon} from './storeManagement.js';
+import {CreateIcon} from './storeManagement.js';
 import charactersJSON from './json/characters.json';
 
 function App() {
@@ -30,9 +30,9 @@ function App() {
 function Loading(){
   return <div className="loading">
     <div>
-      {createIcon({"type": "png", "code": "logoDefianceImg", "class": "logoLoading"})}
+      <CreateIcon iconData={{"type": "png", "code": "logoDefianceImg", "class": "logoLoading"}} isActiveRange={false}/>
       <div className="containerCircleLoading">
-        {createIcon({"type": "png", "code": "loading", "class": "circleLoading"})}
+        <CreateIcon iconData={{"type": "png", "code": "loading", "class": "circleLoading"}} isActiveRange={false}/>
       </div>
     </div>
   </div>;
@@ -41,15 +41,15 @@ function Loading(){
 function ChooseExpansion({onCharacterChange}){
   return <div className="expansionButtonContainer">
     <div className="expansionButton" onClick={() => onCharacterChange(true)} > 
-      {createIcon({"type": "png", "code": "core", "class": "expansionImg"})} 
+      <CreateIcon iconData={{"type": "png", "code": "core", "class": "expansionImg"}} isActiveRange={false}/>
       <div> CORE </div> 
     </div>
     <div className="expansionButton" onClick={() => onCharacterChange(true)} > 
-      {createIcon({"type": "png", "code": "outcast", "class": "expansionImg"})} 
+      <CreateIcon iconData={{"type": "png", "code": "outcast", "class": "expansionImg"}} isActiveRange={false}/>
       <div> OUTCAST </div> 
     </div>
     <div className="expansionButton" onClick={() => onCharacterChange(true)} > 
-      {createIcon({"type": "png", "code": "revenant", "class": "expansionImg"})} 
+      <CreateIcon iconData={{"type": "png", "code": "revenant", "class": "expansionImg"}} isActiveRange={false}/>
       <div> REVENANT </div> 
     </div>
   </div>
@@ -63,7 +63,7 @@ function ChoseCharacter({onProfileChange}){
       const colorSecondary= "rgba("+character.colorSecon.R+","+character.colorSecon.G+","+character.colorSecon.B+")";
       return<>
       <div style={{"background": "linear-gradient("+colorPrincipal+", "+colorSecondary+")"}} className="characterButton" onClick={() => onProfileChange(character.name)} > 
-        { createIcon({"type": "png", "code": imagenCharacter, "class": "characterImg"}) } 
+        <CreateIcon iconData={{"type": "png", "code": imagenCharacter, "class": "characterImg"}} isActiveRange={false}/>
         <div>{character.nameFull}</div>
       </div>
       </>

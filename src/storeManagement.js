@@ -6,10 +6,10 @@ import RemoteContext from './context/RemoteContext.js';
 import CharacterContext from './context/CharacterContext.js';
 import svgDispenser from './svgDispenser.js';
 import pngDispenser from './pngDispenser.js';
-import './ItenInfo.css';
-import './StoreList.css';
+import './css/ItenInfo.css';
+import './css/StoreList.css';
 
-function ItenInfo({nodeInfo, actionPermit, colorPrincipal}) {
+function ItenInfo({nodeInfo, actionPermit}) {
 
     const [store, setStore] = useContext(StoreContext);
     const [infoCard, setinfoCard] = useContext(InfoCardContext);
@@ -18,37 +18,39 @@ function ItenInfo({nodeInfo, actionPermit, colorPrincipal}) {
     const iten = store.items[nodeInfo.id];
     const validSlot = activeIten != undefined ? correctSlot(iten.slots, activeIten.typeSlot):false;
     const swipeDiff = useRef(0);
+    const colorPrincipal= "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")";
+    const colorSecondary= "rgba("+character.colorSecon.R+","+character.colorSecon.G+","+character.colorSecon.B+")";
     const infoHandler = () => {
       setinfoCard(<></>)
     }
     const scrollHandler = (evt) => {
       const newId = newIdHandler(evt.deltaY < 0 ? 1 : -1, store, nodeInfo);
-      setinfoCard(<ItenInfo nodeInfo={{"type":nodeInfo.type, "subType":nodeInfo.subType, "id": newId, "slotId":nodeInfo.slotId, "isRemote":nodeInfo.isRemote}} actionPermit={actionPermit} colorPrincipal={colorPrincipal} />)
+      setinfoCard(<ItenInfo nodeInfo={{"type":nodeInfo.type, "subType":nodeInfo.subType, "id": newId, "slotId":nodeInfo.slotId, "isRemote":nodeInfo.isRemote}} actionPermit={actionPermit} />)
     };
 
     const keyHandler = (evt) => {
       let idModifier = 0;
       if(evt.code == "ArrowUp"){idModifier = 1}else if(evt.code == "ArrowDown" ){idModifier = -1}
       const newId = newIdHandler( idModifier, store, nodeInfo);
-      if(idModifier != 0)setinfoCard(<ItenInfo nodeInfo={{"type":nodeInfo.type, "subType":nodeInfo.subType, "id": newId, "slotId":nodeInfo.slotId, "isRemote":nodeInfo.isRemote}} actionPermit={actionPermit} colorPrincipal={colorPrincipal} />)
+      if(idModifier != 0)setinfoCard(<ItenInfo nodeInfo={{"type":nodeInfo.type, "subType":nodeInfo.subType, "id": newId, "slotId":nodeInfo.slotId, "isRemote":nodeInfo.isRemote}} actionPermit={actionPermit} />)
     };
 
     const swHandler = (evt) => {
       let idModifier = 0;
       if(swipeDiff.current - evt.changedTouches[0].clientY > 10){idModifier = 1}else if(swipeDiff.current - evt.changedTouches[0].clientY < -10){idModifier = -1}
       const newId = newIdHandler( idModifier, store, nodeInfo);
-      if(idModifier != 0)setinfoCard(<ItenInfo nodeInfo={{"type":nodeInfo.type, "subType":nodeInfo.subType, "id": newId, "slotId":nodeInfo.slotId, "isRemote":nodeInfo.isRemote}} actionPermit={actionPermit} colorPrincipal={colorPrincipal} />)
+      if(idModifier != 0)setinfoCard(<ItenInfo nodeInfo={{"type":nodeInfo.type, "subType":nodeInfo.subType, "id": newId, "slotId":nodeInfo.slotId, "isRemote":nodeInfo.isRemote}} actionPermit={actionPermit} />)
     };
 
     return (
       <> 
         <div className='backGroundBlack' onClick={infoHandler}></div>
-          {nodeInfo.type !== "" ? <CardIlusion colorPrincipal={colorPrincipal} /> : <></>}
+          {nodeInfo.type !== "" ? <CardIlusion style={{"background": colorPrincipal}} /> : <></>}
           <div className='infoContainerEquipment' 
             onWheel={scrollHandler} onKeyDown={keyHandler} onTouchStart={(evt) => {swipeDiff.current = evt.changedTouches[0].clientY} } 
             onTouchEnd={swHandler} tabIndex={0} style={{"outline": "none"}}
           >
-            <div className="titliItenInfo" style={colorPrincipal}>
+            <div className="titliItenInfo" style={{"background": colorPrincipal}}>
               <span>{iten.name}</span>
               <div className="crossCard" onClick={infoHandler}>
                 x
@@ -56,46 +58,53 @@ function ItenInfo({nodeInfo, actionPermit, colorPrincipal}) {
             </div>
               <div className="bodyItenInfo">
                 <div>
-                  <div className="itenType" style={colorPrincipal}>{iten.itenTypes}</div>
+                  <div className="itenType" style={{"background": "linear-gradient("+colorPrincipal+", "+colorSecondary+")"}}>{iten.itenTypes}</div>
                 </div>
-                  <InfoHex valuesHex={{"nameHex": "firstHex", "nodeHex": iten.firstHex}} colorPrincipal={colorPrincipal} />
-                  <InfoHex valuesHex={{"nameHex": "thirdHex", "nodeHex": iten.thirdHex}} colorPrincipal={colorPrincipal} />
-                  <InfoHex valuesHex={{"nameHex": "secondHex", "nodeHex": iten.secondHex}} colorPrincipal={colorPrincipal} />
-                  <div className="extraInfo glass">{
-                      iten.attributes.map(info => {
-                          let classSwitch = info.type+"Row";
-                          let switchContainer = <></>;
-                          if(info.type == "switch"){
-                            classSwitch = "switchRow";
-                            switchContainer = 
-                            <div className="switchContainer">
-                              <div className="switchGrid" style={{"gridTemplateColumns": "repeat("+info.switch.length+", 1fr)", "gridTemplateRows":"repeat(1, 1fr);"}}>
-                                {info.switch.map(iconData => {
-                                      return <div>{createIcon(iconData)}</div>
-                                  })
-                                }
-                                </div>
-                            </div>
-                          }
-
-                          return <>
-                              <div className="infoRow"> 
-                                {switchContainer}
-                                <div className={classSwitch}> 
-                                    {info.content.map(iconData => {
-                                        return createIcon(iconData)
-                                })}
-                                </div>
-                              </div>
-                              </>
-                  })
-                  }
-                </div>
+                  <InfoHex valuesHex={{"nameHex": "firstHex", "nodeHex": iten.firstHex}} style={{"background": colorPrincipal}} />
+                  <InfoHex valuesHex={{"nameHex": "thirdHex", "nodeHex": iten.thirdHex}} style={{"background": colorPrincipal}} />
+                  <InfoHex valuesHex={{"nameHex": "secondHex", "nodeHex": iten.secondHex}} style={{"background": colorPrincipal}} />
+                  {iten.attributes.length != 0 && <ExtraInfo iten={iten} />}
+                  <CreateIcon iconData={iten.image} isActiveRange={false}/>
               </div>
               {activeIten != undefined ? <EditButtons actionPermit={actionPermit} valid = {{"validSlot":validSlot, "isRemote":nodeInfo.isRemote, "validItem":activeIten.asociatedId == nodeInfo.id}} nodeInfo={nodeInfo} /> : <></>}
             </div>
         </>
     );
+}
+
+function ExtraInfo({iten}){
+  return <>
+    <div className="extraInfo glass">{
+        iten.attributes.map(info => {
+            let classSwitch = info.type+"Row";
+            let switchContainer = <></>;
+            if(info.type == "switch"){
+              classSwitch = "switchRow";
+              switchContainer = 
+              <div className="switchContainer">
+                <div className="switchGrid" style={{"gridTemplateColumns": "repeat("+info.switch.length+", 1fr)", "gridTemplateRows":"repeat(1, 1fr);"}}>
+                  {info.switch.map(iconData => {
+                        return <div><CreateIcon iconData={iconData} isActiveRange={false}/></div>
+                    })
+                  }
+                  </div>
+              </div>
+            }
+
+            return <>
+                <div className="infoRow"> 
+                  {switchContainer}
+                  <div className={classSwitch}> 
+                      {info.content.map(iconData => {
+                          return <CreateIcon iconData={iconData} isActiveRange={false} />
+                  })}
+                  </div>
+                </div>
+                </>
+    })
+    }
+  </div>
+  </>;
 }
 
 function newIdHandler(idModifier, store, nodeInfo) {
@@ -118,31 +127,31 @@ function newIdHandler(idModifier, store, nodeInfo) {
   return newId
 }
 
-function CardIlusion({colorPrincipal}){
+function CardIlusion({style}){
   return <>
     <div className='infoContainerEquipment extra1'>
-      <div className="titliItenInfo" style={colorPrincipal}></div>
+      <div className="titliItenInfo" style={style}></div>
       <div className="bodyItenInfo"></div>
     </div>
     <div className='infoContainerEquipment extra2'>
-      <div className="titliItenInfo" style={colorPrincipal}></div>
+      <div className="titliItenInfo" style={style}></div>
       <div className="bodyItenInfo"></div>
     </div>
   </>
 }
 
 
-function InfoHex({valuesHex, colorPrincipal}){
+function InfoHex({valuesHex, style}){
   let infohex = <></>;
 
   if(valuesHex.nodeHex.length != 0){
     let contentNum = valuesHex.nodeHex.filter(nodeHex => nodeHex.class == "content" ||  nodeHex.class == "miniAvatar").length
     let gridColumns = {"gridTemplateColumns": "repeat("+contentNum+", 1fr)", "gridTemplateRows": valuesHex.nodeHex[0].class == "title" ? "57% 30%" : "100% 30%"};
 
-    infohex = <div className={valuesHex.nameHex} style={colorPrincipal}>
+    infohex = <div className={valuesHex.nameHex} style={style}>
     <div className="gridHex" style={gridColumns}>
       {valuesHex.nodeHex.map(info => {
-            return <div className={info.type+""+info.class}>{createIcon(info)}</div>
+            return <div className={info.type+""+info.class}>{<CreateIcon iconData={info} isActiveRange={false} />}</div>
         })
       }
       </div>
@@ -152,7 +161,7 @@ function InfoHex({valuesHex, colorPrincipal}){
   return infohex;
 }
 
-function StoreList({nodeInfo, actionPermit, colorPrincipal}){
+function StoreList({nodeInfo, actionPermit}){
 
   const [store, setStore] = useContext(StoreContext);
   const [character, setCharacter] = useContext(nodeInfo.isRemote ? RemoteContext : CharacterContext);
@@ -164,7 +173,7 @@ function StoreList({nodeInfo, actionPermit, colorPrincipal}){
   }
 
   const selectHandler = (newId, typeId) => {
-    setinfoCard(<ItenInfo nodeInfo={{"type":typeId, "subType":nodeInfo.subType, "id": newId, "slotId":nodeInfo.slotId, "isRemote":nodeInfo.isRemote}} actionPermit={actionPermit} colorPrincipal={colorPrincipal} />)
+    setinfoCard(<ItenInfo nodeInfo={{"type":typeId, "subType":nodeInfo.subType, "id": newId, "slotId":nodeInfo.slotId, "isRemote":nodeInfo.isRemote}} actionPermit={actionPermit} />)
   };
 
   return <>
@@ -172,7 +181,7 @@ function StoreList({nodeInfo, actionPermit, colorPrincipal}){
     <div className="listStoreContainer">
       <div className="topListSegment">
         <div className="titleList">
-          <span> {createIcon(activeIten.slot)}{activeIten.name} </span>
+          <span> {<CreateIcon iconData={activeIten.slot} isActiveRange={false}/>}{activeIten.name} </span>
         </div>
         <div className="crossList" onClick={closeHandler}>
           x
@@ -207,7 +216,7 @@ function EditButtons({actionPermit, valid, nodeInfo}){
   const unEquipClick = useUnEquip(valid);
   const equipClick = useEquip(valid);
 
-    buttons = <div>
+    buttons = <div className="editButtons">
       {(actionPermit.editActive && !valid.validItem && valid.validSlot ) ? <button onClick={()=>equipClick(nodeInfo)}>Equipar</button> : <></>}
       {(actionPermit.unequipActive && valid.validItem) ? <button onClick={()=>unEquipClick(nodeInfo)}>Descartar</button> : <></>}
       {actionPermit.buyActivve ? <button>Comprar</button> : <></>}
@@ -377,7 +386,7 @@ function ItenModule({store, relevantId, selectHandler}){
   itenModule = activeSlot.map( slots => {
     return <div className={"typeTitle"}>{
       slots.icon.map(icon => {
-        return createIcon(icon)
+        return <CreateIcon iconData={icon} isActiveRange={false} />
       })
     }</div>
   });
@@ -413,12 +422,22 @@ function correctSlot(activeSlot, typeSlot){
   return validate;
 }
 
-function createIcon(iconData){
+function CreateIcon({iconData, isActiveRange}){
 
     let icon;
   
     switch (iconData.type) {
-      case "text": case "range":
+      case "range":
+        if(isActiveRange){
+          icon = 
+          <>
+            <div className={"hexagon range"}>
+              <i>{iconData.code}</i>
+            </div>
+          </>
+          break;
+        }
+      case "text":
         icon = <span className={iconData.class} >{iconData.code}</span>
         break;
   
@@ -449,4 +468,4 @@ function createrCharacterSlot(item, nodeInfo, typeAssignment){
 }
 
 
-export {ItenInfo, StoreList, createIcon};
+export {ItenInfo, StoreList, CreateIcon};

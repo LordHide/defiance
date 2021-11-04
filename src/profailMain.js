@@ -5,9 +5,10 @@ import {ItenInfo, StoreList} from './storeManagement.js';
 import RemoteContext from './context/RemoteContext.js';
 import InfoCardContext from './context/InfoCardContext.js';
 import StoreListContext from './context/StoreListContext.js';
+import {CreateIcon} from './storeManagement.js';
 import svgDispenser from './svgDispenser.js';
 import characterImg from './pngDispenser.js';
-import './ProfileGlobal.css';
+import './css/ProfileGlobal.css';
 import { Stage, Layer, RegularPolygon, Text, Arc, Rect, Image as ImageKonva } from 'react-konva';
 //import useImage from 'use-image';
 
@@ -214,7 +215,8 @@ function CreateInfoContainer({isRemote}){
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
   const [infoActive, setInfoActive] = useState(character.infoContainer[0].name);
   const [dataActive, setDataActive] = useState(cambiarInfoActive(character.infoContainer[0].name, isRemote));
-  const colorPrincipal= {"backgroundColor": "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 0.5)"};
+  const colorPrincipal= "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+", 0.5)";
+  const colorSecondary= "rgba("+character.colorSecon.R+","+character.colorSecon.G+","+character.colorSecon.B+", 0.5)";
   
   return (
     <>
@@ -227,7 +229,7 @@ function CreateInfoContainer({isRemote}){
         </div>
         );
       })}
-      <div style={colorPrincipal} className="infoContainer">
+      <div style={{"background": "linear-gradient("+colorPrincipal+", "+colorSecondary+")"}} className="infoContainer">
         <div className="contenedorGroupElements">
           {dataActive}
         </div>
@@ -237,7 +239,7 @@ function CreateInfoContainer({isRemote}){
             <div className="titleSkill">{skill.title}</div>
             <div className="textSkill">
               {skill.Content.map((content) => {
-                return createIcon(content)
+                return <CreateIcon iconData={content} isActiveRange={true}/>
               })}
             </div>
           </div>
@@ -314,20 +316,21 @@ function GeneratePersonalItems({element, colorPrincipal, extraClass, isRemote, t
   const [infoCard, setinfoCard] = useContext(InfoCardContext);
   const [listStore, setlistStore] = useContext(StoreListContext);
   const [store, setStore] = useContext(StoreContext);
+  const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
   const item = store.items[element.asociatedId];
   const correctSlot = item !== undefined ? activeSlot(item.slots[0].TypeId, element.typeSlot) : false;
   
   const infoHandler = () => {
-    element.asociatedId != -1 ? setinfoCard(<ItenInfo nodeInfo={{"type":"trisha", "subType": typeId, "id": element.asociatedId, "slotId":-1, "isRemote":isRemote }} actionPermit={{"editActive":false, "unequipActive":false, "buyActivve":false}} colorPrincipal={colorPrincipal} />):setinfoCard(<></>);
+    element.asociatedId != -1 ? setinfoCard(<ItenInfo nodeInfo={{"type":character.name, "subType": typeId, "id": element.asociatedId, "slotId":-1, "isRemote":isRemote }} actionPermit={{"editActive":false, "unequipActive":false, "buyActivve":false}} />):setinfoCard(<></>);
   }
   const listHandler = () => {
-    setlistStore(<StoreList nodeInfo={{"typeList":["trisha", 20], "subType": typeId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={colorPrincipal} />);
-    element.asociatedId != -1 ? setinfoCard(<ItenInfo nodeInfo={{"type":"trisha", "subType": typeId, "id": element.asociatedId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={colorPrincipal} />):setinfoCard(<></>);
+    setlistStore(<StoreList nodeInfo={{"typeList":[character.name, 20], "subType": typeId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} colorPrincipal={colorPrincipal} />);
+    element.asociatedId != -1 ? setinfoCard(<ItenInfo nodeInfo={{"type":character.name, "subType": typeId, "id": element.asociatedId, "slotId":element.slotId, "isRemote":isRemote}} actionPermit={{"editActive":true, "unequipActive":true, "buyActivve":false}} />):setinfoCard(<></>);
   }
 
   return (
       <div className="contenedorInfoElement">
-        {createIcon(element.slot)}
+        <CreateIcon iconData={element.slot} isActiveRange={true}/>
         <div className="infoElement1" title={element.name} onClick={listHandler}>
           <div>{(item !== undefined && item.firstHex.length !==0) ?item.name:""}</div>
         </div> 
@@ -337,7 +340,7 @@ function GeneratePersonalItems({element, colorPrincipal, extraClass, isRemote, t
             item.firstHex.map(
               (iconInfo) => {
                 if(iconInfo.code !== '-' && !iconInfo.class.includes("void")){
-                  return createIcon(iconInfo);
+                  return <CreateIcon iconData={iconInfo} isActiveRange={true}/>
                 }
               }
             ): <></>
@@ -346,7 +349,7 @@ function GeneratePersonalItems({element, colorPrincipal, extraClass, isRemote, t
         (item !== undefined && item.secondHex.length !==0 && correctSlot ) ?
           item.secondHex.map(
             (iconInfo) => {
-              return createIcon(iconInfo)
+              return<CreateIcon iconData={iconInfo} isActiveRange={true}/>
             }
           ):<></>
         }
@@ -407,7 +410,7 @@ function statsGeneration(stat, colorPrincipal, colorSecondary){
       stroke= {"rgb(112, 112, 112"}
       strokeWidth={3}
       fillLinearGradientStartPoint= { {x: 50, y: -70} }
-      fillLinearGradientEndPoint= { {x: 50, y: 15} }
+      fillLinearGradientEndPoint= { {x: -50, y: 15} }
       fillLinearGradientColorStops= {[0, colorPrincipal, 1, colorSecondary]}
     />
     <ImageKonva
@@ -419,35 +422,6 @@ function statsGeneration(stat, colorPrincipal, colorSecondary){
     />
     {contentComponent}
   </>);
-}
-
-function createIcon(iconData){
-
-  let icon;
-
-  switch (iconData.type) {
-    case "text":
-      icon = <span>{iconData.code}</span>
-      break;
-
-    case "range":
-      icon = 
-      <>
-        <div className={"hexagon range"}>
-          <i>{iconData.code}</i>
-        </div>
-      </>
-      break;
-
-    case "svg": 
-      icon = <img src={svgDispenser(iconData.code)} alt={iconData.code} />;
-      break;
-  
-    default: icon = <></>
-      break;
-  }
-
-  return icon;
 }
 
 function activeSlot(TypeId, typeSlot){
