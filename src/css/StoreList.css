@@ -51,6 +51,7 @@
     font-size: 2vw;
     margin-bottom: 0;
     height: 50%;
+    text-transform: capitalize;
 }
 
 .item{

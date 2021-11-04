@@ -20,7 +20,7 @@
     margin-left: 13vw;
     width: 74vw;
     height: 9vh;
-    text-transform: capitalize;
+    text-transform: uppercase;
     text-align: center;
     padding-top: 0.5vh;
     clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100% );

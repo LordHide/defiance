@@ -6,6 +6,7 @@ import jazminImg from './Img/jazmin.png';
 import rahmanImg from './Img/rahman.png';
 import defaultImg from './Img/default.png';
 import miniTrishaImg from './Img/miniTrisha.png';
+import miniCadinImg from './Img/miniCadin.png';
 import duchessImg from './Img/duchess.png';
 import logoDefianceImg from './Img/logo-defiance.png';
 import loading from './Img/loading.png';
@@ -29,6 +30,7 @@ function characterImg(name){
       case "revenant" : imgReference = revenantIng; break;
       case "outcast" : imgReference = outcastIng; break;
       case "miniTrisha" : imgReference = miniTrishaImg; break;
+      case "miniCadin" : imgReference = miniCadinImg; break;
       default: return imgReference = defaultImg; break;
     }
   

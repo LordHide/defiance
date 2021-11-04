@@ -60,7 +60,7 @@ function loadCharacter(name){
     case "Trisha" : characterJSON = trishaJSON; break;
     case "uma" : characterJSON = umaJSON; break;
     case "qiang" : characterJSON = qiangJSON; break;
-    case "cadin" : characterJSON = cadinJSON; break;
+    case "Cadin" : characterJSON = cadinJSON; break;
     case "rahman" : characterJSON = rahmanJSON; break;
   }
 
