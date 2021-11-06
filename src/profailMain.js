@@ -41,10 +41,10 @@ function ProfailMain({isRemote, first}) {
               {character.characterState.map( (info, index) => {
                 return stateGeneration(info, index, handleClick);
               } ) }
-              <CreateCanvasSlider imageName={"herida"} index={0} isRemote={isRemote} />     
-              <CreateCanvasSlider imageName={"agro"} index={1} />
+              <CanvasSlider imageName={"herida"} index={0} isRemote={isRemote} />     
+              <CanvasSlider imageName={"agro"} index={1} />
               {character.stats.map( (stat) => {
-                return statsGeneration(stat, colorPrincipal, colorSecondary);
+                return <StatsHexagon stat={stat} colorPrincipal={colorPrincipal} colorSecondary={colorSecondary} />
               } ) }
             </RemoteContext.Provider>
             </CharacterContext.Provider>
@@ -55,7 +55,7 @@ function ProfailMain({isRemote, first}) {
   );
 }
 
-function CreateCanvasSlider({imageName, index, isRemote}){
+function CanvasSlider({imageName, index, isRemote}){
 
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
   const stat = imageName == "herida" ? character.stats[0] : character.stats[1];
@@ -74,47 +74,17 @@ function CreateCanvasSlider({imageName, index, isRemote}){
 
   image.src = svgDispenser(imageName);
 
-  let cells = [];
-  let cellX = window.innerWidth * 0.35;
-  let cellHeight = (window.innerWidth * 0.024)/(statValue);
-  let redDeferencial = 0;
-  let greenDeferencial = 0;
-  let blueDeferencial = 0;
+  const infoCellsList = infoCells(rectY, imageName, stat);
 
-  for (let index = 1; index <= (statValue); index++) {
-
-    redDeferencial += (243 - 50)/statValue;
-    greenDeferencial += (37 - 212)/statValue;
-    blueDeferencial += (51 - 77)/statValue;
-
-    let colorTransition = imageName == "herida" ? 
-      "rgb("+(243 - redDeferencial)+","+ (37 - greenDeferencial)+"," +(51 - blueDeferencial)+")"
-    :
-      "rgb("+(50 + redDeferencial)+","+ (212 + greenDeferencial)+"," +(77 + blueDeferencial)+")";
-
-    const colorActive = index <= stat.current ? colorTransition : "rgb(60, 60, 60)"
-
-    cells.push(<Rect
-      x= {cellX}
-      y= {window.innerWidth * ((rectY + 0.002))+(window.innerWidth * 0.024 - cellHeight)}
-      width= {window.innerWidth * 0.009}
-      height= {cellHeight}
-      fill={colorActive}
-    />);
-    
-    cellX += window.innerWidth * 0.012;
-    cellHeight += (window.innerWidth * 0.024)/statValue;
-
-  }
-
-  cellX += (window.innerWidth * 0.018) + (window.innerWidth * 0.0247) - (window.innerWidth * 0.35) + (window.innerWidth * 0.012) + (window.innerWidth * 0.0247);
+  let lasXPosition = infoCellsList[infoCellsList.length - 1].x + (window.innerWidth * 0.018) + (window.innerWidth * 0.0247) - (window.innerWidth * 0.35) + (window.innerWidth * 0.012) + (window.innerWidth * 0.0247);
+  lasXPosition += window.innerWidth * 0.012;
 
   return(
     <>
       <Rect
         x= {window.innerWidth * 0.3}
         y= {window.innerWidth * rectY}
-        width= {cellX}
+        width= {lasXPosition}
         height= {window.innerWidth * 0.028}
         fill={"rgba(60, 60, 60, 0.5)"}
       />
@@ -134,10 +104,19 @@ function CreateCanvasSlider({imageName, index, isRemote}){
         onClick={handleClickSlider(index, -1, statValue)}
         onTap={handleClickSlider(index, -1, statValue)}
       />
-      {cells}
+      {infoCellsList.map((info) =>{
+        return <Rect
+          x = {info.x}
+          y = {info.y}
+          width = {info.width}
+          height = {info.height}
+          fill={info.fill}
+        />
+      })
+      }
       <Text 
         text={"+"}
-        x= {cellX+(window.innerWidth * 0.276)}
+        x= {lasXPosition+(window.innerWidth * 0.276)}
         y= {window.innerWidth * (rectY + 0.0035)}
         fontSize={window.innerWidth * 0.0247}
         fill={'#fff'}
@@ -148,56 +127,49 @@ function CreateCanvasSlider({imageName, index, isRemote}){
   );
 }
 
+function infoCells(rectY, imageName, stat){
+  const statValue = stat.max + stat.modifier;
+
+  let info = [];
+  let cellX = window.innerWidth * 0.35;
+  let cellHeight = (window.innerWidth * 0.024)/(statValue);
+  let redDeferencial = 0;
+  let greenDeferencial = 0;
+  let blueDeferencial = 0;
+
+  for (let index = 1; index <= (statValue); index++) {
+
+    redDeferencial += (243 - 50)/statValue;
+    greenDeferencial += (37 - 212)/statValue;
+    blueDeferencial += (51 - 77)/statValue;
+
+    let colorTransition = imageName == "herida" ? 
+      "rgb("+(243 - redDeferencial)+","+ (37 - greenDeferencial)+"," +(51 - blueDeferencial)+")"
+    :
+      "rgb("+(50 + redDeferencial)+","+ (212 + greenDeferencial)+"," +(77 + blueDeferencial)+")";
+
+    const colorActive = index <= stat.current ? colorTransition : "rgb(60, 60, 60)";
+
+    info.push({"x":cellX,
+      "y":window.innerWidth * ((rectY + 0.002))+(window.innerWidth * 0.024 - cellHeight),
+      "width": window.innerWidth * 0.009,
+      "height":cellHeight,
+      "fill":colorActive});
+    
+    cellX += window.innerWidth * 0.012;
+    cellHeight += (window.innerWidth * 0.024)/statValue;
+
+  }
+
+  return info;
+}
+
 function stateGeneration(info, index, handleClick){
-  let canvasNode;
-  let alpha = info.active ? 1 : 0.5;
-  let blur = info.active ? 15 : 5;
-  let textColor = info.name != "oculto" ? "#FFF" : "#000";
   const image = new Image();
   image.src = svgDispenser(info.icon.text);
 
-  if(info.name != "oculto" && info.name != "inconsciente"){
-    canvasNode = <RegularPolygon
-      shadowColor= {'rgb('+info.color1+')'}
-      shadowBlur= {blur}
-      shadowOffset= {{ x: info.positionXBlur, y: info.positionYBlur }}
-      shadowOpacity= {0.5}
-      drawBorder= {true}
-      x= {window.innerWidth * (info.positionX)}
-      y= {window.innerWidth * (info.positionY)}
-      rotation= {info.angle}
-      sides= {3}
-      radius= {window.innerWidth * (0.04058)}
-      fillLinearGradientStartPoint= { {x: 50, y: -70} }
-      fillLinearGradientEndPoint= { {x: 50, y: 15} }
-      fillLinearGradientColorStops= {[0, 'rgba('+info.color1+', '+alpha+')', 1, 'rgba('+info.color2+', '+alpha+')']}
-      onClick={handleClick(index)}
-      onTap={handleClick(index)}
-    />
-  }
-  else{
-    canvasNode = <Arc
-      shadowColor= {'rgb('+info.color1+')'}
-      shadowBlur= {blur}
-      shadowOffset= {{ x: info.positionXBlur, y: info.positionYBlur }}
-      shadowOpacity= {0.5}
-      drawBorder= {true}
-      angle={180}
-      innerRadius={0}
-      outerRadius= {window.innerWidth * 0.0288}
-      x= {window.innerWidth * info.positionX}
-      y= {window.innerWidth * (info.positionY)}
-      rotation= {info.angle}
-      fillLinearGradientStartPoint= { {x: 50, y: -70} }
-      fillLinearGradientEndPoint= { {x: 50, y: 15} }
-      fillLinearGradientColorStops= {[0, 'rgba('+info.color1+', '+alpha+')', 1, 'rgba('+info.color2+', '+alpha+')']}
-      onClick={handleClick(index)}
-      onTap={handleClick(index)}
-    />
-  }
-
   return <>
-    {canvasNode}
+    <StatePoligon info={info} index={index} handleClick={handleClick} />
     <ImageKonva
       image={image}
       x= {window.innerWidth * info.icon.x}
@@ -208,6 +180,50 @@ function stateGeneration(info, index, handleClick){
       onTap={handleClick(index)}
     />
   </> 
+}
+
+function StatePoligon({info, index, handleClick}){
+
+  let canvasNode = <></>;
+
+  const infoJson = getStatePoligonConf(info, index, handleClick);
+
+  if(info.name != "oculto" && info.name != "inconsciente"){
+    canvasNode = <RegularPolygon
+      {...infoJson}
+      sides= {3}
+      radius= {window.innerWidth * (0.04058)}
+    />
+  }
+  else{
+    canvasNode = <Arc
+      {...infoJson}
+      angle={180}
+      innerRadius={0}
+      outerRadius= {window.innerWidth * 0.0288}
+    />
+  }
+
+  return canvasNode;
+}
+
+function getStatePoligonConf(info, index, handleClick){
+  let alpha = info.active ? 1 : 0.5;
+  let blur = info.active ? 15 : 5;
+  return {"shadowColor": 'rgb('+info.color1+')',
+    "shadowBlur": blur,
+    "shadowOffset": { x: info.positionXBlur, y: info.positionYBlur },
+    "shadowOpacity": 0.5,
+    "drawBorder": true,
+    "rotation": info.angle,
+    "y": window.innerWidth * (info.positionY),
+    "x": window.innerWidth * (info.positionX),
+    "fillLinearGradientStartPoint": {x: 50, y: -70},
+    "fillLinearGradientEndPoint": {x: 50, y: 15},
+    "fillLinearGradientColorStops": [0, 'rgba('+info.color1+', '+alpha+')', 1, 'rgba('+info.color2+', '+alpha+')'],
+    "onClick": handleClick(index),
+    "onTap": handleClick(index)
+  };
 }
 
 function CreateInfoContainer({isRemote}){
@@ -234,20 +250,22 @@ function CreateInfoContainer({isRemote}){
           {dataActive}
         </div>
         {character.personalSkill.map((skill) => {
-          return (
-          <div className="personalSkill">
-            <div className="titleSkill">{skill.title}</div>
-            <div className="textSkill">
-              {skill.Content.map((content) => {
-                return <CreateIcon iconData={content} isActiveRange={true}/>
-              })}
-            </div>
-          </div>
-          );
+          return <PersonalSkills skill={skill}/>
         })}
       </div>
     </>
   );
+}
+
+function PersonalSkills({skill}){
+  return <div className="personalSkill">
+          <div className="titleSkill">{skill.title}</div>
+          <div className="textSkill">
+            {skill.Content.map((content) => {
+              return <CreateIcon iconData={content} isActiveRange={true}/>
+            })}
+          </div>
+        </div>
 }
 
 function cambiarInfoActive(name, isRemote){
@@ -318,7 +336,6 @@ function GeneratePersonalItems({element, colorPrincipal, extraClass, isRemote, t
   const [store, setStore] = useContext(StoreContext);
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
   const item = store.items[element.asociatedId];
-  const correctSlot = item !== undefined ? activeSlot(item.slots[0].TypeId, element.typeSlot) : false;
   
   const infoHandler = () => {
     element.asociatedId != -1 ? setinfoCard(<ItenInfo nodeInfo={{"type":character.name, "subType": typeId, "id": element.asociatedId, "slotId":-1, "isRemote":isRemote }} actionPermit={{"editActive":false, "unequipActive":false, "buyActivve":false}} />):setinfoCard(<></>);
@@ -331,28 +348,9 @@ function GeneratePersonalItems({element, colorPrincipal, extraClass, isRemote, t
   return (
       <div className="contenedorInfoElement">
         <CreateIcon iconData={element.slot} isActiveRange={true}/>
-        <div className="infoElement1" title={element.name} onClick={listHandler}>
-          <div>{(item !== undefined && item.firstHex.length !==0) ?item.name:""}</div>
-        </div> 
-        <div className={"infoElement2 "+extraClass} onClick={listHandler}>
-          {
-          (item !== undefined && item.firstHex.length !==0 && correctSlot ) ?
-            item.firstHex.map(
-              (iconInfo) => {
-                if(iconInfo.code !== '-' && !iconInfo.class.includes("void")){
-                  return <CreateIcon iconData={iconInfo} isActiveRange={true}/>
-                }
-              }
-            ): <></>
-          }
-        {
-        (item !== undefined && item.secondHex.length !==0 && correctSlot ) ?
-          item.secondHex.map(
-            (iconInfo) => {
-              return<CreateIcon iconData={iconInfo} isActiveRange={true}/>
-            }
-          ):<></>
-        }
+        <div onClick={listHandler}>
+          <InfoElementName element={element} item={item} />
+          <InfoElementRangeDice element={element} item={item} extraClass={extraClass} />
         </div>
         <div className="circleInfo" onClick={infoHandler}>
           <i>
@@ -363,7 +361,30 @@ function GeneratePersonalItems({element, colorPrincipal, extraClass, isRemote, t
   )
 }
 
-function statsGeneration(stat, colorPrincipal, colorSecondary){
+function InfoElementName({element, item}){
+  return <div className="infoElement1" title={element.name}>
+          <div>{(item !== undefined && item.firstHex.length !==0) ?item.name:""}</div>
+        </div> 
+}
+
+function InfoElementRangeDice({element, item, extraClass}){
+  const correctSlot = item.slots.length !== 0 ? activeSlot(item.slots[0].TypeId, element.typeSlot) : false;
+  return  <div className={"infoElement2 "+extraClass}>
+            <InfoHex correctSlot={correctSlot} hex={item.firstHex}/>
+            <InfoHex correctSlot={correctSlot} hex={item.secondHex}/>
+          </div>
+}
+
+function InfoHex({correctSlot, hex}){
+  return hex.map(
+    (iconInfo) => {
+      const itenValido = correctSlot && iconInfo.code !== '-' && !iconInfo.class.includes("void");
+        return itenValido && <CreateIcon iconData={iconInfo} isActiveRange={true}/>
+    }
+  )
+}
+
+function StatsHexagon({stat, colorPrincipal, colorSecondary}){
   let contentComponent = <></>;
   const componentX = window.innerWidth * stat.positionX;
   const componentY = window.innerWidth * stat.positionY;
@@ -372,31 +393,12 @@ function statsGeneration(stat, colorPrincipal, colorSecondary){
   image.src = svgDispenser(stat.marker);
 
   if (typeof (stat.max) === "object") {
-    let imagePositionX = (componentX + contentWidth*0.8);
-    contentComponent =  stat.max.map( (maxData) => {
-      const imageData = new Image();
-      imagePositionX = imagePositionX-((contentWidth*0.8));
-      imageData.src = svgDispenser(maxData.code);
-      return (
-        <ImageKonva
-          image={imageData}
-          x= {(imagePositionX)}
-          y= {(componentY + (window.innerWidth*0.00396))}
-          height= {contentWidth*0.75}
-          width= {contentWidth*0.75}
-        />);
-    })
+
+    contentComponent = <StatImage stat={stat} positions={{"componentX":componentX, "contentWidth":contentWidth, "componentY":componentY}} />
    
   }
   else{
-  contentComponent = 
-    <Text 
-      text={stat.max}
-      x= {componentX - (contentWidth)/3.7}
-      y= {(componentY + (window.innerWidth*0.00396))}
-      fontSize={contentWidth}
-      fill={'#fff'}
-    />;
+  contentComponent = <StatText stat={stat} positions={{"componentX":componentX, "contentWidth":contentWidth, "componentY":componentY}} />;
   }
 
   return (
@@ -422,6 +424,35 @@ function statsGeneration(stat, colorPrincipal, colorSecondary){
     />
     {contentComponent}
   </>);
+}
+
+function StatImage({stat, positions}){
+  let imagePositionX = stat.max.length > 1 ? (positions.componentX + positions.contentWidth*0.8) : 0;
+  const contentComponent =  stat.max.map( (maxData) => {
+    const imageData = new Image();
+    imagePositionX = stat.max.length > 1 ? imagePositionX-((positions.contentWidth*0.8)) : positions.componentX - positions.contentWidth*0.33;
+    imageData.src = svgDispenser(maxData.code);
+    return (
+      <ImageKonva
+        image={imageData}
+        x= {(imagePositionX)}
+        y= {(positions.componentY + (window.innerWidth*0.00396))}
+        height= {positions.contentWidth*0.75}
+        width= {positions.contentWidth*0.75}
+      />);
+  })
+
+  return contentComponent;
+}
+
+function StatText({stat, positions}){
+    return <Text 
+    text={stat.max}
+    x= {stat.max.toString().length === 1 ? positions.componentX - (positions.contentWidth)/3.7 : positions.componentX - (positions.contentWidth)/1.7 }
+    y= {(positions.componentY + (window.innerWidth*0.00396))}
+    fontSize={positions.contentWidth}
+    fill={'#fff'}
+  />;
 }
 
 function activeSlot(TypeId, typeSlot){

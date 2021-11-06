@@ -281,11 +281,11 @@ div.svgtitle{
         left: 15vw;
     }
     .infoContainerEquipment.extra1{
-        top: -35vh;
+        top: 4vh;
         left: 18vw;
     }
     .infoContainerEquipment.extra2{
-        top: -32vh;
+        top: 11vh;
         left: 16.5vw;
     }
     .crossCard{
@@ -307,11 +307,11 @@ div.svgtitle{
         height: 5.5vw;
     }
     .secondHex{
-        top: -9.1vh;
+        top: 22.9vh;
     }
     .thirdHex{
         left: 53.7vw;
-        top: -9.4vh;
+        top: 12.6vh;
     }
     .firstHex p, .thirdHex p, .secondHex p {
         font-size: 2vw;

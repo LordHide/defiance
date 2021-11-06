@@ -56,19 +56,33 @@ function ChooseExpansion({onCharacterChange}){
 }
 
 function ChoseCharacter({onProfileChange}){
-  return <div className="characterdivContainer">
-    {charactersJSON.characterInfo.map((character) => {
-      const imagenCharacter = detectMob() ? "mini"+character.name : character.name.toLowerCase();
-      const colorPrincipal= "rgba("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")";
-      const colorSecondary= "rgba("+character.colorSecon.R+","+character.colorSecon.G+","+character.colorSecon.B+")";
-      return<>
-      <div style={{"background": "linear-gradient("+colorPrincipal+", "+colorSecondary+")"}} className="characterButton" onClick={() => onProfileChange(character.name)} > 
-        <CreateIcon iconData={{"type": "png", "code": imagenCharacter, "class": "characterImg"}} isActiveRange={false}/>
-        <div>{character.nameFull}</div>
-      </div>
-      </>
-    })
-    }
+  return <>
+    <div className="characterdivContainer">
+      {charactersJSON.characterInfo.map((character) => {
+        return <CharacterSlot character={character} onProfileChange={onProfileChange} />
+      })
+      }
+    </div>
+  </>
+}
+
+function CharacterSlot({character, onProfileChange}){
+  const [clipPath, setclipPath] = useState({clipPath: "polygon(0 50%, 50% 100%, 100% 50%, 50% 0 )", opacity: "0.65"});
+
+  const imagenCharacter = detectMob() ? "mini"+character.name : character.name.toLowerCase();
+  const colorPrincipal= "rgb("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")";
+  const colorSecondary= "rgb("+character.colorSecon.R+","+character.colorSecon.G+","+character.colorSecon.B+")";
+  return<div 
+    style={
+      {filter: "drop-shadow(-12px 26px 3px rgba(50, 50, 0, 0.5))",
+      width: "15vw",
+      height: "75vh"}}
+    onMouseOver={()=>{setclipPath({clipPath:"polygon(0 0, 100% 0, 100% 100%, 0 100%)", opacity: "1"})}}
+    onMouseLeave={()=>{setclipPath({clipPath:"polygon(0 50%, 50% 100%, 100% 50%, 50% 0 )", opacity: "0.65"})}}>
+    <div style={{"background": "linear-gradient("+colorPrincipal+", "+colorSecondary+")", ...clipPath}} className="characterButton" onClick={() => onProfileChange(character.name)} > 
+      <CreateIcon iconData={{"type": "png", "code": imagenCharacter, "class": "characterImg"}} isActiveRange={false}/>
+      <div>{character.nameFull}</div>
+    </div>
   </div>
 }
 

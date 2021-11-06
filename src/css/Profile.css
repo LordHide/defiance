@@ -44,25 +44,13 @@
 .konvajs-content{
   left: 24vw;
 }
-::-webkit-scrollbar {
-    width: 0.5VW;
-  }
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
 .contenedorInfoElement{
     margin-top: 1%;
     color: #FFF;
     display: flex;
+}
+.contenedorInfoElement > div{
+  display: flex;
 }
 .contenedorInfoElement > img{
     margin-left: 1%;
@@ -118,7 +106,7 @@
 }
 .infoOptions{
     position: relative;
-    top: 35.5vh;
+    top: 34.5vh;
     font-size: 1.7vw;
     left: -60vw;
     padding: 0.2vw;
@@ -205,6 +193,7 @@
     font-size: 1.4vw;
     padding-top: 2%;
     padding-left: 5%;
+    padding-bottom: 2%;
   }
 
   .healthStatIcon{

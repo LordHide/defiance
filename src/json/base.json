@@ -70,6 +70,17 @@
         }
     },
     "items": {
+        "-1": {
+            "name": "",
+            "firstHex": [],
+            "itenTypes":"", 
+            "secondHex": [],
+            "thirdHex": [],
+            "image":  {"type": "png", "code": "", "class": ""},
+            "attributes": [],
+            "slots":[],
+            "unlock": false
+        },
         "1": {
             "name": "dispositivo de hacker defensivo",
             "firstHex": [

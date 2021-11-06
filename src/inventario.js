@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import CharacterContext from './context/CharacterContext.js';
 import StoreContext from './context/storeContext.js';
 import {ItenInfo, StoreList} from './storeManagement.js';
