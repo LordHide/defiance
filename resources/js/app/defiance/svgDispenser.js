@@ -1,5 +1,6 @@
 import dadoAmarillo from './Img/svg/dadoAmarillo.svg';
 import dadoNaranja from './Img/svg/dadoNaranja.svg';
+import dadoRojo from './Img/svg/dadoRojo.svg';
 import dadoAzul from './Img/svg/dadoAzul.svg';
 import dadoVerde from './Img/svg/dadoVerde.svg';
 import dadoNegro from './Img/svg/dadoNegro.svg';
@@ -8,13 +9,14 @@ import software from './Img/svg/software.svg';
 import salud from './Img/svg/salud.svg';
 import defensa from './Img/svg/defensa.svg';
 import agro from './Img/svg/agro.svg';
-import velocidad from './Img/svg/velocidad.svg';
+import movimiento from './Img/svg/movimiento.svg';
 import ardiendo from './Img/svg/ardiendo.svg';
 import aturdido from './Img/svg/aturdido.svg';
 import marcado from './Img/svg/marcado.svg';
 import concentrado from './Img/svg/concentrado.svg';
 import inmovilizado from './Img/svg/inmovilizado.svg';
 import inconsciente from './Img/svg/inconsciente.svg';
+import poisoned from './Img/svg/poisoned.svg';
 import oculto from './Img/svg/oculto.svg';
 import herida from './Img/svg/herida.svg';
 import especialBlack from './Img/svg/especialBlack.svg';
@@ -36,100 +38,106 @@ function svgDispenser(marker){
     let svg;
 
     switch (marker) {
-        case "dadoNegro":
+        case "diceblack":
             svg = dadoNegro;
             break;
-        case "dadoAmarillo":
+        case "diceYellow":
             svg = dadoAmarillo;
             break;
-        case "dadoAzul":
+        case "diceblue":
             svg = dadoAzul;
             break;
-        case "dadoNaranja":
+        case "diceOrange":
             svg = dadoNaranja;
             break;
-        case "dadoVerde":
+        case "diceRed":
+            svg = dadoRojo;
+            break;
+        case "diceGreen":
             svg = dadoVerde;
             break;
         case "software":
             svg = software;
             break;
-        case "salud":
+        case "health":
             svg = salud;
             break;
-        case "defensa":
+        case "defense":
             svg = defensa;
             break;
         case "agro":
             svg = agro;
             break;
-        case "velocidad":
-            svg = velocidad;
+        case "movement":
+            svg = movimiento;
             break;
-        case "ardiendo":
+        case "burning":
             svg = ardiendo;
             break;
-        case "aturdido":
+        case "stunned":
             svg = aturdido;
             break;
-        case "marcado":
+        case "marked":
             svg = marcado;
             break;
-        case "concentrado":
+        case "concentrated":
             svg = concentrado;
             break;
-        case "cegado":
+        case "blind":
             svg = cegado;
             break;
-        case "inmovilizado":
+        case "poisoned":
+            svg = poisoned;
+            break;
+        case "immobilized":
             svg = inmovilizado;
             break;
-        case "inconsciente":
+        case "unconscious":
             svg = inconsciente;
             break;
-        case "oculto":
+        case "hidden":
             svg = oculto;
             break;
-        case "herida":
+        case "wound":
             svg = herida;
             break;
-        case "especialWhite":
+        case "specialWhite":
             svg = especialWhite;
             break;
-        case "especialBlack":
+        case "specialBlack":
             svg = especialBlack;
             break;
         case "exitoBlack":
             svg = exitoBlack;
             break;
-        case "escudo":
+        case "shield":
             svg = escudo;
             break;
-        case "packete":
+        case "package":
             svg = packete;
             break;
-        case "bloqueoWhite":
+        case "guardWhite":
             svg = bloqueoWhite;
             break;
-        case "bloqueoBlack":
+        case "guardBlack":
             svg = bloqueoBlack;
             break;
-        case "mano":
+        case "hand":
             svg = mano;
             break;
-        case "casco":
+        case "helmet":
             svg = casco;
             break;
-        case "pecho":
+        case "chest":
             svg = pecho;
             break;
-        case "equipo":
+        case "equipment":
             svg = equipo;
             break;
-        case "accion":
+        case "action":
             svg = accion;
             break;
-        case "dano":
+        case "damage":
             svg = dano;
             break;
         default:

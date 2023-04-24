@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CharacterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +16,4 @@ use App\Http\Controllers\CharacterController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/character/{id}', [CharacterController::class, 'show']);
+require __DIR__.'/auth.php';

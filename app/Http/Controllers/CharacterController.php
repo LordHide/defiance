@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Character;
+use App\Models\BaseCharactersInfo;
 
 class CharacterController extends Controller
 {
@@ -13,8 +14,21 @@ class CharacterController extends Controller
      * @param  int  $id
      * @return Character info
      */
-    public function show($id)
-    {die(var_dump(Character::findOrFail($id)->attributes));
-        return Character::findOrFail($id);
+    public function firstCharacterLoad(Request $request): array
+    {
+        $response = ["userCharacters" => [], "baseCharacters" => []];
+
+        $character = Character::select('*')
+            ->where('user_id', '=', auth()->user()->id)
+            ->limit($request->userCharactersLimit)
+            ->get();
+
+        $baseCharactersInfo = BaseCharactersInfo::select('*')
+            ->get();
+
+        $response["baseCharacters"] = $baseCharactersInfo;
+        $response["userCharacters"] = $character;
+
+        return $response;
     }
 }

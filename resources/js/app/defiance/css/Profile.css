@@ -102,7 +102,7 @@
 }
 .infoElement2.Specialty{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 .infoOptions{
     position: relative;

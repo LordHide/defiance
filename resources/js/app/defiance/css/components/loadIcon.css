@@ -1,0 +1,36 @@
+.logingButtom:has(.iconCont){
+    padding: 0;
+}
+
+.iconCont{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.iconCont div{
+    width: calc(4.5vw / 4);
+    background-color: #444;
+    transform: skewX(350deg);
+    height: 0;
+    transition: height;
+    animation: aparicionLinear 1s linear calc(var(--animation-order) * 100ms) infinite;
+}
+
+.iconCont div:nth-child(1){
+    --animation-order: 0;
+}
+
+.iconCont div:nth-child(2){
+    --animation-order: 1;
+}
+
+.iconCont div:nth-child(3){
+    --animation-order: 2;
+}
+
+@keyframes aparicionLinear {
+    from {height: 0;}
+    to {height: 2.8vh;}
+}

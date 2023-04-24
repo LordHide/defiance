@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Equipment;
+use App\Models\Item;
 use App\Models\Tag;
 
 class CreateEquipmentTagTable extends Migration
@@ -18,7 +18,7 @@ class CreateEquipmentTagTable extends Migration
         Schema::create('equipmentTags', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignIdFor(Equipment::class);
+            $table->foreignIdFor(Item::class);
             $table->foreignIdFor(Tag::class);
         });
     }

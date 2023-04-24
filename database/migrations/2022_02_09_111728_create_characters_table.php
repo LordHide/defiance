@@ -18,14 +18,6 @@ class CreateCharactersTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name', 25);
-            $table->string('type', 25);
-            $table->string('nameFull', 35);
-            $table->integer('colorPrimeR');
-            $table->integer('colorPrimeG');
-            $table->integer('colorPrimeB');
-            $table->integer('colorSeconR');
-            $table->integer('colorSeconG');
-            $table->integer('colorSeconB');
             $table->foreignIdFor(User::class);
         });
     }

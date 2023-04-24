@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class InfoIcon extends Model
 {
+    protected $table = 'infoIcons';
+    protected $primaryKey = 'id';
     use HasFactory;
 }

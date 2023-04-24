@@ -17,7 +17,6 @@ class CreateInfoIconsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->enum('type', ['svg', 'text', 'png']);
-            $table->string('code', 25);
             $table->string('class', 50);
         });
     }

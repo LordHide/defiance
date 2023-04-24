@@ -1,0 +1,98 @@
+fieldset{
+    display: flex;
+    flex-direction: column;
+    border:0 none;
+}
+
+.fielsetLog1{
+    border: 1px solid #e2e8f0;
+}
+
+.fieldset{
+    /* width: 35vw;
+    height: 15vh; */
+    border: 2px solid;
+    border-top: none;
+    /* font-size: 1.17vw; */
+}
+
+.fieldsetHeader{
+    display: flex;
+    margin-top: -1.5%;
+}
+
+legend:nth-child(1):before {
+    width: 2vw;
+    margin: 0 2% 0 -1%;
+}
+
+legend:nth-child(1):after {
+    width: 8vw;
+    margin: 0 -3% 0 2%;
+}
+
+legend:nth-child(2):before {
+    width: 8vw;
+    margin: 0 2% 0 -3%;
+}
+
+legend:nth-child(2):after {
+    width: 2vw;
+    margin: 0 -1% 0 2%;
+}
+
+legend:before {
+    border-top: 2px solid;
+    position: relative;
+    content: ' ';
+    float: left;
+    top: 14%;
+}
+
+legend:after {
+    border-top: 2px solid;
+    position: relative;
+    content: ' ';
+    float: right;
+    top: 14%;
+}
+
+.legendText{
+    position: relative;
+    top: -7px;
+    cursor: pointer;
+}
+
+.fromLabel{
+    overflow: hidden;
+    /* width: 26vw; */
+    /* width: calc(2vw + 2vw + 8vw +8vw); */
+    height: 1.8rem;
+    margin-top: 1%;
+}
+
+.fromimput, .fromLabel{
+    /* width: calc((2 + 2 + 8 +8)* 1vw + (9rem)); */
+    width: 26vw;
+}
+
+.logingButtom{
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    padding-top: 0.05rem;
+    padding-bottom: 0.05rem;
+    padding-left: 1rem;
+    border-radius: 0.375rem;
+    padding-right: 1rem;
+    align-items: center;
+    margin-left: 7rem;
+    top: 1rem;
+    height: 2rem;
+    width: 5rem;
+    display: block;
+    margin-top: 1vh;
+    margin-bottom: 3%;
+  }

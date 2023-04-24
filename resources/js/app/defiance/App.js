@@ -1,105 +1,63 @@
 import Profile from './Profile';
-import React, {useEffect, useState} from 'react';
-import {CreateIcon} from './storeManagement.js';
-import charactersJSON from './json/characters.json';
+import {Login} from './components/login';
+import React, {useState } from 'react';
+import { ChooseExpansion } from './components/ChooseExpansion.js';
+import { ChooseCharacter } from './components/ChooseCharacter.js';
+import { Welcome } from './components/welcome.js';
+import { StartMenu } from './components/startMenu.js';
+import UserContext from './context/UserContext.js';
+import InfoIconContext from './context/InfoIconContext.js';
+import './css/App.css';
+import BaseCharactersContext from './context/baseCharactersContext.js';
+import UserCharactersContext from './context/userCharactersContext.js';
 
 function App() {
-  const [isLoading, setLoading] = useState(true);
-  const [isExpansion, setExpansion] = useState(false);
-  const [isCharacter, setCharacter] = useState(false);
+  const [isWelcome, setIsWelcome] = useState(false);
+  const [isExpansion, setIsExpansion] = useState(false);
+  const [isCharacter, setIsCharacter] = useState(false);
+  const [isStartMenu, setIsStartMenu] = useState(false);
   const [profile, setProfile] = useState("");
+  const [isLogged, setLogging] = useState(true);
+  const [userData, setUserData] = useState({});
+  const [baseCharacters, setBaseCharacters] = useState({});
+  const [userCharacters, setUserCharacters] = useState({});
+  const [infoIcon, setInfoIcon] = useState({});
 
-  useEffect(() => {
-    setTimeout(function(){ setLoading(false); setExpansion(true) }, 3000);
-  }, []);
-
-  return <>
-    {isLoading && <Loading/>}
-    {isExpansion && <ChooseExpansion onCharacterChange={()=>{
-      setExpansion(false);
-      setCharacter(true);
+  return <div className={isLogged ? "loggingApp mainApp" : "notloggingApp mainApp"}>
+    <div className='backgroundCircuits'><img src='/images/circuits.png'></img></div>
+    <div className='backgroundCircuits'><img src='/images/circuits.png'></img></div>
+    <div className='backgroundHexagons'><img src='/images/hexagon.png'></img></div>
+    <div className='backgroundHexagons'><img src='/images/hexagon.png'></img></div>
+    <UserContext.Provider value={[userData, setUserData]}>
+    <BaseCharactersContext.Provider value={[baseCharacters, setBaseCharacters]}>
+    <UserCharactersContext.Provider value={[userCharacters, setUserCharacters]}>
+    <InfoIconContext.Provider value={[infoIcon, setInfoIcon]}>
+    {isLogged && <Login onUserLoad={() => {
+      setLogging(false);
+      setIsWelcome(true);
     }} />}
-    {isCharacter && <ChoseCharacter onProfileChange={(name)=>{
-      setCharacter(false);
-      setProfile(name);
-    }}/>}
-    {profile && <Profile name={profile}/>}
-  </>
-}
-
-function Loading(){
-  return <div className="loading">
-    <div>
-      <CreateIcon iconData={{"type": "png", "code": "logoDefianceImg", "class": "logoLoading"}} isActiveRange={false}/>
-      <div className="containerCircleLoading">
-        <CreateIcon iconData={{"type": "png", "code": "loading", "class": "circleLoading"}} isActiveRange={false}/>
-      </div>
-    </div>
-  </div>;
-}
-
-function ChooseExpansion({onCharacterChange}){
-  return <div className="expansionButtonContainer">
-    <div className="expansionButton" onClick={() => onCharacterChange(true)} > 
-      <CreateIcon iconData={{"type": "png", "code": "core", "class": "expansionImg"}} isActiveRange={false}/>
-      <div> CORE </div> 
-    </div>
-    <div className="expansionButton" onClick={() => onCharacterChange(true)} > 
-      <CreateIcon iconData={{"type": "png", "code": "outcast", "class": "expansionImg"}} isActiveRange={false}/>
-      <div> OUTCAST </div> 
-    </div>
-    <div className="expansionButton" onClick={() => onCharacterChange(true)} > 
-      <CreateIcon iconData={{"type": "png", "code": "revenant", "class": "expansionImg"}} isActiveRange={false}/>
-      <div> REVENANT </div> 
-    </div>
+    {isWelcome && <Welcome firstLoad={true} onLoad={() => {
+      setIsWelcome(false);
+      setIsStartMenu(true);
+    }} />}
+    {isStartMenu && <StartMenu optioSelected={() => {
+      setIsStartMenu(false);
+      setIsExpansion(true);
+    }} />}
+    {isExpansion && <ChooseExpansion onCharacterChange={() => {
+      setIsExpansion(false);
+      setIsCharacter(true);
+    }} />}
+    {isCharacter && <ChooseCharacter onProfileChange={(id) => {
+      setIsCharacter(false);
+      setProfile(id, "");
+    }} />}
+    {profile && <Profile id={profile} />}
+    </InfoIconContext.Provider>
+    </UserCharactersContext.Provider>
+    </BaseCharactersContext.Provider>
+    </UserContext.Provider>
   </div>
-}
-
-function ChoseCharacter({onProfileChange}){
-  return <>
-    <div className="characterdivContainer">
-      {charactersJSON.characterInfo.map((character) => {
-        return <CharacterSlot character={character} onProfileChange={onProfileChange} />
-      })
-      }
-    </div>
-  </>
-}
-
-function CharacterSlot({character, onProfileChange}){
-  const [clipPath, setclipPath] = useState({clipPath: "polygon(0 50%, 50% 100%, 100% 50%, 50% 0 )", opacity: "0.65"});
-
-  const imagenCharacter = detectMob() ? "mini"+character.name : character.name.toLowerCase();
-  const colorPrincipal= "rgb("+character.colorPrime.R+","+character.colorPrime.G+","+character.colorPrime.B+")";
-  const colorSecondary= "rgb("+character.colorSecon.R+","+character.colorSecon.G+","+character.colorSecon.B+")";
-  return<div 
-    style={
-      {filter: "drop-shadow(-12px 26px 3px rgba(50, 50, 0, 0.5))",
-      width: "15vw",
-      height: "75vh"}}
-    onMouseOver={()=>{setclipPath({clipPath:"polygon(0 0, 100% 0, 100% 100%, 0 100%)", opacity: "1"})}}
-    onMouseLeave={()=>{setclipPath({clipPath:"polygon(0 50%, 50% 100%, 100% 50%, 50% 0 )", opacity: "0.65"})}}>
-    <div style={{"background": "linear-gradient("+colorPrincipal+", "+colorSecondary+")", ...clipPath}} className="characterButton" onClick={() => onProfileChange(character.name)} > 
-      <CreateIcon iconData={{"type": "png", "code": imagenCharacter, "class": "characterImg"}} isActiveRange={false}/>
-      <div>{character.nameFull}</div>
-    </div>
-  </div>
-}
-
-function detectMob() {
-  const toMatch = [
-      /Android/i,
-      /webOS/i,
-      /iPhone/i,
-      /iPad/i,
-      /iPod/i,
-      /BlackBerry/i,
-      /Windows Phone/i
-  ];
-  
-  return toMatch.some((toMatchItem) => {
-      return navigator.userAgent.match(toMatchItem);
-  });
 }
 
 export default App;

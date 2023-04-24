@@ -1,6 +1,6 @@
 {
     "name":"rahman",
-    "type": "Armored",
+    "type": "Doctor",
     "nameFull": "RAHMAN ROUHANI",
     "stats":[
         {"name":"health", "max":9, "current":9, "modifier":0, "marker": "salud", "positionX": 0.590, "positionY":0.034},

@@ -1,0 +1,57 @@
+
+.loggingApp .backgroundCircuits, .loggingApp .backgroundHexagons{
+    display: none;
+}
+
+.backgroundCircuits{
+    position: absolute;
+    bottom: 20vh;
+    bottom: 20svh;
+    z-index: -1;
+    animation-name: magicAparition;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+}
+
+.backgroundCircuits img{
+    width: 19.5vw;
+    height: 58vh;
+    height: 58svh;
+    opacity: 0.3;
+}
+
+.backgroundCircuits:nth-child(even){
+    right: 0;
+    transform: scaleX(-1) scaleY(-1);
+}
+
+.backgroundHexagons{
+    position: absolute;
+    z-index: -1;
+    animation-name: magicAparition;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+}
+
+.backgroundHexagons img{
+    width: 24.2vw;
+    height: 13.5svw;
+    opacity: 0.3;
+}
+
+.backgroundHexagons:nth-child(odd){
+    left: 11vw;
+    top: 0;
+}
+
+.backgroundHexagons:nth-child(even){
+    right: 11vw;
+    bottom: 0;
+    transform: scaleX(-1) scaleY(-1);
+}
+
+
+.mainApp{
+    z-index: 1;
+    position: relative;
+}

@@ -1,0 +1,22 @@
+.startMenu{
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: space-evenly;
+    z-index: 1;
+    position: relative;
+}
+
+.buttonsStartMenu{
+    height: 15vh;
+    width: 60vw;
+    cursor: pointer;
+    background-color: rgba(62, 54, 54, 0.6);
+    color: #FFF;
+    font-size: 3rem;
+}
+
+.buttonsStartMenu:disabled{
+    opacity: 0.6;
+    cursor: no-drop;
+}
