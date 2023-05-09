@@ -38,106 +38,106 @@ function svgDispenser(marker){
     let svg;
 
     switch (marker) {
-        case "diceblack":
+        case "_diceblack":
             svg = dadoNegro;
             break;
-        case "diceYellow":
+        case "_diceYellow":
             svg = dadoAmarillo;
             break;
-        case "diceblue":
+        case "_diceblue":
             svg = dadoAzul;
             break;
-        case "diceOrange":
+        case "_diceOrange":
             svg = dadoNaranja;
             break;
-        case "diceRed":
+        case "_diceRed":
             svg = dadoRojo;
             break;
-        case "diceGreen":
+        case "_diceGreen":
             svg = dadoVerde;
             break;
-        case "software":
+        case "_software":
             svg = software;
             break;
-        case "health":
+        case "_health":
             svg = salud;
             break;
-        case "defense":
+        case "_defense":
             svg = defensa;
             break;
-        case "agro":
+        case "_agro":
             svg = agro;
             break;
-        case "movement":
+        case "_movement":
             svg = movimiento;
             break;
-        case "burning":
+        case "_burning":
             svg = ardiendo;
             break;
-        case "stunned":
+        case "_stunned":
             svg = aturdido;
             break;
-        case "marked":
+        case "_marked":
             svg = marcado;
             break;
-        case "concentrated":
+        case "_concentrated":
             svg = concentrado;
             break;
-        case "blind":
+        case "_blind":
             svg = cegado;
             break;
-        case "poisoned":
+        case "_poisoned":
             svg = poisoned;
             break;
-        case "immobilized":
+        case "_immobilized":
             svg = inmovilizado;
             break;
-        case "unconscious":
+        case "_unconscious":
             svg = inconsciente;
             break;
-        case "hidden":
+        case "_hidden":
             svg = oculto;
             break;
-        case "wound":
+        case "_wound":
             svg = herida;
             break;
-        case "specialWhite":
+        case "_specialWhite":
             svg = especialWhite;
             break;
-        case "specialBlack":
+        case "_specialBlack":
             svg = especialBlack;
             break;
-        case "exitoBlack":
+        case "_exitoBlack":
             svg = exitoBlack;
             break;
-        case "shield":
+        case "_shield":
             svg = escudo;
             break;
-        case "package":
+        case "_package":
             svg = packete;
             break;
-        case "guardWhite":
+        case "_guardWhite":
             svg = bloqueoWhite;
             break;
-        case "guardBlack":
+        case "_guardBlack":
             svg = bloqueoBlack;
             break;
-        case "hand":
+        case "_hand":
             svg = mano;
             break;
-        case "helmet":
+        case "_helmet":
             svg = casco;
             break;
-        case "chest":
+        case "_chest":
             svg = pecho;
             break;
-        case "equipment":
+        case "_equipment":
             svg = equipo;
             break;
-        case "action":
+        case "_action":
             svg = accion;
             break;
-        case "damage":
+        case "_damage":
             svg = dano;
             break;
         default:

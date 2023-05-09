@@ -23,8 +23,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Al Iniciode tu Activación ouedes ganar el Estado /15/ Concentrado",
-                'text_en' => "At the beginning of yor Activation you may gain the /15/ Focused state",
+                'text_es' => "Al Iniciode tu Activación ouedes ganar el Estado /_concentrated/ Concentrado",
+                'text_en' => "At the beginning of yor Activation you may gain the /_concentrated/ Focused state",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -47,8 +47,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "34/Compilador Avanzado: Sustiye un Software intalado en tu dispositivo de Hacker por otro en tu inventario que no esté instalado.",
-                'text_en' => "34/Advanced Compiler: Replace an installled Software of your choosing with another one from your inventory that is not installed.",
+                'text_es' => "/_action/Compilador Avanzado: Sustiye un Software intalado en tu dispositivo de Hacker por otro en tu inventario que no esté instalado.",
+                'text_en' => "/_action/Advanced Compiler: Replace an installled Software of your choosing with another one from your inventory that is not installed.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -67,8 +67,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Una vez durante tu Activación cuando inflinjas /21/ a un Enemigo, puedes tomar una ficha de /11/ de un Personaje y ponerla en tu carta de Personaje.",
-                'text_en' => "Once per Activation, when you inflict any /21/ to an Enemy, you may take a /11/ taken from a Character and place it on your Character card.",
+                'text_es' => "Una vez durante tu Activación cuando inflinjas /_wound/ a un Enemigo, puedes tomar una ficha de /_agro/ de un Personaje y ponerla en tu carta de Personaje.",
+                'text_en' => "Once per Activation, when you inflict any /_wound/ to an Enemy, you may take a /_agro/ taken from a Character and place it on your Character card.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -77,8 +77,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Una ve por Tirada de /10/, puedes volver a lanzar cualquier dado en el que hayas obtenido una cara blanca.",
-                'text_en' => "Once per /10/ Roll, you may re-roll any die that rolled a blank face.",
+                'text_es' => "Una ve por Tirada de /_defense/, puedes volver a lanzar cualquier dado en el que hayas obtenido una cara blanca.",
+                'text_en' => "Once per /_defense/ Roll, you may re-roll any die that rolled a blank face.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -87,8 +87,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Si estás equipada con dos Armas Ligeras puedes añadir un /1/ a tus Tiradas de Ataque.",
-                'text_en' => "If equipped with two Light Weapons, you may add one /1/ to your Atack Rolls.",
+                'text_es' => "Si estás equipada con dos Armas Ligeras puedes añadir un /_diceYellow/ a tus Tiradas de Ataque.",
+                'text_en' => "If equipped with two Light Weapons, you may add one /_diceYellow/ to your Atack Rolls.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -97,8 +97,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Si estás equipada con dos Armas Ligeras puedes añadir a tus Tiradas de Ataque un /25/ por cada cara blanca obtenida en cualquiera de tus dados.",
-                'text_en' => "If equipped with two Light Weapons, you may add one /25/ to your Attack Rolls for each blank face rolled on your dice.",
+                'text_es' => "Si estás equipada con dos Armas Ligeras puedes añadir a tus Tiradas de Ataque un /_successWhite/ por cada cara blanca obtenida en cualquiera de tus dados.",
+                'text_en' => "If equipped with two Light Weapons, you may add one /_successWhite/ to your Attack Rolls for each blank face rolled on your dice.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -117,8 +117,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "34/Tratamiento Avanzado: Un Personaje adyacente (que no sea un Remoto) puede voltear una Secuela para cancelar sus Efectos (recibiendo entonces -1/9/).",
-                'text_en' => "34/Advanced Treatment: An adjacent Character (other than a Remote) may flip a Consequence to cancel its Effects (then receiving -1/9/).",
+                'text_es' => "/_action/Tratamiento Avanzado: Un Personaje adyacente (que no sea un Remoto) puede voltear una Secuela para cancelar sus Efectos (recibiendo entonces -1/_health/).",
+                'text_en' => "/_action/Advanced Treatment: An adjacent Character (other than a Remote) may flip a Consequence to cancel its Effects (then receiving -1/_health/).",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -127,8 +127,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Durante tu Ativación, tus Tiradas de Ataque añade /25//25/ si has gastado puntos de movimiento durante la misma Activación.",
-                'text_en' => "During your Actiation, add /25//25/ to your Attack Rolls if you have spent movement points during the same Activation.",
+                'text_es' => "Durante tu Ativación, tus Tiradas de Ataque añade /_successWhite//_successWhite/ si has gastado puntos de movimiento durante la misma Activación.",
+                'text_en' => "During your Actiation, add /_successWhite//_successWhite/ to your Attack Rolls if you have spent movement points during the same Activation.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -137,8 +137,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Inmediatamente después de que inflinjas cualquier cantidad de /21/ al resolver una Tirada de Combate, puedes Desplazarte.",
-                'text_en' => "Immediately after your inflict any number of /21/ during a Combat Roll, you may Displace.",
+                'text_es' => "Inmediatamente después de que inflinjas cualquier cantidad de /_wound/ al resolver una Tirada de Combate, puedes Desplazarte.",
+                'text_en' => "Immediately after your inflict any number of /_wound/ during a Combat Roll, you may Displace.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -187,8 +187,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Al Inicio de tu Activación puedes ganar el estado /15/ Concentrado.",
-                'text_en' => "At the beginning of your Activation you may impose the /15/ Focused state on yourself.",
+                'text_es' => "Al Inicio de tu Activación puedes ganar el estado /_concentrated/ Concentrado.",
+                'text_en' => "At the beginning of your Activation you may impose the /_concentrated/ Focused state on yourself.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -267,8 +267,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Puedes añadir /25/25/ a tus Tiradas de Ataque si tienes el estado /20/ Oculto.",
-                'text_en' => "If you have the /20/ Hidden state, you may add /25/25/ to your Attack Rolls.",
+                'text_es' => "Puedes añadir /_successWhite/ a tus Tiradas de Ataque si tienes el estado /_hidden/ Oculto.",
+                'text_en' => "If you have the /_hidden/ Hidden state, you may add /_successWhite/ to your Attack Rolls.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -277,8 +277,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Al final de tu Activación, puedes imponerte el estado /20/ Oculto si ningún Enemigo tiene Linea de Visión hacia ti.",
-                'text_en' => "At the end of your Activation, you may impose the /20/ Hidden state on yourself if no Enemy has Line of Sight to you.",
+                'text_es' => "Al final de tu Activación, puedes imponerte el estado /_hidden/ Oculto si ningún Enemigo tiene Linea de Visión hacia ti.",
+                'text_en' => "At the end of your Activation, you may impose the /_hidden/ Hidden state on yourself if no Enemy has Line of Sight to you.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -297,8 +297,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Después de que resuelvas una Tirada de /10/ Defensa, puedes Desplazarte.",
-                'text_en' => "You may Displace after resolving a /10/ Defense Roll.",
+                'text_es' => "Después de que resuelvas una Tirada de /_defense/ Defensa, puedes Desplazarte.",
+                'text_en' => "You may Displace after resolving a /_defense/ Defense Roll.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -307,8 +307,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Las Escopetas sólo ocupan 1 Ranura de Equipo /29/ en tu carta de Personaje.",
-                'text_en' => "Shotguns only take 1 /29/ Equipment Slot in your Character card.",
+                'text_es' => "Las Escopetas sólo ocupan 1 Ranura de Equipo /_hand/ en tu carta de Personaje.",
+                'text_en' => "Shotguns only take 1 /_hand/ Equipment Slot in your Character card.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -347,8 +347,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "La primera vez que declares un Ataque durante cada Ronda, puedes añadir /25/ a tu Tirada.",
-                'text_en' => "Each Round you may add /25/ to your Roll the first time you declare an Attack.",
+                'text_es' => "La primera vez que declares un Ataque durante cada Ronda, puedes añadir /_successWhite/ a tu Tirada.",
+                'text_en' => "Each Round you may add /_successWhite/ to your Roll the first time you declare an Attack.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -357,8 +357,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Al Inicio de tu Activación puedes ganar el estado /15/ Concentrado.",
-                'text_en' => "At the beginning of your Activation you may impose the /15/ Focused state on yourself.",
+                'text_es' => "Al Inicio de tu Activación puedes ganar el estado /_concentrated/ Concentrado.",
+                'text_en' => "At the beginning of your Activation you may impose the /_concentrated/ Focused state on yourself.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -367,8 +367,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Al Inicio de tu Activación puedes ganar el estado /15/ Concentrado.",
-                'text_en' => "At the beginning of your Activation you may impose the /15/ Focused state on yourself.",
+                'text_es' => "Al Inicio de tu Activación puedes ganar el estado /_concentrated/ Concentrado.",
+                'text_en' => "At the beginning of your Activation you may impose the /_concentrated/ Focused state on yourself.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -397,8 +397,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Una vez por Activación puedes imponerle el estado /14/ Marcado a un Enemigo con el que tengas Linea de Visión.",
-                'text_en' => "You may impose the /14/ Targeted state on an Enemy in Line of Sight once per Activation.",
+                'text_es' => "Una vez por Activación puedes imponerle el estado /_marked/ Marcado a un Enemigo con el que tengas Linea de Visión.",
+                'text_en' => "You may impose the /_marked/ Targeted state on an Enemy in Line of Sight once per Activation.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -407,8 +407,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Puedes añadir /28/ a tus Tiradas de Hacker.",
-                'text_en' => "You may add /28/ to your Hacking Rolls.",
+                'text_es' => "Puedes añadir /_guardWhite/ a tus Tiradas de Hacker.",
+                'text_en' => "You may add /_guardWhite/ to your Hacking Rolls.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -417,8 +417,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "AL adquirir un Dispositivo de Hacker o Software lanza /1/. Por cada /23/ que obtengas, resta 1 a su valor en /33/ o /35/ (coste mínimo 0).",
-                'text_en' => "Roll /1/ when you acquire a Hacking Device or Software. Subtract 1 from their /33/ or /35/ value for each /23/ you obtain(minimun cost = 0).",
+                'text_es' => "AL adquirir un Dispositivo de Hacker o Software lanza /_diceYellow/. Por cada /_specialWhite/ que obtengas, resta 1 a su valor en /_package/ o /_fragment/ (coste mínimo 0).",
+                'text_en' => "Roll /_diceYellow/ when you acquire a Hacking Device or Software. Subtract 1 from their /_package/ or /_fragment/ value for each /_specialWhite/ you obtain(minimun cost = 0).",
                 'Type' => "personalSkill/Content"
             ],
         ]);

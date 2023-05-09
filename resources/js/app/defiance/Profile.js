@@ -36,7 +36,7 @@ function Profile({id}) {
         <div className="topButtonDiv">
           {character.subMenu.map(info => {let classutton = "topButton glass ";
             classutton += info.name == displayContent ? "active" : "deacticated";
-            return <button key={contador++} className={classutton} onClick={() => {elegirTop(info.name); first.current = false}}>{info.name}</button>;})}
+            return <button key={info.name} className={classutton} onClick={() => {elegirTop(info.name); first.current = false}}>{info.name}</button>;})}
           <button className="glass type deacticated">{character.type}</button>
         </div>
         <div className="App glass">

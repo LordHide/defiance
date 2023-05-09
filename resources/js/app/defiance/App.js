@@ -6,7 +6,6 @@ import { ChooseCharacter } from './components/ChooseCharacter.js';
 import { Welcome } from './components/welcome.js';
 import { StartMenu } from './components/startMenu.js';
 import UserContext from './context/UserContext.js';
-import InfoIconContext from './context/InfoIconContext.js';
 import './css/App.css';
 import BaseCharactersContext from './context/baseCharactersContext.js';
 import UserCharactersContext from './context/userCharactersContext.js';
@@ -21,7 +20,6 @@ function App() {
   const [userData, setUserData] = useState({});
   const [baseCharacters, setBaseCharacters] = useState({});
   const [userCharacters, setUserCharacters] = useState({});
-  const [infoIcon, setInfoIcon] = useState({});
 
   return <div className={isLogged ? "loggingApp mainApp" : "notloggingApp mainApp"}>
     <div className='backgroundCircuits'><img src='/images/circuits.png'></img></div>
@@ -31,7 +29,6 @@ function App() {
     <UserContext.Provider value={[userData, setUserData]}>
     <BaseCharactersContext.Provider value={[baseCharacters, setBaseCharacters]}>
     <UserCharactersContext.Provider value={[userCharacters, setUserCharacters]}>
-    <InfoIconContext.Provider value={[infoIcon, setInfoIcon]}>
     {isLogged && <Login onUserLoad={() => {
       setLogging(false);
       setIsWelcome(true);
@@ -53,7 +50,6 @@ function App() {
       setProfile(id, "");
     }} />}
     {profile && <Profile id={profile} />}
-    </InfoIconContext.Provider>
     </UserCharactersContext.Provider>
     </BaseCharactersContext.Provider>
     </UserContext.Provider>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\InfoIcon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,14 +43,6 @@ class RegisteredUserController extends Controller
             $response["success"] = 1;
             $response["data"]["name"] = auth()->user()->name;
             $response["data"]["token"] = $request->user()->createToken(auth()->user()->name)->plainTextToken;
-            $iconList = [];
-            $iconAll = InfoIcon::select('*')
-            ->get();
-
-            foreach($iconAll as $icon){
-                $iconList[$icon["id"]] = $icon;
-            }
-            $response["listIcons"] = $iconList;
         }
         else{
             $response["errors"] = $validation->errors();

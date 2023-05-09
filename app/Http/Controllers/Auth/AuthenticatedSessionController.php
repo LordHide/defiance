@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\InfoIcon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,14 +28,6 @@ class AuthenticatedSessionController extends Controller
             $response["success"] = 1;
             $response["data"]["name"] = auth()->user()->name;
             $response["data"]["token"] = $request->user()->createToken(auth()->user()->name)->plainTextToken;
-            $iconList = [];
-            $iconAll = InfoIcon::select('*')
-            ->get();
-
-            foreach($iconAll as $icon){
-                $iconList[$icon["id"]] = $icon;
-            }
-            $response["listIcons"] = $iconList;
         }
         else{
             $response["errors"] = !$validation->fails() ? ["email" => ["We are not able to find an account with that username and password combination."]] : $validation->errors();

@@ -8,7 +8,7 @@ export function ChooseCharacter({ onProfileChange }) {
     return <>
       <div className="characterdivContainer">
         {Object.values(baseCharacters).map(character => {
-          return <CharacterSlot character={character} onProfileChange={onProfileChange} contador={contador++} />
+          return <CharacterSlot key={character.id} character={character} onProfileChange={onProfileChange} />
         })
         }
       </div>

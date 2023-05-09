@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InfoIcon extends Model
+class Skill extends Model
 {
-    protected $table = 'infoIcons';
+    protected $table = 'skill';
     protected $primaryKey = 'id';
     use HasFactory;
 }

@@ -41,10 +41,10 @@ function ProfailMain({isRemote, first}) {
               {character.characterState.map( (info, index) => {
                 return stateGeneration(info, index, handleClick);
               } ) }
-              <CanvasSlider imageName={"herida"} index={0} isRemote={isRemote} />     
+              <CanvasSlider imageName={"wound"} index={0} isRemote={isRemote} />     
               <CanvasSlider imageName={"agro"} index={1} />
               {character.stats.map( (stat) => {
-                return <StatsHexagon stat={stat} colorPrincipal={colorPrincipal} colorSecondary={colorSecondary} />
+                return <StatsHexagon key={stat} stat={stat} colorPrincipal={colorPrincipal} colorSecondary={colorSecondary} />
               } ) }
             </RemoteContext.Provider>
             </CharacterContext.Provider>
@@ -58,9 +58,9 @@ function ProfailMain({isRemote, first}) {
 function CanvasSlider({imageName, index, isRemote}){
 
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
-  const stat = imageName == "herida" ? character.stats[0] : character.stats[1];
+  const stat = imageName == "wound" ? character.stats[0] : character.stats[1];
   const statValue = stat.max + stat.modifier;
-  const rectY = imageName == "herida" ? 0.04 : 0.079;
+  const rectY = imageName == "wound" ? 0.04 : 0.079;
   const image = new Image();
   const handleClickSlider = (index, value, statValue) => {
     return () => {
@@ -105,7 +105,7 @@ function CanvasSlider({imageName, index, isRemote}){
         onTap={handleClickSlider(index, -1, statValue)}
       />
       {infoCellsList.map((info) =>{
-        return <Rect
+        return <Rect key={info.height}
           x = {info.x}
           y = {info.y}
           width = {info.width}
@@ -240,7 +240,7 @@ function CreateInfoContainer({isRemote}){
         let classStyle = "infoOptions";
         classStyle += element.name == infoActive ? " activo" : " deactivated";
         return (
-        <div className={classStyle} onClick={() => {setInfoActive(element.name); setDataActive(cambiarInfoActive(element.name, isRemote))}}>
+        <div key={element.name} className={classStyle} onClick={() => {setInfoActive(element.name); setDataActive(cambiarInfoActive(element.name, isRemote))}}>
           {element.name}
         </div>
         );
@@ -250,7 +250,7 @@ function CreateInfoContainer({isRemote}){
           {dataActive}
         </div>
         {character.personalSkill.map((skill) => {
-          return <PersonalSkills skill={skill}/>
+          return <PersonalSkills key={skill} skill={skill}/>
         })}
       </div>
     </>
@@ -262,7 +262,7 @@ function PersonalSkills({skill}){
           <div className="titleSkill">{skill.title}</div>
           <div className="textSkill">
             {skill.Content.map((content) => {
-              return <CreateIcon iconData={content} isActiveRange={true}/>
+              return <CreateIcon key={content} iconData={content} isActiveRange={true}/>
             })}
           </div>
         </div>
@@ -290,7 +290,7 @@ function Equipo({isRemote}){
     <>
       {character.slots[0].items.map((element) => {
         return (
-              <GeneratePersonalItems element={element} node={"equipment"} colorPrincipal={colorPrincipal} extraClass={""} typeId={0} />
+              <GeneratePersonalItems key={element} element={element} node={"equipment"} colorPrincipal={colorPrincipal} extraClass={""} typeId={0} />
         )
       })}
     </>
@@ -306,7 +306,7 @@ function Software({isRemote}){
     <>
       {character.slots[1].items.map((element) => {
         return (
-              <GeneratePersonalItems element={element} node={"software"} colorPrincipal={colorPrincipal} extraClass={""} typeId={1} />
+              <GeneratePersonalItems key={element} element={element} node={"software"} colorPrincipal={colorPrincipal} extraClass={""} typeId={1} />
         )
       })}
     </>
@@ -322,7 +322,7 @@ function Especialidades({isRemote}){
     <>
       {character.slots[2].items.map((element) => {
         return (
-              <GeneratePersonalItems element={element} node={"specialty"} colorPrincipal={colorPrincipal} extraClass={"Specialty"} isRemote={isRemote} typeId={2} />
+              <GeneratePersonalItems key={element} element={element} node={"specialty"} colorPrincipal={colorPrincipal} extraClass={"Specialty"} isRemote={isRemote} typeId={2} />
         )
       })}
     </>
@@ -379,7 +379,7 @@ function InfoHex({correctSlot, hex}){
   return hex.map(
     (iconInfo) => {
       const itenValido = correctSlot && iconInfo.code !== '-' && !iconInfo.class.includes("void");
-        return itenValido && <CreateIcon iconData={iconInfo} isActiveRange={true}/>
+        return itenValido && <CreateIcon key={iconInfo} iconData={iconInfo} isActiveRange={true}/>
     }
   )
 }
@@ -433,7 +433,7 @@ function StatImage({stat, positions}){
     imagePositionX = stat.max.length > 1 ? imagePositionX-((positions.contentWidth*0.8)) : positions.componentX - positions.contentWidth*0.33;
     imageData.src = svgDispenser(maxData.code);
     return (
-      <ImageKonva
+      <ImageKonva key={positions.componentY}
         image={imageData}
         x= {(imagePositionX)}
         y= {(positions.componentY + (window.innerWidth*0.00396))}

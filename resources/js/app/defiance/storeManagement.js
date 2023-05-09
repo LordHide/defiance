@@ -81,10 +81,10 @@ function ExtraInfo({iten}){
             if(info.type == "switch"){
               classSwitch = "switchRow";
               switchContainer = 
-              <div className="switchContainer">
+              <div key={info.type} className="switchContainer">
                 <div className="switchGrid" style={{"gridTemplateColumns": "repeat("+info.switch.length+", 1fr)", "gridTemplateRows":"repeat(1, 1fr);"}}>
                   {info.switch.map(iconData => {
-                        return <div><CreateIcon iconData={iconData} isActiveRange={false}/></div>
+                        return <div><CreateIcon key={iconData} iconData={iconData} isActiveRange={false}/></div>
                     })
                   }
                   </div>
@@ -96,7 +96,7 @@ function ExtraInfo({iten}){
                   {switchContainer}
                   <div className={classSwitch}> 
                       {info.content.map(iconData => {
-                          return <CreateIcon iconData={iconData} isActiveRange={false} />
+                          return <CreateIcon key={iconData} iconData={iconData} isActiveRange={false} />
                   })}
                   </div>
                 </div>
@@ -151,7 +151,7 @@ function InfoHex({valuesHex, style}){
     infohex = <div className={valuesHex.nameHex} style={style}>
     <div className="gridHex" style={gridColumns}>
       {valuesHex.nodeHex.map(info => {
-            return <div className={info.type+""+info.class}>{<CreateIcon iconData={info} isActiveRange={false} />}</div>
+            return <div key={info.type} className={info.type+""+info.class}>{<CreateIcon iconData={info} isActiveRange={false} />}</div>
         })
       }
       </div>
@@ -192,11 +192,11 @@ function StoreList({nodeInfo, actionPermit}){
         nodeInfo.typeList.map(typeId => {
           const type = store.type[typeId];
           const asociatedItems = Array.isArray(type.asociatedItems[0]) ? type.asociatedItems[nodeInfo.subType] : type.asociatedItems
-          return<div className="typeContainer">
+          return<div key={typeId} className="typeContainer">
             <div className="typeTitle">//{type.name}</div>
             {
               asociatedItems.map(itemId => {
-                return <ItenModule store={store} relevantId={{"itemId":itemId, "typeId": typeId, "typeSlot": activeIten.typeSlot}} selectHandler={selectHandler} />
+                return <ItenModule key={itemId} store={store} relevantId={{"itemId":itemId, "typeId": typeId, "typeSlot": activeIten.typeSlot}} selectHandler={selectHandler} />
               })
             }
           </div>
@@ -386,7 +386,7 @@ function ItenModule({store, relevantId, selectHandler}){
   itenModule = activeSlot.map( slots => {
     return <div className={"typeTitle"}>{
       slots.icon.map(icon => {
-        return <CreateIcon iconData={icon} isActiveRange={false} />
+        return <CreateIcon key={icon} iconData={icon} isActiveRange={false} />
       })
     }</div>
   });

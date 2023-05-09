@@ -3,7 +3,6 @@ import {LoadIcon} from './loadIcon';
 import {FormErorrMessage} from './formErorrMessage';
 import '../css/components/login.css';
 import UserContext from '../context/UserContext.js';
-import InfoIconContext from '../context/InfoIconContext.js';
 
 export function LoginForm({onUserLoad}) {
 
@@ -12,7 +11,6 @@ export function LoginForm({onUserLoad}) {
   const [password, setPassword] = useState("");
   const [errorMesage, setErrorMesage] = useState({});
   const [userData, setUserData] = useContext(UserContext);
-  const [infoIcon, setInfoIcon] = useContext(InfoIconContext);
 
   useEffect(() => {
     if(isSendingLogin == "send"){
@@ -31,7 +29,6 @@ export function LoginForm({onUserLoad}) {
       .then(response => {
           if(response.success == 1){
             setUserData(response.data);
-            setInfoIcon(response.listIcons);
             onUserLoad();
           }
           else{
