@@ -41,8 +41,8 @@ function ProfailMain({isRemote, first}) {
               {character.characterState.map( (info, index) => {
                 return stateGeneration(info, index, handleClick);
               } ) }
-              <CanvasSlider imageName={"wound"} index={0} isRemote={isRemote} />     
-              <CanvasSlider imageName={"agro"} index={1} />
+              <CanvasSlider imageName={"_wound"} index={0} isRemote={isRemote} />     
+              <CanvasSlider imageName={"_agro"} index={1} />
               {character.stats.map( (stat) => {
                 return <StatsHexagon key={stat} stat={stat} colorPrincipal={colorPrincipal} colorSecondary={colorSecondary} />
               } ) }
@@ -58,9 +58,9 @@ function ProfailMain({isRemote, first}) {
 function CanvasSlider({imageName, index, isRemote}){
 
   const [character, setCharacter] = useContext(isRemote ? RemoteContext : CharacterContext);
-  const stat = imageName == "wound" ? character.stats[0] : character.stats[1];
+  const stat = imageName == "_wound" ? character.stats[0] : character.stats[1];
   const statValue = stat.max + stat.modifier;
-  const rectY = imageName == "wound" ? 0.04 : 0.079;
+  const rectY = imageName == "_wound" ? 0.04 : 0.079;
   const image = new Image();
   const handleClickSlider = (index, value, statValue) => {
     return () => {

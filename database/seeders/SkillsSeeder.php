@@ -33,12 +33,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Una vez por Ronda, cuando se revele la carta de Iniciativa de una Unidad, Trishala puede activarse en ese momento.\n
-                    En ese caso, la Unidad revelada se activará inmediatamente después de Trishala y Duquesa no podrá activarse esta Ronda. Además, 
-                    ningún otro Personaje podrá activarse entre Trishala y la Unidad.",
-                'text_en' => "Once per Round, when a Unit's Initiative card is revealed, Trishala may instantly be activated.\n 
-                    In this case, the revealed Unit will be activated immediately after Trishala, and Duchess will not be activated during this Round. Also,
-                    no other Character may be activated between Trishala and the Unit.",
+                'text_es' => "Una vez por Ronda, cuando se revele la carta de Iniciativa de una Unidad, Trishala puede activarse en ese momento.\nEn ese caso, la Unidad revelada se activará inmediatamente después de Trishala y Duquesa no podrá activarse esta Ronda. Además, ningún otro Personaje podrá activarse entre Trishala y la Unidad.",
+                'text_en' => "Once per Round, when a Unit's Initiative card is revealed, Trishala may instantly be activated.\nIn this case, the revealed Unit will be activated immediately after Trishala, and Duchess will not be activated during this Round. Also,no other Character may be activated between Trishala and the Unit.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -47,8 +43,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "/_action/Compilador Avanzado: Sustiye un Software intalado en tu dispositivo de Hacker por otro en tu inventario que no esté instalado.",
-                'text_en' => "/_action/Advanced Compiler: Replace an installled Software of your choosing with another one from your inventory that is not installed.",
+                'text_es' => "_action/Compilador Avanzado: Sustiye un Software intalado en tu dispositivo de Hacker por otro en tu inventario que no esté instalado.",
+                'text_en' => "_action/Advanced Compiler: Replace an installled Software of your choosing with another one from your inventory that is not installed.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -117,8 +113,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "/_action/Tratamiento Avanzado: Un Personaje adyacente (que no sea un Remoto) puede voltear una Secuela para cancelar sus Efectos (recibiendo entonces -1/_health/).",
-                'text_en' => "/_action/Advanced Treatment: An adjacent Character (other than a Remote) may flip a Consequence to cancel its Effects (then receiving -1/_health/).",
+                'text_es' => "_action/Tratamiento Avanzado: Un Personaje adyacente (que no sea un Remoto) puede voltear una Secuela para cancelar sus Efectos (recibiendo entonces -1/_health/).",
+                'text_en' => "_action/Advanced Treatment: An adjacent Character (other than a Remote) may flip a Consequence to cancel its Effects (then receiving -1/_health/).",
                 'Type' => "personalSkill/Content"
             ],
             [

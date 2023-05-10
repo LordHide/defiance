@@ -9,6 +9,7 @@ import UserContext from './context/UserContext.js';
 import './css/App.css';
 import BaseCharactersContext from './context/baseCharactersContext.js';
 import UserCharactersContext from './context/userCharactersContext.js';
+import CharacterSkillsContext from './context/CharacterSkillsContext.js';
 
 function App() {
   const [isWelcome, setIsWelcome] = useState(false);
@@ -20,6 +21,7 @@ function App() {
   const [userData, setUserData] = useState({});
   const [baseCharacters, setBaseCharacters] = useState({});
   const [userCharacters, setUserCharacters] = useState({});
+  const [characterSkills, setCharacterSkills] = useState({});
 
   return <div className={isLogged ? "loggingApp mainApp" : "notloggingApp mainApp"}>
     <div className='backgroundCircuits'><img src='/images/circuits.png'></img></div>
@@ -29,6 +31,7 @@ function App() {
     <UserContext.Provider value={[userData, setUserData]}>
     <BaseCharactersContext.Provider value={[baseCharacters, setBaseCharacters]}>
     <UserCharactersContext.Provider value={[userCharacters, setUserCharacters]}>
+    <CharacterSkillsContext.Provider value={[characterSkills, setCharacterSkills]}>
     {isLogged && <Login onUserLoad={() => {
       setLogging(false);
       setIsWelcome(true);
@@ -50,6 +53,7 @@ function App() {
       setProfile(id, "");
     }} />}
     {profile && <Profile id={profile} />}
+    </CharacterSkillsContext.Provider>
     </UserCharactersContext.Provider>
     </BaseCharactersContext.Provider>
     </UserContext.Provider>

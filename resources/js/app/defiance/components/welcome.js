@@ -4,6 +4,7 @@ import '../css/components/login.css';
 import UserContext from '../context/UserContext.js';
 import BaseCharactersContext from '../context/baseCharactersContext.js';
 import UserCharactersContext from '../context/userCharactersContext.js';
+import CharacterSkillsContext from '../context/CharacterSkillsContext.js';
 import { useCharacterJsonGeneration } from '../hooks/useCharacterJsonGeneration.js';
 
 export function Welcome({ firstLoad, onLoad }) {
@@ -11,7 +12,7 @@ export function Welcome({ firstLoad, onLoad }) {
   const [userData, setUserData] = useContext(UserContext);
   const [baseCharacters, setBaseCharacters] = useContext(BaseCharactersContext);
   const [userCharacters, setUserCharacters] = useContext(UserCharactersContext);
-  const test = useCharacterJsonGeneration;
+  const [characterSkills, setCharacterSkills] = useContext(CharacterSkillsContext);
 
   useEffect(() => {
       let formData = new FormData();
@@ -26,8 +27,8 @@ export function Welcome({ firstLoad, onLoad }) {
       )
       .then(res => res.json())
       .then(response => {
-          let baseCharacters = test(response.baseCharacters);
-          setBaseCharacters(baseCharacters);
+          setCharacterSkills(response.charactersSkills);
+          setBaseCharacters(useCharacterJsonGeneration(response.baseCharacters, response.charactersSkills));
           setUserCharacters(response.userCharacters);
           onLoad();
         }
@@ -36,7 +37,7 @@ export function Welcome({ firstLoad, onLoad }) {
           console.log(error);
         }
       );
-    },[baseCharacters, userCharacters]
+    },[]
   )
 
   return <div className="loading">

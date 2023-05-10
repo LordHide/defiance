@@ -7,7 +7,7 @@ export function useIconCombersion(context){
 
   for (const section of contextList) {
     let hasMoustache = section[0] == "_"; 
-    sectionCode.push({type: hasMoustache ? "text" : "svg", code: section}); 
+    sectionCode.push({type: hasMoustache ? "svg" : "text", code: section}); 
   }
 
   return sectionCode;
