@@ -1,5 +1,5 @@
 import React, {useEffect, useContext} from 'react';
-import { CreateIcon } from '../storeManagement.js';
+import { CreateIcon } from './CreateIcon.js';
 import '../css/components/login.css';
 import UserContext from '../context/UserContext.js';
 import BaseCharactersContext from '../context/baseCharactersContext.js';
@@ -42,7 +42,7 @@ export function Welcome({ firstLoad, onLoad }) {
 
   return <div className="loading">
     <div>
-      {firstLoad && <p className='welcomeSing transAparition'>Welcome {userData.name}</p>}
+      {firstLoad && <p className='welcomeSing transAparition'>Welcome{userData.name}</p>}
       <CreateIcon iconData={{ "type": "png", "code": "logoDefianceImg", "class": "logoLoading transAparition" }} isActiveRange={false} />
       <div className="containerCircleLoading">
       </div>

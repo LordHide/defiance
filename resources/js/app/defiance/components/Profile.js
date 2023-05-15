@@ -1,21 +1,19 @@
 import React, {useState,useContext, useRef} from 'react';
-import Inventario from './inventario.js';
-import ProfailMain from './profailMain.js';
-import CharacterContext from './context/CharacterContext.js';
-import StoreContext from './context/storeContext.js';
-import RemoteContext from './context/RemoteContext.js';
-import InfoCardContext from './context/InfoCardContext.js';
-import StoreListContext from './context/StoreListContext.js';
-import duchessJSON from './json/duchess.json';
-import baseJSON from './json/base.json';
-import BaseCharactersContext from './context/baseCharactersContext.js';
-import './css/ProfileGlobal.css';
-import './css/Profile.css';
+import CharacterContext from '../context/CharacterContext.js';
+import StoreContext from '../context/StoreContext.js';
+import RemoteContext from '../context/RemoteContext.js';
+import InfoCardContext from '../context/InfoCardContext.js';
+import StoreListContext from '../context/StoreListContext.js';
+import { useLoadActiveContent } from '../hooks/useLoadActiveContent.js';
+import baseJSON from '../json/base.json';
+import BaseCharactersContext from '../context/baseCharactersContext.js';
+import '../css/ProfileGlobal.css';
+import '../css/Profile.css';
 
-function Profile({id}) {
+export function Profile({id}) {
   const [baseCharacters, setBaseCharacters] = useContext(BaseCharactersContext);
   const character = baseCharacters[id];
-  const [stateRemoteContext, setStateRemoteContext] = useState(loadRemote(id))
+  const [stateRemoteContext, setStateRemoteContext] = useState(id)
   const [stateCharacterContext, setStateCharacterContext] = useState(character)
   const [stateStoreContext, setStateStoreContext] = useState(baseJSON)
   const [InfoContext, setInfoCardContext] = useState(<></>);
@@ -24,7 +22,6 @@ function Profile({id}) {
   const colorSecondary= "rgba("+character.colorSecon.R+","+character.colorSecon.G+","+character.colorSecon.B+", 0.6)";
   const [displayContent, elegirTop] = useState("EQUIPO");
   const first = useRef(true);
-  let contador = 0;
 
   return (
     <CharacterContext.Provider value={[stateCharacterContext, setStateCharacterContext]}>
@@ -40,7 +37,7 @@ function Profile({id}) {
           <button className="glass type deacticated">{character.type}</button>
         </div>
         <div className="App glass">
-          {loadActiveContent(displayContent, character, first.current)}
+          {useLoadActiveContent(displayContent, character, first.current)}
         </div>
         {ListContext}
         {InfoContext}
@@ -51,32 +48,3 @@ function Profile({id}) {
     </CharacterContext.Provider>
   );
 }
-
-function loadCharacter(id){
-  return characterJSON;
-}
-
-function loadRemote(name){
-  let characterJSON;
-  switch(name){
-    case "Trisha" : characterJSON = duchessJSON; break;
-  }
-
-  return characterJSON;
-}
-
-function loadActiveContent(displayContent, character, first){
-  let content;
-
-  switch(displayContent){
-    case "EQUIPO" : content = < ProfailMain isRemote={false} first={first} />; break;
-    case "INVENTARIO" :  content = < Inventario first={first} />; break;
-    case "REMOTO" :  content = < ProfailMain isRemote={true} remote={character.Remote} first={first} />; break;
-    default: content = < Inventario />; break;
-  }
-
-  return content;
-}
-
-
-export default Profile;

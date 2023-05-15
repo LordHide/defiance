@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CreateIcon } from '../storeManagement.js';
+import { CreateIcon } from './CreateIcon.js';
 
 export function CharacterSlot({ character, onProfileChange }) {
     const [clipPath, setClipPath] = useState({ clipPath: "polygon(0 50%, 50% 100%, 100% 50%, 50% 0 )", opacity: "0.65" });

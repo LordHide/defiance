@@ -1,5 +1,5 @@
 import React from 'react';
-import { CreateIcon } from '../storeManagement.js';
+import { CreateIcon } from './CreateIcon.js';
 
 export function ChooseExpansion({ onCharacterChange }) {
     return <div className="expansionButtonContainer">

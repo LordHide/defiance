@@ -22,6 +22,7 @@ import herida from './Img/svg/herida.svg';
 import especialBlack from './Img/svg/especialBlack.svg';
 import especialWhite from './Img/svg/especialWhite.svg';
 import exitoBlack from './Img/svg/exitoBlack.svg';
+import successWhite from './Img/svg/successWhite.svg';
 import escudo from './Img/svg/escudo.svg';
 import bloqueoWhite from './Img/svg/bloqueoWhite.svg';
 import bloqueoBlack from './Img/svg/bloqueoBlack.svg';
@@ -109,6 +110,9 @@ function svgDispenser(marker){
             break;
         case "_exitoBlack":
             svg = exitoBlack;
+            break;
+        case "_successWhite":
+            svg = successWhite;
             break;
         case "_shield":
             svg = escudo;

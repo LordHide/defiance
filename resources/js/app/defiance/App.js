@@ -1,4 +1,4 @@
-import Profile from './Profile';
+import {Profile} from './components/Profile';
 import {Login} from './components/login';
 import React, {useState } from 'react';
 import { ChooseExpansion } from './components/ChooseExpansion.js';
