@@ -10,9 +10,9 @@ import BaseCharactersContext from '../context/baseCharactersContext.js';
 import '../css/ProfileGlobal.css';
 import '../css/Profile.css';
 
-export function Profile({id}) {
+export function Profile({id, expansion, returnSelection}) {
   const [baseCharacters, setBaseCharacters] = useContext(BaseCharactersContext);
-  const character = baseCharacters[id];
+  const character = baseCharacters[expansion][id];
   const [stateRemoteContext, setStateRemoteContext] = useState(id)
   const [stateCharacterContext, setStateCharacterContext] = useState(character)
   const [stateStoreContext, setStateStoreContext] = useState(baseJSON)
@@ -33,7 +33,8 @@ export function Profile({id}) {
         <div className="topButtonDiv">
           {character.subMenu.map(info => {let classutton = "topButton glass ";
             classutton += info.name == displayContent ? "active" : "deacticated";
-            return <button key={info.name} className={classutton} onClick={() => {elegirTop(info.name); first.current = false}}>{info.name}</button>;})}
+            return <button key={info.name} className={classutton} onClick={() => {first.current = false;  
+              info.name == "VOLVER" ? returnSelection() : elegirTop(info.name);}}>{info.name}</button>;})}
           <button className="glass type deacticated">{character.type}</button>
         </div>
         <div className="App glass">

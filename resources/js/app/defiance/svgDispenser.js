@@ -81,7 +81,7 @@ function svgDispenser(marker){
         case "_marked":
             svg = marcado;
             break;
-        case "_concentrated":
+        case "_focused":
             svg = concentrado;
             break;
         case "_blind":

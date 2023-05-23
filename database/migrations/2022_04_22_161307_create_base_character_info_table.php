@@ -17,8 +17,8 @@ class CreateBaseCharacterInfoTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name', 25);
-            $table->string('typeEs', 25);
-            $table->string('typeEn', 25);
+            $table->string('typeEs', 50);
+            $table->string('typeEn', 50);
             $table->string('name_full', 35);
             $table->smallInteger('health');
             $table->smallInteger('Movement');

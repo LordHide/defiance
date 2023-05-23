@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login', [AuthenticatedSessionController::class, 'store']);
 Route::post('register', [RegisteredUserController::class, 'store']);
 Route::post('firstCharacterLoad', [CharacterController::class, 'firstCharacterLoad']);
+Route::post('baseCharacterLoad', [CharacterController::class, 'baseCharacterLoad']);
 
 Route::get('/token', function(Request $request){
 

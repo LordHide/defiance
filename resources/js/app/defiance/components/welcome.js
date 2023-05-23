@@ -2,15 +2,12 @@ import React, {useEffect, useContext} from 'react';
 import { CreateIcon } from './CreateIcon.js';
 import '../css/components/login.css';
 import UserContext from '../context/UserContext.js';
-import BaseCharactersContext from '../context/baseCharactersContext.js';
 import UserCharactersContext from '../context/userCharactersContext.js';
 import CharacterSkillsContext from '../context/CharacterSkillsContext.js';
-import { useCharacterJsonGeneration } from '../hooks/useCharacterJsonGeneration.js';
 
 export function Welcome({ firstLoad, onLoad }) {
 
   const [userData, setUserData] = useContext(UserContext);
-  const [baseCharacters, setBaseCharacters] = useContext(BaseCharactersContext);
   const [userCharacters, setUserCharacters] = useContext(UserCharactersContext);
   const [characterSkills, setCharacterSkills] = useContext(CharacterSkillsContext);
 
@@ -28,7 +25,6 @@ export function Welcome({ firstLoad, onLoad }) {
       .then(res => res.json())
       .then(response => {
           setCharacterSkills(response.charactersSkills);
-          setBaseCharacters(useCharacterJsonGeneration(response.baseCharacters, response.charactersSkills));
           setUserCharacters(response.userCharacters);
           onLoad();
         }

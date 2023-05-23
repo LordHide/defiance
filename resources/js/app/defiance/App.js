@@ -17,6 +17,7 @@ function App() {
   const [isCharacter, setIsCharacter] = useState(false);
   const [isStartMenu, setIsStartMenu] = useState(false);
   const [profile, setProfile] = useState("");
+  const [currentExpansion, setCurrentExpansion] = useState("");
   const [isLogged, setLogging] = useState(true);
   const [userData, setUserData] = useState({});
   const [baseCharacters, setBaseCharacters] = useState({});
@@ -44,15 +45,19 @@ function App() {
       setIsStartMenu(false);
       setIsExpansion(true);
     }} />}
-    {isExpansion && <ChooseExpansion onCharacterChange={() => {
+    {isExpansion && <ChooseExpansion onCharacterChange={(selectedExpansion) => {
+      setCurrentExpansion(selectedExpansion)
       setIsExpansion(false);
       setIsCharacter(true);
     }} />}
-    {isCharacter && <ChooseCharacter onProfileChange={(id) => {
+    {isCharacter && <ChooseCharacter expansion={currentExpansion} onProfileChange={(id) => {
       setIsCharacter(false);
       setProfile(id, "");
     }} />}
-    {profile && <Profile id={profile} />}
+    {profile && <Profile id={profile} expansion={currentExpansion} returnSelection={() => {
+      setProfile("", "");
+      setIsExpansion(true);
+    }} />}
     </CharacterSkillsContext.Provider>
     </UserCharactersContext.Provider>
     </BaseCharactersContext.Provider>

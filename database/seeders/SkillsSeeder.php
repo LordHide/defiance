@@ -23,8 +23,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Al Iniciode tu Activación ouedes ganar el Estado /_concentrated/ Concentrado",
-                'text_en' => "At the beginning of yor Activation you may gain the /_concentrated/ Focused state",
+                'text_es' => "Al Iniciode tu Activación ouedes ganar el Estado /_focused/ Concentrado",
+                'text_en' => "At the beginning of yor Activation you may gain the /_focused/ Focused state",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -183,8 +183,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Al Inicio de tu Activación puedes ganar el estado /_concentrated/ Concentrado.",
-                'text_en' => "At the beginning of your Activation you may impose the /_concentrated/ Focused state on yourself.",
+                'text_es' => "Al Inicio de tu Activación puedes ganar el estado /_focused/ Concentrado.",
+                'text_en' => "At the beginning of your Activation you may impose the /_focused/ Focused state on yourself.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -353,8 +353,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Al Inicio de tu Activación puedes ganar el estado /_concentrated/ Concentrado.",
-                'text_en' => "At the beginning of your Activation you may impose the /_concentrated/ Focused state on yourself.",
+                'text_es' => "Al Inicio de tu Activación puedes ganar el estado /_focused/ Concentrado.",
+                'text_en' => "At the beginning of your Activation you may impose the /_focused/ Focused state on yourself.",
                 'Type' => "personalSkill/Content"
             ],
             [
@@ -363,8 +363,8 @@ class SkillsSeeder extends Seeder
                 'Type' => "personalSkill/title"
             ],
             [
-                'text_es' => "Al Inicio de tu Activación puedes ganar el estado /_concentrated/ Concentrado.",
-                'text_en' => "At the beginning of your Activation you may impose the /_concentrated/ Focused state on yourself.",
+                'text_es' => "Al Inicio de tu Activación puedes ganar el estado /_focused/ Concentrado.",
+                'text_en' => "At the beginning of your Activation you may impose the /_focused/ Focused state on yourself.",
                 'Type' => "personalSkill/Content"
             ],
             [
